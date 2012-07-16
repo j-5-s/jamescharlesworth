@@ -2411,11 +2411,11 @@ div.last {
 }
 
 /* line 11, ../sass/screen.sass */
-#container {
+.container {
   min-width: 950px;
   width: 80%;
   margin: 0 auto;
   overflow: hidden;
   *zoom: 1;
-  width: 80%;
+  width: 90%;
 }
