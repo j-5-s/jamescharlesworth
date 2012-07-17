@@ -2410,28 +2410,28 @@ div.last {
   margin-bottom: 0;
 }
 
-/* line 12, ../sass/screen.sass */
+/* line 1, ../sass/partials/_bg.sass */
 body {
-  background: url(../images/bg-grey.png) repeat-x;
+  background: url(../images/bg-grey.png) repeat;
 }
 
-/* line 15, ../sass/screen.sass */
+/* line 4, ../sass/partials/_bg.sass */
 .header {
   height: 90px;
 }
 
-/* line 18, ../sass/screen.sass */
+/* line 7, ../sass/partials/_bg.sass */
 .wrapper {
   background: url(../images/bg.png);
 }
 
-/* line 21, ../sass/screen.sass */
+/* line 10, ../sass/partials/_bg.sass */
 .footer {
   background: url(../images/bg-footer.png) repeat-x;
   height: 100px;
 }
 
-/* line 25, ../sass/screen.sass */
+/* line 14, ../sass/partials/_bg.sass */
 .container {
   min-width: 950px;
   width: 80%;
@@ -2439,4 +2439,69 @@ body {
   overflow: hidden;
   *zoom: 1;
   width: 80%;
+}
+
+/* line 1, ../sass/partials/_header.sass */
+h1.title a, h2.title {
+  font-family: "Poiret One", cursive;
+  color: #f9f9f9;
+  text-shadow: 1px 1px 1px #333333;
+}
+
+/* line 6, ../sass/partials/_header.sass */
+h1.title {
+  margin-top: 35px;
+}
+
+/* line 9, ../sass/partials/_header.sass */
+h1.title a {
+  font-size: 36px;
+  text-decoration: none;
+}
+
+/* line 14, ../sass/partials/_header.sass */
+h2.title {
+  margin-top: 40px;
+  font-size: 24px;
+}
+
+/* line 1, ../sass/partials/_menu.sass */
+.menu {
+  margin-top: 1px;
+}
+
+/* line 4, ../sass/partials/_menu.sass */
+.menu ul {
+  margin: 0;
+  padding: 0;
+  height: 50px;
+}
+
+/* line 9, ../sass/partials/_menu.sass */
+.menu ul li {
+  list-style-type: none;
+  margin: 0;
+  float: left;
+  padding: 10px 20px 0 0;
+}
+
+/* line 15, ../sass/partials/_menu.sass */
+.menu ul li a {
+  padding: 13px 0px;
+  color: #333333;
+  text-decoration: none;
+}
+
+/* line 20, ../sass/partials/_menu.sass */
+.menu ul li a.active {
+  background: url(../images/triangle.png?sd) no-repeat center top;
+  font-weight: bold;
+  color: #f9f9f9;
+  text-shadow: 1px 1px 1px #333333;
+}
+
+/* line 1, ../sass/partials/_home.sass */
+.home-mantle {
+  background: url(../images/bg-home.png) no-repeat top center;
+  height: 717px;
 }
