@@ -2500,10 +2500,37 @@ h2.title {
   text-shadow: 1px 1px 1px #333333;
 }
 
+/* line 1, ../sass/partials/_page.sass */
+.page {
+  margin-top: -50px;
+  padding-top: 50px;
+  border-top: 1px solid white;
+  height: 700px;
+}
+
+/* line 7, ../sass/partials/_page.sass */
+.page h1, .page h2, .page h3 {
+  font-family: "Poiret One", cursive;
+  color: #f9f9f9;
+  text-shadow: 1px 1px 1px #333333;
+}
+
+/* line 12, ../sass/partials/_page.sass */
+.page h1 {
+  font-size: 36px;
+  text-decoration: none;
+}
+
+/* line 16, ../sass/partials/_page.sass */
+.page a {
+  text-decoration: none;
+  color: white;
+  padding: 3px;
+}
+
 /* line 1, ../sass/partials/_home.sass */
 .home-mantle {
-  background: url(../images/bg-home.png) no-repeat bottom center;
-  height: 600px;
+  background: url(../images/bg-home.png) no-repeat top center;
 }
 
 /* line 5, ../sass/partials/_home.sass */
@@ -2515,81 +2542,88 @@ h2.title {
   font-weight: bold;
 }
 
+/* line 13, ../sass/partials/_home.sass */
+.home-mantle {
+  padding-top: 0;
+}
+
+/* line 16, ../sass/partials/_home.sass */
+.home-mantle .container {
+  padding-top: 50px;
+}
+
 /* line 3, ../sass/partials/_about.sass */
 .about {
-  height: 700px;
   background: url(../images/bg-red.png);
-  padding: 40px 0;
 }
 
-/* line 8, ../sass/partials/_about.sass */
-.about h1, .about h2 {
-  font-family: "Poiret One", cursive;
-  color: #f9f9f9;
-  text-shadow: 1px 1px 1px #333333;
-}
-
-/* line 15, ../sass/partials/_about.sass */
-.about h1 {
-  font-size: 36px;
-  text-decoration: none;
-}
-
-/* line 19, ../sass/partials/_about.sass */
+/* line 6, ../sass/partials/_about.sass */
 .about h2 {
   padding: 0 15px 0;
 }
 
-/* line 22, ../sass/partials/_about.sass */
+/* line 9, ../sass/partials/_about.sass */
 .about-column {
   border-right: 1px solid #b84e50;
   color: #411618;
   height: 500px;
 }
 
-/* line 27, ../sass/partials/_about.sass */
+/* line 14, ../sass/partials/_about.sass */
 .about .last .about-column {
   border-right: none;
 }
 
-/* line 30, ../sass/partials/_about.sass */
+/* line 17, ../sass/partials/_about.sass */
 .about-column p {
   padding: 0 15px 0;
 }
 
-/* line 33, ../sass/partials/_about.sass */
+/* line 20, ../sass/partials/_about.sass */
 .first .about-column p {
   padding: 0 15px 0 0;
 }
 
-/* line 36, ../sass/partials/_about.sass */
+/* line 23, ../sass/partials/_about.sass */
 .first h2 {
   padding: 0 15px 0 0;
 }
 
 /* line 1, ../sass/partials/_projects.sass */
 .projects {
-  height: 800px;
   background: url(../images/bg-blue.png);
-  padding: 20px 0;
 }
 
-/* line 6, ../sass/partials/_projects.sass */
-.projects h1, .projects h2 {
-  font-family: "Poiret One", cursive;
-  color: #f9f9f9;
-  text-shadow: 1px 1px 1px #333333;
+/* line 4, ../sass/partials/_projects.sass */
+.projects .tags p {
+  color: #dedede;
+  text-shadow: 1px 1px 1px #999999;
+  font-style: italic;
+}
+
+/* line 9, ../sass/partials/_projects.sass */
+.projects .tags {
+  padding-top: 15px;
 }
 
 /* line 12, ../sass/partials/_projects.sass */
-.projects h1 {
-  font-size: 36px;
-  text-decoration: none;
+.projects p {
+  color: #dedede;
 }
 
-/* line 1, ../sass/partials/_page.sass */
-.page {
-  margin-top: -50px;
-  padding-top: 50px;
-  border-top: 1px solid white;
+/* line 15, ../sass/partials/_projects.sass */
+.projects img {
+  width: 390px;
+}
+
+/* line 18, ../sass/partials/_projects.sass */
+.projects li {
+  color: white;
+  margin-bottom: 6px;
+}
+
+/* line 22, ../sass/partials/_projects.sass */
+.projects a {
+  background-color: #a23a35;
+  color: #8cbee7;
 }
