@@ -1,7 +1,8 @@
+$column-padding: 0 15px 0
+
 .about
-  height: 800px
+  height: 700px
   background: url(../images/bg-red.png)
-  border-top: 1px solid #FFFFFF
   padding: 40px 0
 
 .about h1, .about h2
@@ -10,6 +11,27 @@
   text-shadow: 1px 1px 1px $dark_bg_font_color_bg
 
 
+
 .about h1
   font-size: 36px
   text-decoration: none
+
+.about h2
+  padding: $column-padding 
+
+.about-column
+  border-right: 1px solid $red_bg_font_color_bg
+  color: $red_bg_font_color
+  height: 500px
+
+.about .last .about-column
+  border-right: none
+
+.about-column p
+  padding: $column-padding 
+
+.first .about-column p
+  padding: $column-padding 0
+
+.first h2 
+  padding: $column-padding 0  
