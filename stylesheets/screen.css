@@ -2529,12 +2529,12 @@ h2.title {
 }
 
 /* line 1, ../sass/partials/_home.sass */
-.home-mantle {
+.home {
   background: url(../images/bg-home.png) no-repeat top center;
 }
 
 /* line 5, ../sass/partials/_home.sass */
-.home-mantle h1 {
+.home h1 {
   font-size: 18px;
   font-family: "Poiret One", cursive;
   color: #333333;
@@ -2543,12 +2543,12 @@ h2.title {
 }
 
 /* line 13, ../sass/partials/_home.sass */
-.home-mantle {
+.home {
   padding-top: 0;
 }
 
 /* line 16, ../sass/partials/_home.sass */
-.home-mantle .container {
+.home .container {
   padding-top: 50px;
 }
 
