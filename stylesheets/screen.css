@@ -2416,22 +2416,18 @@ body {
 }
 
 /* line 4, ../sass/partials/_bg.sass */
-.header {
-  height: 90px;
-}
-
-/* line 7, ../sass/partials/_bg.sass */
 .wrapper {
   background: url(../images/bg.png);
+  height: 140px;
 }
 
-/* line 10, ../sass/partials/_bg.sass */
+/* line 8, ../sass/partials/_bg.sass */
 .footer {
   background: url(../images/bg-footer.png) repeat-x;
   height: 100px;
 }
 
-/* line 14, ../sass/partials/_bg.sass */
+/* line 12, ../sass/partials/_bg.sass */
 .container {
   min-width: 950px;
   width: 80%;
@@ -2442,26 +2438,31 @@ body {
 }
 
 /* line 1, ../sass/partials/_header.sass */
-h1.title a, h2.title {
+div.wrapper {
+  height: 140px;
+}
+
+/* line 4, ../sass/partials/_header.sass */
+h1.title, h2.title {
   font-family: "Poiret One", cursive;
   color: #f9f9f9;
   text-shadow: 1px 1px 1px #333333;
 }
 
-/* line 6, ../sass/partials/_header.sass */
+/* line 9, ../sass/partials/_header.sass */
 h1.title {
-  margin-top: 35px;
+  margin-top: 30px;
 }
 
-/* line 9, ../sass/partials/_header.sass */
-h1.title a {
+/* line 12, ../sass/partials/_header.sass */
+h1.title {
   font-size: 36px;
   text-decoration: none;
 }
 
-/* line 14, ../sass/partials/_header.sass */
+/* line 17, ../sass/partials/_header.sass */
 h2.title {
-  margin-top: 40px;
+  margin-top: 35px;
   font-size: 24px;
 }
 
@@ -2540,16 +2541,6 @@ h2.title {
   color: #333333;
   text-shadow: 1px 1px 1px #f9f9f9;
   font-weight: bold;
-}
-
-/* line 13, ../sass/partials/_home.sass */
-.home {
-  padding-top: 0;
-}
-
-/* line 16, ../sass/partials/_home.sass */
-.home .container {
-  padding-top: 50px;
 }
 
 /* line 3, ../sass/partials/_about.sass */

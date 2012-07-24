@@ -16,7 +16,7 @@ define([
 		routes: {
 			// Define some URL routes
 			"": "default",
-			"page/:page": 'showPage',
+			":p": 'showPage',
 
 		},
 		showPage: function( pageName ) {
@@ -25,11 +25,26 @@ define([
 			var menu = new Menu({page: pageName, router: this});
 			$('.menu-wrapper').html(menu.render().el);
 			var page = new Page({page: pageName});
+			$('.pages').children(':first').remove();
 			$('.pages').html(page.render().el);
+			console.log($('.pages').children(':first'))
+			$('.pages').children(':first').animate({
+				//'margin-left': '-=1000px'
+			}, function(){
+				console.log('done')
+			})
+
+			
+				
+
+
+
+			
+			
 		},
 		//refactor pages later
 		default: function() {
-			this.navigate('page/home')
+			this.showPage('home');
 		}
 	});
 

@@ -20,10 +20,10 @@ define(['jQuery',
 				router   = this.router;
 
 			this.$el.html( template({page: this.page}) );
+
 			$('a',this.$el).click( function(){
 				var url = $(this).attr('href');
-
-				router.navigate(url,true);
+				router.navigate(url, true);
 				return false;
 			});
 			return this;
