@@ -11,37 +11,26 @@ define([
 	var AppRouter = Backbone.Router.extend({
 		initialize: function(options) {
 			this.options = options;
-			console.log('what')
 			//this.navigate('/home', true)
 		},
 		routes: {
 			// Define some URL routes
 			"": "default",
-			"about": 'about',
-			"projects": "projects"
+			"page/:page": 'showPage',
 
+		},
+		showPage: function( pageName ) {
+			//load the menu
+			
+			var menu = new Menu({page: pageName, router: this});
+			$('.menu-wrapper').html(menu.render().el);
+			var page = new Page({page: pageName});
+			$('.pages').html(page.render().el);
 		},
 		//refactor pages later
 		default: function() {
-			//load the menu
-			var menu = new Menu({page:'home', router: this});
-			$('.menu-wrapper').html(menu.render().el);
-			var page = new Page({page:'home'});
-			$('.pages').html(page.render().el);
-		},
-		about: function() {
-			var menu = new Menu({page:'about', router: this});
-			$('.menu-wrapper').html(menu.render().el);			
-			var page = new Page({page:'about'});
-			$('.pages').html(page.render().el);
-		},
-		projects: function() {
-			var menu = new Menu({page:'projects', router: this});
-			$('.menu-wrapper').html(menu.render().el);			
-			var page = new Page({page:'projects'});
-			$('.pages').html(page.render().el);
-		}		
-
+			this.navigate('page/home')
+		}
 	});
 
 	

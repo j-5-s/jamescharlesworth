@@ -1,13 +1,13 @@
 <div class="span-24 menu">
 	<ul>
 		<li class="first">
-			<a href="" class="active">Home</a>
+			<a href="page/home" class="<% if (page === 'home') { %>active<% } %>">Home</a>
 		</li>
 		<li>
-			<a href="about">About</a>
+			<a href="page/about" class="<% if (page === 'about') { %>active<% } %>">About</a>
 		</li>
 		<li>
-			<a href="projects">Projects</a>
+			<a href="page/projects" class="<% if (page === 'projects') { %>active<% } %>">Projects</a>
 		</li>
 	</ul>
 </div>
