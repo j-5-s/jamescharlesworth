@@ -28,9 +28,12 @@ define([
 			var pageHtml = page.render().el;
 
 			
-			$('.pages').append( pageHtml );
 
-			if (typeof start === 'undefined') {
+			$('.pages').append( pageHtml );
+			
+			//if multiple pages exist, the transition needs to happen
+			if ($('.pages .page').length > 0) {
+			
 				$('.pages .page:last').css({position:'absolute',top: '90px',display:'none'});
 				
 				$('.pages .page:last').show('slide', {direction:'left'})

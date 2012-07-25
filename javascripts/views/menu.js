@@ -10,10 +10,10 @@ define(['jQuery',
 		initialize: function( options ) {
 			this.page = options.page;
 
-
+			_.bindAll(this, 'render','bindToLink');
 		},
 		events: {
-
+			'a .click': 'bindToLink'
 		},
 		render: function() {
 			var template = _.template(menuHTML),
@@ -23,6 +23,12 @@ define(['jQuery',
 
 			return this;
 		},
+		bindToLink: function(e) {
+
+			var url = $(e.currentTarget).attr('href');
+			this.router.navigate(url, true);
+			return false;
+		}
 
 	});
 
