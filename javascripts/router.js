@@ -19,32 +19,33 @@ define([
 			":p": 'showPage',
 
 		},
-		showPage: function( pageName ) {
+		showPage: function( pageName, start ) {
 			//load the menu
-			
-			var menu = new Menu({page: pageName, router: this});
+			var router = this;
+			var menu = new Menu({page: pageName});
 			$('.menu-wrapper').html(menu.render().el);
-			var page = new Page({page: pageName});
-			$('.pages').children(':first').remove();
-			$('.pages').html(page.render().el);
-			console.log($('.pages').children(':first'))
-			$('.pages').children(':first').animate({
-				//'margin-left': '-=1000px'
-			}, function(){
-				console.log('done')
-			})
+			var page = new Page({page: pageName,router: router});
+			var pageHtml = page.render().el;
 
 			
+			$('.pages').append( pageHtml );
+
+			if (typeof start === 'undefined') {
+				$('.pages .page:last').css({position:'absolute',top: '90px',display:'none'});
 				
-
-
+				$('.pages .page:last').show('slide', {direction:'left'})
+				$('.pages .page:first').hide('slide',{direction:'right'})
+				setTimeout(function(){
+					$('.pages .page:first').remove();
+				},1000);	
+			}
 
 			
 			
 		},
 		//refactor pages later
 		default: function() {
-			this.showPage('home');
+			this.showPage('home', 'start');
 		}
 	});
 

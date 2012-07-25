@@ -2439,7 +2439,7 @@ body {
 
 /* line 1, ../sass/partials/_header.sass */
 div.wrapper {
-  height: 140px;
+  height: 90px;
 }
 
 /* line 4, ../sass/partials/_header.sass */
@@ -2466,63 +2466,27 @@ h2.title {
   font-size: 24px;
 }
 
-/* line 1, ../sass/partials/_menu.sass */
-.menu {
-  margin-top: 1px;
-}
-
-/* line 4, ../sass/partials/_menu.sass */
-.menu ul {
-  margin: 0;
-  padding: 0;
-  height: 50px;
-}
-
-/* line 9, ../sass/partials/_menu.sass */
-.menu ul li {
-  list-style-type: none;
-  margin: 0;
-  float: left;
-  padding: 10px 20px 0 0;
-}
-
-/* line 15, ../sass/partials/_menu.sass */
-.menu ul li a {
-  padding: 13px 0px;
-  color: #333333;
-  text-decoration: none;
-}
-
-/* line 20, ../sass/partials/_menu.sass */
-.menu ul li a.active {
-  background: url(../images/triangle.png?sd) no-repeat center top;
-  font-weight: bold;
-  color: #f9f9f9;
-  text-shadow: 1px 1px 1px #333333;
-}
-
 /* line 1, ../sass/partials/_page.sass */
 .page {
-  margin-top: -50px;
-  padding-top: 50px;
   border-top: 1px solid white;
   height: 700px;
+  position: relative;
 }
 
-/* line 7, ../sass/partials/_page.sass */
+/* line 6, ../sass/partials/_page.sass */
 .page h1, .page h2, .page h3 {
   font-family: "Poiret One", cursive;
   color: #f9f9f9;
   text-shadow: 1px 1px 1px #333333;
 }
 
-/* line 12, ../sass/partials/_page.sass */
+/* line 11, ../sass/partials/_page.sass */
 .page h1 {
   font-size: 36px;
   text-decoration: none;
 }
 
-/* line 16, ../sass/partials/_page.sass */
+/* line 15, ../sass/partials/_page.sass */
 .page a {
   text-decoration: none;
   color: white;
@@ -2617,4 +2581,40 @@ h2.title {
 .projects a {
   background-color: #a23a35;
   color: #8cbee7;
+}
+
+/* line 1, ../sass/partials/_menu.sass */
+.menu {
+  margin-top: -1px;
+}
+
+/* line 4, ../sass/partials/_menu.sass */
+.menu ul {
+  margin: 0;
+  padding: 0;
+  height: 50px;
+}
+
+/* line 9, ../sass/partials/_menu.sass */
+.menu ul li {
+  list-style-type: none;
+  margin: 0;
+  float: left;
+  padding: 10px 20px 0 0;
+}
+
+/* line 15, ../sass/partials/_menu.sass */
+div.pages div.menu ul li a {
+  padding: 13px 0px;
+  color: #333333;
+  text-decoration: none;
+  background-color: transparent;
+}
+
+/* line 21, ../sass/partials/_menu.sass */
+div.pages div.menu ul li a.active {
+  background: url(../images/triangle.png?sd) no-repeat center top;
+  font-weight: bold;
+  color: #f9f9f9;
+  text-shadow: 1px 1px 1px #333333;
 }
