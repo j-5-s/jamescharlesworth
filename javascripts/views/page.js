@@ -44,7 +44,11 @@ define(['jQuery',
 			var router = this.router;
 			var template = this.getTemplate();
 			this.$el.html( template() );
-			
+			$('a',this.$el).click(function(){
+				var url = $(this).attr('href');
+				router.navigate(url, true);
+				return false;
+			});
 			return this;
 		}
 	});

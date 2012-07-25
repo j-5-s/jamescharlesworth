@@ -32,14 +32,43 @@ define([
 			$('.pages').append( pageHtml );
 			
 			//if multiple pages exist, the transition needs to happen
-			if ($('.pages .page').length > 0) {
-			
-				$('.pages .page:last').css({position:'absolute',top: '90px',display:'none'});
+			console.log('asd')
+			if ($('.pages .page').length > 1) {
+				var $firstPage = $('.pages .page:first'),
+					$lastPage  = $('.pages .page:last');
+
+				var $firstPageMenu = $('.menu li a',$firstPage),
+					$lastPageMenu = $('.menu li a',$lastPage);
+
+					var indexOfOldActiveLink = $firstPageMenu.map(function(index, a){
+						console.log($(a).html(), $(a).hasClass('active'))
+						if ($(a).hasClass('active')){
+							return index;
+						}
+					})[0];
+
+					var indexOfNewActiveLink = $lastPageMenu.map(function(index,a){
+						console.log('a',$(a).html())
+						if ($(a).hasClass('active')){
+							return index;
+						}
+					})[0];
+
+		
+
 				
-				$('.pages .page:last').show('slide', {direction:'left'})
-				$('.pages .page:first').hide('slide',{direction:'right'})
+				var direction = {
+					in: (indexOfNewActiveLink > indexOfOldActiveLink) ? 'right' : 'left',
+					out: (indexOfNewActiveLink > indexOfOldActiveLink) ? 'left' : 'right',
+				}
+			
+
+				$lastPage.css({position:'absolute',top: '90px',display:'none'});
+				
+				$lastPage.show('slide', {direction: direction.in });
+				$firstPage.hide('slide',{direction: direction.out});
 				setTimeout(function(){
-					$('.pages .page:first').remove();
+					$firstPage.parent().remove();
 				},1000);	
 			}
 
