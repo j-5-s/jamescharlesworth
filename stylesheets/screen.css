@@ -2422,15 +2422,6 @@ body {
 }
 
 /* line 8, ../sass/partials/_bg.sass */
-.footer {
-  background: url(../images/bg-footer.png) repeat-x;
-  height: 100px;
-  position: relative;
-  top: 700px;
-  z-index: 2000;
-}
-
-/* line 15, ../sass/partials/_bg.sass */
 .container {
   min-width: 950px;
   width: 80%;
@@ -2473,7 +2464,7 @@ h2.title {
 .page {
   border-top: 1px solid white;
   height: 700px;
-  position: relative;
+  position: absolute;
 }
 
 /* line 6, ../sass/partials/_page.sass */
@@ -2494,6 +2485,36 @@ h2.title {
   text-decoration: none;
   color: white;
   padding: 3px;
+}
+
+/* line 2, ../sass/partials/_footer.sass */
+.footer {
+  background: url(../images/bg-footer.png) repeat-x;
+  height: 100px;
+  position: relative;
+  top: 700px;
+  z-index: 2000;
+  padding-top: 10px;
+}
+
+/* line 10, ../sass/partials/_footer.sass */
+.footer p {
+  color: #dedede;
+  margin-bottom: 4px;
+}
+
+/* line 15, ../sass/partials/_footer.sass */
+.footer p a {
+  color: #333333;
+  background-color: #dedede;
+  padding: 2px;
+  text-decoration: none;
+}
+
+/* line 21, ../sass/partials/_footer.sass */
+.footer p span {
+  width: 75px;
+  display: inline-block;
 }
 
 /* line 1, ../sass/partials/_home.sass */

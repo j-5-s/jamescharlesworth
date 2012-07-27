@@ -65,7 +65,8 @@ define([
 				$lastPage.show('slide', {direction: direction.in });
 				$firstPage.hide('slide',{direction: direction.out });
 				setTimeout(function(){
-					$firstPage.parent().parent().remove();	
+					$firstPage.parent().parent().remove();
+					console.log('last',$lastPage)
 					$lastPage.css({position:'relative',top: '0px'});
 				}, 350 );//350 is how long it takes to slide in/out
 
