@@ -32,7 +32,7 @@ define([
 			$('.pages').append( pageHtml );
 			
 			//if multiple pages exist, the transition needs to happen
-			console.log('asd')
+		
 			if ($('.pages .page').length > 1) {
 				var $firstPage = $('.pages .page:first'),
 					$lastPage  = $('.pages .page:last');
@@ -41,35 +41,36 @@ define([
 					$lastPageMenu = $('.menu li a',$lastPage);
 
 					var indexOfOldActiveLink = $firstPageMenu.map(function(index, a){
-						console.log($(a).html(), $(a).hasClass('active'))
+						
 						if ($(a).hasClass('active')){
 							return index;
 						}
 					})[0];
 
 					var indexOfNewActiveLink = $lastPageMenu.map(function(index,a){
-						console.log('a',$(a).html())
+						
 						if ($(a).hasClass('active')){
 							return index;
 						}
 					})[0];
 
-		
-
-				
 				var direction = {
 					in: (indexOfNewActiveLink > indexOfOldActiveLink) ? 'right' : 'left',
 					out: (indexOfNewActiveLink > indexOfOldActiveLink) ? 'left' : 'right',
 				}
 			
 
-				$lastPage.css({position:'absolute',top: '90px',display:'none'});
+				$lastPage.css({position:'absolute',top: '90px'});
 				
 				$lastPage.show('slide', {direction: direction.in });
-				$firstPage.hide('slide',{direction: direction.out});
+				$firstPage.hide('slide',{direction: direction.out });
 				setTimeout(function(){
-					$firstPage.parent().remove();
-				},1000);	
+					$firstPage.parent().parent().remove();	
+					$lastPage.css({position:'relative',top: '0px'});
+				}, 350 );//350 is how long it takes to slide in/out
+
+				
+
 			}
 
 			

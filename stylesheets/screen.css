@@ -2425,9 +2425,12 @@ body {
 .footer {
   background: url(../images/bg-footer.png) repeat-x;
   height: 100px;
+  position: relative;
+  top: 700px;
+  z-index: 2000;
 }
 
-/* line 12, ../sass/partials/_bg.sass */
+/* line 15, ../sass/partials/_bg.sass */
 .container {
   min-width: 950px;
   width: 80%;
