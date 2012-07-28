@@ -19,7 +19,7 @@ define([
 			":p": 'showPage',
 
 		},
-		showPage: function( pageName, start ) {
+		showPage: function( pageName ) {
 			//load the menu
 			var router = this;
 			var menu = new Menu({page: pageName});
@@ -79,7 +79,7 @@ define([
 		},
 		//refactor pages later
 		default: function() {
-			this.showPage('home', 'start');
+			this.showPage('home');
 		}
 	});
 
