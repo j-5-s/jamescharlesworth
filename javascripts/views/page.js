@@ -13,9 +13,10 @@ define(['jQuery',
 		initialize: function( options ) {
 			this.page = options.page;
 			this.router = options.router;
+			_.bindAll(this, 'render', 'scrollContent' );
 		},
 		events: {
-
+			'click .scroll': 'scrollContent'
 		},
 		getTemplate: function( ){
 			var $template;
@@ -40,15 +41,20 @@ define(['jQuery',
 
 			
 		},
+		scrollContent: function(e) {
+			e.preventDefault();
+			alert('clicked')
+		},
 		render: function() {
 			var router = this.router;
 			var template = this.getTemplate();
 			this.$el.html( template() );
-			$('a',this.$el).click(function(){
+			$('.menu a',this.$el).click(function(){
 				var url = $(this).attr('href');
 				router.navigate(url, true);
 				return false;
 			});
+
 			return this;
 		}
 	});

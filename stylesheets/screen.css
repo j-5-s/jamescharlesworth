@@ -2487,6 +2487,11 @@ h2.title {
   padding: 3px;
 }
 
+/* line 20, ../sass/partials/_page.sass */
+.page .align-right {
+  text-align: right;
+}
+
 /* line 2, ../sass/partials/_footer.sass */
 .footer {
   background: url(../images/bg-footer.png) repeat-x;
@@ -2605,6 +2610,16 @@ h2.title {
 .projects a {
   background-color: #a23a35;
   color: #8cbee7;
+}
+
+/* line 26, ../sass/partials/_projects.sass */
+a.scroll {
+  background-color: #f9f9f9;
+  display: block;
+  width: 16px;
+  margin-top: 14px;
+  float: right;
+  margin-left: 4px;
 }
 
 /* line 1, ../sass/partials/_menu.sass */
