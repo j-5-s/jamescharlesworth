@@ -2597,7 +2597,7 @@ h2.title {
 
 /* line 15, ../sass/partials/_projects.sass */
 .projects img {
-  width: 340px;
+  width: 150px;
 }
 
 /* line 18, ../sass/partials/_projects.sass */
@@ -2613,7 +2613,37 @@ h2.title {
 }
 
 /* line 26, ../sass/partials/_projects.sass */
-a.scroll {
+.projects .gallery {
+  padding: 0;
+  margin: 0;
+}
+
+/* line 30, ../sass/partials/_projects.sass */
+.projects .gallery li {
+  float: right;
+  list-style-type: none;
+  background-color: #a23a35;
+  text-align: left;
+  padding: 1px;
+  margin-right: 5px;
+}
+
+/* line 38, ../sass/partials/_projects.sass */
+.projects .gallery li.last-image {
+  margin-right: 0;
+}
+
+/* line 41, ../sass/partials/_projects.sass */
+.projects .gallery li a {
+  height: 100px;
+  overflow: hidden;
+  padding: 0;
+  display: block;
+  background-color: transparent;
+}
+
+/* line 48, ../sass/partials/_projects.sass */
+.projects a.scroll {
   background-color: #f9f9f9;
   display: block;
   width: 16px;

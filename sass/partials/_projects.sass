@@ -13,7 +13,7 @@
   color: $blue_bg_font_color
 
 .projects img
-  width: span(8) + 30
+  width: span(4)
 
 .projects li
   color: #FFFFFF
@@ -23,7 +23,29 @@
   background-color: $red_bg_color
   color: $blue_bg_color
 
-a.scroll
+.projects .gallery
+  padding: 0
+  margin: 0
+
+.projects .gallery li
+  float: right
+  list-style-type: none
+  background-color: $red_bg_color
+  text-align: left
+  padding: 1px
+  margin-right: 5px
+
+.projects .gallery li.last-image
+  margin-right: 0
+
+.projects .gallery li a
+  height: 100px
+  overflow: hidden
+  padding: 0
+  display: block
+  background-color: transparent
+
+.projects a.scroll
   background-color: $dark_bg_font_color
   display: block
   width: 16px
