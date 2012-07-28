@@ -10,3 +10,7 @@ exports.index = function(req, res){
 exports.about = function(req, res){
 	res.redirect('/#about');
 };
+
+exports.projects = function(req, res){
+	res.redirect('/#projects');
+};
