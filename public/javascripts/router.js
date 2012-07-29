@@ -17,12 +17,13 @@ define([
 		routes: {
 			// Define some URL routes
 			"": "default",
+			"/": "default",
 			":p": 'showPage',
 			":p/:sp": 'showPage'
 
 		},
 		showPage: function( pageName, subPage) {
-			console.log(subPage)
+		
 			//load the menu
 			var router = this;
 			var menu = new Menu({page: pageName});
@@ -60,7 +61,7 @@ define([
 				var direction = {
 					in: (indexOfNewActiveLink > indexOfOldActiveLink) ? 'right' : 'left',
 					out: (indexOfNewActiveLink > indexOfOldActiveLink) ? 'left' : 'right',
-				}
+				};
 			
 
 				$lastPage.css({position:'absolute',top: '90px'});
@@ -69,12 +70,7 @@ define([
 				$firstPage.hide('slide',{direction: direction.out });
 				setTimeout(function(){
 					$firstPage.parent().parent().remove();
-					
 					$lastPage.css({position:'relative',top: '0px'});
-					if (typeof cb !== 'undefined') {
-						cb(page);	
-					}
-					
 				}, 350 );//350 is how long it takes to slide in/out
 			}
 		},

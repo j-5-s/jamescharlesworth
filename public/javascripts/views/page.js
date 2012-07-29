@@ -124,7 +124,7 @@ define(['jQuery',
 					//update the counter
 					$('.counter').html( 'Project ' + (activePageIndex + direction +1) + ' of ' + totalPages );
 
-					router.navigate('/projects/' + url );
+					router.navigate('/projects/' + url, {replace:true} );
 
 				});
 			}
