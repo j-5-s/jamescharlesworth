@@ -5,42 +5,15 @@ define(['jQuery',
 		'views/menu',
 		'text!templates/home.html',
 		'text!templates/about.html',
-		'text!templates/projects.html',
-		'text!templates/projects/tinymce-thumbnail-gallery.html',
-		'text!templates/projects/westchester-square.html',
-		'text!templates/projects/mobilebox.html',
-		'text!templates/projects/intrade.html',
-		'text!templates/projects/westhost-php-contest.html'
-], function( $, _, Backbone, Menu, homePageHtml, aboutPageHtml, projectPageHtml, 
-			tinyMceThumbnail, westchesterSquare, mobileBox, intrade, westhostPHPContest) {
+		'text!templates/projects.html'
+], function( $, _, Backbone, Menu, homePageHtml, aboutPageHtml, projectPageHtml ) {
 
 	var Page = Backbone.View.extend({
 		initialize: function( options ) {
-			this.page = options.page;
-			this.subPage = options.subPage;
+			
+			
 			this.router = options.router;
-			this.projects = [
-				{
-					pageClass:'page-tinymce-thumbnail-gallery',
-					html: tinyMceThumbnail,
-				},
-				{
-					pageClass: 'page-westchester-square',
-					html: westchesterSquare
-				},
-				{
-					pageClass: 'page-mobilebox',
-					html: mobileBox
-				},
-				{
-					pageClass: 'page-intrade',
-					html: intrade
-				},
-				{
-					pageClass: 'page-westhost-php-contest',
-					html: westhostPHPContest
-				}				
-			];
+
 			_.bindAll(this, 'render', 'scrollContent', 'changeSubPage', 'getActiveProjectPageClass' );
 		},
 		events: {
@@ -52,7 +25,7 @@ define(['jQuery',
 				page,
 				activeIndex;
 
-			switch(this.page) {
+			switch(this.model.get('name')) {
 				case 'home':
 					$template = $(homePageHtml);
 					break;
@@ -61,33 +34,35 @@ define(['jQuery',
 					break;
 				case 'projects':
 					$template = $(projectPageHtml);
+
 					//find the project if there is a sub page,if not default to 0
-					if (typeof this.subPage === 'undefined') {
-						page = this.projects[0];
+					if (typeof this.model.get('subPage') === 'undefined') {
+						page = this.model.get('projects').at(0);
+						console.log(this.model.get('projects').at(0),'projects')
 						activeIndex = 0;
 					} else {
-						page = _.filter(this.projects, function(p){
-							var re = new RegExp(self.subPage +'$');
-							return re.test(p.pageClass);
+						page = this.model.get('projects').filter(function(p){
+							var re = new RegExp(self.model.get('subPage') +'$');
+							return re.test(p.get('pageClass'));
 						});
-						var pageClasses = _.pluck(this.projects, 'pageClass');
+						var pageClasses = this.model.get('projects').pluck('pageClass');
 
 						if (page.length > 0) {
 							page = page[0];
-							activeIndex = pageClasses.indexOf(page.pageClass);
+							activeIndex = pageClasses.indexOf(page.get('pageClass'));
 						}  else {
 							//@TODO, add default 404 page
 						}
 					}
-					var totalPages = this.projects.length;
+					var totalPages = this.model.get('projects').length;
 					
 					$('.counter', $template).html( 'Project ' + (activeIndex+1) + ' of ' + totalPages );
-					$('.project-content', $template).addClass(page.pageClass);
-					$('.project-content', $template).html(page.html);
+					$('.project-content', $template).addClass(page.get('pageClass'));
+					$('.project-content', $template).html(page.get('html'));
 					break;
 			}
 
-			var menu = new Menu({page: this.page});
+			var menu = new Menu({page: this.model.get('name')});
 			$('.container', $template).prepend(menu.render().el);
 			
 			$template.wrap('<div class="someclass" />');
@@ -109,7 +84,7 @@ define(['jQuery',
 			})[0];
 		},
 		changeSubPage: function( params ){
-			var pageClasses = _.pluck(this.projects, 'pageClass'),
+			var pageClasses = this.model.get('projects').pluck('pageClass'),
 				router      = this.router;
 
 
@@ -126,16 +101,16 @@ define(['jQuery',
 			}
 
 			if (( activePageIndex + direction ) < totalPages && activePageIndex + direction >= 0) {
-				var nextPage = this.projects[ (activePageIndex + direction) ];
+				var nextPage = this.model.get('projects').at( activePageIndex + direction );
 
 				$('.'+activePageClass).fadeOut(300, function(){
-					$('.'+activePageClass).html(nextPage.html);
-					$('.'+activePageClass).addClass(nextPage.pageClass);
+					$('.'+activePageClass).html(nextPage.get('html'));
+					$('.'+activePageClass).addClass(nextPage.get('pageClass'));
 					$('.'+activePageClass).fadeIn(300);
 					$('.'+activePageClass).removeClass(activePageClass);
 					
 					//turn page-<name> into <name>
-					var url = /\w+\-(.*)/.exec(nextPage.pageClass)[1];
+					var url = /\w+\-(.*)/.exec(nextPage.get('pageClass'))[1];
 					
 					//update the counter
 					$('.counter').html( 'Project ' + (activePageIndex + direction +1) + ' of ' + totalPages );

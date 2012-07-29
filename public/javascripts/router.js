@@ -6,8 +6,16 @@ define([
 	'Backbone',
 	'views/page',
 	'views/menu',
+	'models/page',
+	'collections/projects',
+	'text!templates/projects/tinymce-thumbnail-gallery.html',
+	'text!templates/projects/westchester-square.html',
+	'text!templates/projects/mobilebox.html',
+	'text!templates/projects/intrade.html',
+	'text!templates/projects/westhost-php-contest.html',
 	'jQueryUI'
-], function( $, _, Backbone, Page, Menu ){
+], function( $, _, Backbone, PageView, MenuView, PageModel, ProjectCollection,
+			tinyMceThumbnail, westchesterSquare, mobileBox, intrade, westhostPHPContest ){
 
 	var AppRouter = Backbone.Router.extend({
 		initialize: function(options) {
@@ -26,9 +34,37 @@ define([
 		
 			//load the menu
 			var router = this;
-			var menu = new Menu({page: pageName});
+			var menu = new MenuView({page: pageName});
+
 			$('.menu-wrapper').html(menu.render().el);
-			var page = new Page({page: pageName, subPage: subPage, router: router});
+
+			var pageModel = new PageModel({name: pageName, subPage: subPage });
+			var projectCollection = new ProjectCollection();
+			
+			projectCollection.add({
+				pageClass:'page-tinymce-thumbnail-gallery',
+				html: tinyMceThumbnail,
+			});
+			projectCollection.add({
+				pageClass: 'page-westchester-square',
+				html: westchesterSquare
+			});
+			projectCollection.add({
+				pageClass: 'page-mobilebox',
+				html: mobileBox
+			});
+			projectCollection.add({
+				pageClass: 'page-intrade',
+				html: intrade
+			});	
+			projectCollection.add({
+				pageClass: 'page-westhost-php-contest',
+				html: westhostPHPContest
+			});							
+
+			pageModel.set('projects', projectCollection);
+
+			var page = new PageView({model: pageModel, router: router});
 			var pageHtml = page.render().el;
 
 			$('.pages').append( pageHtml );
@@ -68,7 +104,7 @@ define([
 				//setting the position to absolute makes the transition smoother
 				$lastPage.css({position:'absolute',top: '90px'});
 				
-				$lastPage.show('slide', {direction: direction.in }).effect("bounce", { times:3,direction: direction.out, distance:20 }, 400);
+				$lastPage.show('slide', {direction: direction.in });
 				$firstPage.hide('slide',{direction: direction.out });
 				setTimeout(function(){
 					//finally, remove the page that slide out and reset the position
