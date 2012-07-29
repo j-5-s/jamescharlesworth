@@ -41,10 +41,18 @@ define([
 			var pageModel = new PageModel({name: pageName, subPage: subPage });
 			var projectCollection = new ProjectCollection();
 			
-			projectCollection.add({
+			var defaultProject =  {
 				pageClass:'page-tinymce-thumbnail-gallery',
-				html: tinyMceThumbnail,
-			});
+				html: tinyMceThumbnail
+			};
+
+			if (typeof subPage === 'undefined'){
+				defaultProject.active = true;
+			} 
+
+			projectCollection.add(defaultProject);
+
+
 			projectCollection.add({
 				pageClass: 'page-westchester-square',
 				html: westchesterSquare
@@ -60,7 +68,11 @@ define([
 			projectCollection.add({
 				pageClass: 'page-westhost-php-contest',
 				html: westhostPHPContest
-			});							
+			});
+
+			if (typeof subPage !== 'undefined') {
+				projectCollection.getProjectByURLHash(subPage).set('active', true);
+			}				
 
 			pageModel.set('projects', projectCollection);
 
