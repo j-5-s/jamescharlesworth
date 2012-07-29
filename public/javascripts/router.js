@@ -5,7 +5,8 @@ define([
 	'Underscore',
 	'Backbone',
 	'views/page',
-	'views/menu'
+	'views/menu',
+	'jQueryUI'
 ], function( $, _, Backbone, Page, Menu ){
 
 	var AppRouter = Backbone.Router.extend({
@@ -17,14 +18,16 @@ define([
 			// Define some URL routes
 			"": "default",
 			":p": 'showPage',
+			":p/:sp": 'showPage'
 
 		},
-		showPage: function( pageName ) {
+		showPage: function( pageName, subPage) {
+			console.log(subPage)
 			//load the menu
 			var router = this;
 			var menu = new Menu({page: pageName});
 			$('.menu-wrapper').html(menu.render().el);
-			var page = new Page({page: pageName,router: router});
+			var page = new Page({page: pageName, subPage: subPage, router: router});
 			var pageHtml = page.render().el;
 
 			
@@ -66,17 +69,16 @@ define([
 				$firstPage.hide('slide',{direction: direction.out });
 				setTimeout(function(){
 					$firstPage.parent().parent().remove();
-					console.log('last',$lastPage)
+					
 					$lastPage.css({position:'relative',top: '0px'});
+					if (typeof cb !== 'undefined') {
+						cb(page);	
+					}
+					
 				}, 350 );//350 is how long it takes to slide in/out
-
-				
-
 			}
-
-			
-			
 		},
+
 		//refactor pages later
 		default: function() {
 			this.showPage('home');

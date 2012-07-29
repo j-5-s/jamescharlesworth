@@ -1,6 +1,6 @@
 
-define(['jQuery', 
-		'Underscore', 
+define(['jQuery',
+		'Underscore',
 		'Backbone',
 		'views/menu',
 		'text!templates/home.html',
@@ -13,24 +13,29 @@ define(['jQuery',
 	var Page = Backbone.View.extend({
 		initialize: function( options ) {
 			this.page = options.page;
+			this.subPage = options.subPage;
 			this.router = options.router;
 			this.projects = [
-				{ 
+				{
 					pageClass:'page-tinymce-thumbnail-gallery',
-					html: tinyMceThumbnail, 
+					html: tinyMceThumbnail,
 				},
-				{	
+				{
 					pageClass: 'page-westchester-square',
 					html: westchesterSquare
-				}	
+				}
 			];
-			_.bindAll(this, 'render', 'scrollContent', 'scrollDown', 'scrollUp', 'getActiveProjectPageClass' );
+			_.bindAll(this, 'render', 'scrollContent', 'changeSubPage', 'getActiveProjectPageClass' );
 		},
 		events: {
 			'click .scroll': 'scrollContent'
 		},
 		getTemplate: function( ){
-			var $template;
+			var self = this,
+				$template,
+				page,
+				activeIndex;
+
 			switch(this.page) {
 				case 'home':
 					$template = $(homePageHtml);
@@ -40,8 +45,29 @@ define(['jQuery',
 					break;
 				case 'projects':
 					$template = $(projectPageHtml);
-					$('.project-content', $template).addClass(this.projects[0].pageClass);
-					$('.project-content', $template).html(this.projects[0].html );
+					//find the project if there is a sub page,if not default to 0
+					if (typeof this.subPage === 'undefined') {
+						page = this.projects[0];
+						activeIndex = 0;
+					} else {
+						page = _.filter(this.projects, function(p){
+							var re = new RegExp(self.subPage +'$');
+							return re.test(p.pageClass);
+						});
+						var pageClasses = _.pluck(this.projects, 'pageClass');
+
+						if (page.length > 0) {
+							page = page[0];
+							activeIndex = pageClasses.indexOf(page.pageClass);
+						}  else {
+							//@TODO, add default 404 page
+						}
+					}
+					var totalPages = this.projects.length;
+					
+					$('.counter', $template).html( 'Project ' + (activeIndex+1) + ' of ' + totalPages );
+					$('.project-content', $template).addClass(page.pageClass);
+					$('.project-content', $template).html(page.html);
 					break;
 			}
 
@@ -51,49 +77,57 @@ define(['jQuery',
 			$template.wrap('<div class="someclass" />');
 			
 			return $template.html();
-
-			
 		},
 		scrollContent: function(e) {
 			e.preventDefault();
 			var $el = $(e.currentTarget);
 			if ($el.hasClass('scroll-down')) {
-				this.scrollDown($el);
+				this.changeSubPage({direction: 'down', e: e});
 			} else {
-				this.scrollUp($el);
+				this.changeSubPage({ direction: 'up', e: e});
 			}
 		},
 		getActiveProjectPageClass: function() {
 			return _.filter($('.project-content').attr('class').split(' '),function(klass){
-				return /^page/.test(klass);
+				return (/^page/).test(klass);
 			})[0];
 		},
-		scrollDown: function(){
-			var pageClasses = _.pluck(this.projects, 'pageClass');
+		changeSubPage: function( params ){
+			var pageClasses = _.pluck(this.projects, 'pageClass'),
+				router      = this.router;
+
 
 			var activePageClass = this.getActiveProjectPageClass(),
 				activePageIndex = pageClasses.indexOf(activePageClass),
-				activePage      = this.projects[activePageIndex],
 				totalPages      = pageClasses.length;
 			
-			if ((activePageIndex+1) < totalPages) {
-				var nextPage = this.projects[(activePageIndex+1)];
+			var direction;
+
+			if (params.direction === 'up') {
+				direction = -1;
+			} else {
+				direction = 1;
+			}
+
+			if (( activePageIndex + direction ) < totalPages && activePageIndex + direction >= 0) {
+				var nextPage = this.projects[ (activePageIndex + direction) ];
+
 				$('.'+activePageClass).fadeOut(300, function(){
 					$('.'+activePageClass).html(nextPage.html);
 					$('.'+activePageClass).addClass(nextPage.pageClass);
-					$('.'+activePageClass).fadeIn(300)
-					$('.'+activePageClass).removeClass(activePageClass);					
+					$('.'+activePageClass).fadeIn(300);
+					$('.'+activePageClass).removeClass(activePageClass);
+					
+					//turn page-<name> into <name>
+					var url = /\w+\-(.*)/.exec(nextPage.pageClass)[1];
+					
+					//update the counter
+					$('.counter').html( 'Project ' + (activePageIndex + direction +1) + ' of ' + totalPages );
+
+					router.navigate('/projects/' + url );
+
 				});
-
-
-
-
 			}
-			
-			
-		},
-		scrollUp: function() {
-			alert('up')
 		},
 		render: function() {
 			var router = this.router;
@@ -110,4 +144,4 @@ define(['jQuery',
 	});
 
 	return Page;
-});	
+});
