@@ -7,8 +7,12 @@ define(['jQuery',
 		'text!templates/about.html',
 		'text!templates/projects.html',
 		'text!templates/projects/tinymce-thumbnail-gallery.html',
-		'text!templates/projects/westchester-square.html'
-], function( $, _, Backbone, Menu, homePageHtml, aboutPageHtml, projectPageHtml, tinyMceThumbnail, westchesterSquare) {
+		'text!templates/projects/westchester-square.html',
+		'text!templates/projects/mobilebox.html',
+		'text!templates/projects/intrade.html',
+		'text!templates/projects/westhost-php-contest.html'
+], function( $, _, Backbone, Menu, homePageHtml, aboutPageHtml, projectPageHtml, 
+			tinyMceThumbnail, westchesterSquare, mobileBox, intrade, westhostPHPContest) {
 
 	var Page = Backbone.View.extend({
 		initialize: function( options ) {
@@ -23,7 +27,19 @@ define(['jQuery',
 				{
 					pageClass: 'page-westchester-square',
 					html: westchesterSquare
-				}
+				},
+				{
+					pageClass: 'page-mobilebox',
+					html: mobileBox
+				},
+				{
+					pageClass: 'page-intrade',
+					html: intrade
+				},
+				{
+					pageClass: 'page-westhost-php-contest',
+					html: westhostPHPContest
+				}				
 			];
 			_.bindAll(this, 'render', 'scrollContent', 'changeSubPage', 'getActiveProjectPageClass' );
 		},

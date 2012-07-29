@@ -68,7 +68,7 @@ define([
 				//setting the position to absolute makes the transition smoother
 				$lastPage.css({position:'absolute',top: '90px'});
 				
-				$lastPage.show('slide', {direction: direction.in });
+				$lastPage.show('slide', {direction: direction.in }).effect("bounce", { times:3,direction: direction.out, distance:20 }, 200);
 				$firstPage.hide('slide',{direction: direction.out });
 				setTimeout(function(){
 					//finally, remove the page that slide out and reset the position
