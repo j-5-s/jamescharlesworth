@@ -12,5 +12,6 @@ exports.about = function(req, res){
 };
 
 exports.projects = function(req, res){
-	res.redirect('/#projects');
+	var page =  (req.params.length > 0) ? req.params[0] : '';
+	res.redirect('/#projects'+page);
 };
