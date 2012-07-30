@@ -9,7 +9,7 @@ define(['jQuery',
 			this.set('active', false);
 		},
 		getURLHash: function() {
-			return  /\w+\-(.*)/.exec(this.get('pageClass'))[1];
+			return  /\w+\-(.*)/.exec(this.get('className'))[1];
 		},
 	});
 

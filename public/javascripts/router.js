@@ -7,20 +7,14 @@ define([
 	'views/page',
 	'views/menu',
 	'models/page',
-	'collections/projects',
-	'text!templates/projects/tinymce-thumbnail-gallery.html',
-	'text!templates/projects/westchester-square.html',
-	'text!templates/projects/mobilebox.html',
-	'text!templates/projects/intrade.html',
-	'text!templates/projects/westhost-php-contest.html',
 	'jQueryUI'
-], function( $, _, Backbone, PageView, MenuView, PageModel, ProjectCollection,
-			tinyMceThumbnail, westchesterSquare, mobileBox, intrade, westhostPHPContest ){
+], function( $, _, Backbone, PageView, MenuView, PageModel ){
 
 	var AppRouter = Backbone.Router.extend({
 		initialize: function(options) {
 			this.options = options;
-			//this.navigate('/home', true)
+			this.pages = options.pages;
+			
 		},
 		routes: {
 			// Define some URL routes
@@ -34,50 +28,21 @@ define([
 		
 			//load the menu
 			var router = this;
+			//@todo refactor menu
 			var menu = new MenuView({page: pageName});
 
 			$('.menu-wrapper').html(menu.render().el);
 
-			var pageModel = new PageModel({name: pageName, subPage: subPage });
-			var projectCollection = new ProjectCollection();
-			
-			var defaultProject =  {
-				pageClass:'page-tinymce-thumbnail-gallery',
-				html: tinyMceThumbnail
-			};
+			var pageModel = this.pages.getByName( pageName );
+			//need 404 handling here
+			//also, dont like this. needs to be cleaner...
+			if (subPage) {
+				pageModel.set('subPage', subPage );
+				
+			}
 
-			if (typeof subPage === 'undefined'){
-				defaultProject.active = true;
-			} 
-
-			projectCollection.add(defaultProject);
-
-
-			projectCollection.add({
-				pageClass: 'page-westchester-square',
-				html: westchesterSquare
-			});
-			projectCollection.add({
-				pageClass: 'page-mobilebox',
-				html: mobileBox
-			});
-			projectCollection.add({
-				pageClass: 'page-intrade',
-				html: intrade
-			});	
-			projectCollection.add({
-				pageClass: 'page-westhost-php-contest',
-				html: westhostPHPContest
-			});
-
-			if (typeof subPage !== 'undefined') {
-				projectCollection.getProjectByURLHash(subPage).set('active', true);
-			}				
-
-			pageModel.set('projects', projectCollection);
-
-			var page = new PageView({model: pageModel, router: router});
-			var pageHtml = page.render().el;
+			var page     = new PageView({model: pageModel, router: router}),
+				pageHtml = page.render().el;
 
 			$('.pages').append( pageHtml );
 			

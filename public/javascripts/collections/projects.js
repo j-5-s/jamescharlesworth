@@ -26,17 +26,17 @@ define(['jQuery',
 		getProjectByURLHash: function( urlHash ){
 			var project = this.find(function(p){
 				var re = new RegExp( urlHash +'$');
-				return re.test(p.get('pageClass'));
+				return re.test(p.get('className'));
 			});
 			return project;
 		},
 		getProjectClasses: function(){
-			return this.pluck('pageClass');	
+			return this.pluck('className');	
 		},
 
 		getIndex: function( model ){
-			var pageClasses = this.getProjectClasses();
-			return pageClasses.indexOf(model.get('pageClass'));
+			var classNamees = this.getProjectClasses();
+			return classNamees.indexOf(model.get('className'));
 		},
 		setActive: function( model ){
 			var activeProject = this.getActiveProject();
