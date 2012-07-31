@@ -23,21 +23,20 @@ define(['jQuery',
 			var activeSubPage = this.getActiveSubPage();
 			return this.getIndex(activeSubPage);
 		},
+		getIndex: function( model ){
+			var classNames = this.getSubPageClasses();
+			return classNames.indexOf(model.get('className'));
+		},
 		getSubPageByURLHash: function( urlHash ){
 			var subPage = this.find(function(p){
 				var re = new RegExp( urlHash +'$');
 				return re.test(p.get('className'));
 			});
 			return subPage;
-		},
+		},		
 		getSubPageClasses: function(){
 			return this.pluck('className');	
-		},
-
-		getIndex: function( model ){
-			var classNames = this.getSubPageClasses();
-			return classNames.indexOf(model.get('className'));
-		},
+		},		
 		setActive: function( model ){
 			var activeSubPage= this.getActiveSubPage();
 			if (activeSubPage) {

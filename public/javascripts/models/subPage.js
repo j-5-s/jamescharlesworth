@@ -4,7 +4,7 @@ define(['jQuery',
 		'Backbone'
 ], function( $, _, Backbone ) {
 
-	var Project = Backbone.Model.extend({
+	var SubPage = Backbone.Model.extend({
 		initialize: function() {
 			this.set('active', false);
 		},
@@ -13,5 +13,5 @@ define(['jQuery',
 		},
 	});
 
-	return Project;
+	return SubPage;
 });
