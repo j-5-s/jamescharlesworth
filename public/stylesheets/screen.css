@@ -2463,36 +2463,35 @@ h2.title {
 /* line 1, ../sass/partials/_page.sass */
 .page {
   border-top: 1px solid white;
-  height: 700px;
   position: absolute;
 }
 
-/* line 6, ../sass/partials/_page.sass */
+/* line 5, ../sass/partials/_page.sass */
 .page h1, .page h2, .page h3 {
   font-family: "Poiret One", cursive;
   color: #f9f9f9;
   text-shadow: 1px 1px 1px #333333;
 }
 
-/* line 11, ../sass/partials/_page.sass */
+/* line 10, ../sass/partials/_page.sass */
 .page h1 {
   font-size: 36px;
   text-decoration: none;
 }
 
-/* line 15, ../sass/partials/_page.sass */
+/* line 14, ../sass/partials/_page.sass */
 .page a {
   text-decoration: none;
   color: white;
   padding: 3px;
 }
 
-/* line 20, ../sass/partials/_page.sass */
+/* line 19, ../sass/partials/_page.sass */
 .page .align-right {
   text-align: right;
 }
 
-/* line 23, ../sass/partials/_page.sass */
+/* line 22, ../sass/partials/_page.sass */
 .page .counter {
   margin-top: 20px;
   color: #f9f9f9;
@@ -2503,18 +2502,17 @@ h2.title {
   background: url(../images/bg-footer.png) repeat-x;
   height: 100px;
   position: relative;
-  top: 700px;
   z-index: 2000;
   padding-top: 10px;
 }
 
-/* line 10, ../sass/partials/_footer.sass */
+/* line 9, ../sass/partials/_footer.sass */
 .footer p {
   color: #dedede;
   margin-bottom: 4px;
 }
 
-/* line 15, ../sass/partials/_footer.sass */
+/* line 14, ../sass/partials/_footer.sass */
 .footer p a {
   color: #333333;
   background-color: #dedede;
@@ -2522,7 +2520,7 @@ h2.title {
   text-decoration: none;
 }
 
-/* line 21, ../sass/partials/_footer.sass */
+/* line 20, ../sass/partials/_footer.sass */
 .footer p span {
   width: 75px;
   display: inline-block;
@@ -2530,7 +2528,7 @@ h2.title {
 
 /* line 1, ../sass/partials/_home.sass */
 .home {
-  background: url(../images/bg-home.png) no-repeat top center;
+  background: url(../images/bg-home.png) no-repeat bottom center;
 }
 
 /* line 5, ../sass/partials/_home.sass */
@@ -2556,25 +2554,24 @@ h2.title {
 .about-column {
   border-right: 1px solid #b84e50;
   color: #411618;
-  height: 500px;
 }
 
-/* line 14, ../sass/partials/_about.sass */
+/* line 13, ../sass/partials/_about.sass */
 .about .last .about-column {
   border-right: none;
 }
 
-/* line 17, ../sass/partials/_about.sass */
+/* line 16, ../sass/partials/_about.sass */
 .about-column p {
   padding: 0 15px 0;
 }
 
-/* line 20, ../sass/partials/_about.sass */
+/* line 19, ../sass/partials/_about.sass */
 .first .about-column p {
   padding: 0 15px 0 0;
 }
 
-/* line 23, ../sass/partials/_about.sass */
+/* line 22, ../sass/partials/_about.sass */
 .first h2 {
   padding: 0 15px 0 0;
 }

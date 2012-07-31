@@ -2,8 +2,9 @@
 define(['jQuery',
 		'Underscore',
 		'Backbone',
-		'views/menu'
-], function( $, _, Backbone, Menu) {
+		'views/menu',
+		'globals'
+], function( $, _, Backbone, Menu, globals) {
 
 	var Page = Backbone.View.extend({
 		initialize: function( options ) {
@@ -21,8 +22,8 @@ define(['jQuery',
 				$template = $(this.model.get('template')),
 				subPage,
 				activeIndex;
-
-			
+	
+				
 			if (this.model.hasSubPages()) { 
 				//find the subPage if there is a sub page,if not default to 0
 				//the page has subpages, but one is not sellected
@@ -81,6 +82,7 @@ define(['jQuery',
 				//setActive will deactivate current active and active subPage
 				//passed into it
 				this.subPages.setActive(nextSubPage);
+				router.stylize();
 
 
 				$('.'+activeclassName).fadeOut(300, function(){

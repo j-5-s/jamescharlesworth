@@ -7,8 +7,9 @@ define([
 	'views/page',
 	'views/menu',
 	'models/page',
+	'globals',
 	'jQueryUI'
-], function( $, _, Backbone, PageView, MenuView, PageModel ){
+], function( $, _, Backbone, PageView, MenuView, PageModel, globals ){
 
 	var AppRouter = Backbone.Router.extend({
 		initialize: function(options) {
@@ -45,7 +46,7 @@ define([
 				pageHtml = page.render().el;
 
 			$('.pages').append( pageHtml );
-			
+			this.stylize();
 			//if multiple pages exist, the transition needs to happen
 			//goal is to determine the direction to slide, left to
 			//right or right to left. Then slide one in and one out
@@ -88,10 +89,38 @@ define([
 					//of thenew page
 					$firstPage.parent().parent().remove();
 					$lastPage.css({position:'relative',top: '0px'});
+					
 				}, 350 );//350 is how long it takes to slide in/out
 			}
+			
+			
 		},
+		stylize: function(lp){
+			var wrapperHeight = $('.page:last').height();
+			//if the page is larger than the content
+			
+			if ( (globals.pageHeight - globals.footerHeight) > wrapperHeight ) {
+				
+				wrapperHeight = globals.pageHeight - globals.footerHeight;	
+			
+				$('.page:last').css({height:wrapperHeight + 'px'});
+				//make the content a bit longer
+			}
 
+			if ($('.about-column').length) {
+				var maxColumnHeight = 0;
+				$('.about-column').each(function(i,col){
+					
+					if ($(col).height() > maxColumnHeight) {
+						maxColumnHeight = $(col).height();
+					}
+				});
+				$('.about-column').css({height:maxColumnHeight+ 'px'});
+			}
+
+			
+			$('.footer').css({top: wrapperHeight +'px'});
+		},
 		//refactor pages later
 		default: function() {
 			this.showPage('home');
