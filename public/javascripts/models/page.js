@@ -10,6 +10,13 @@ define(['jQuery',
 			if (this.get('projects')) {
 			//	this.get('projects').setActive()
 			}
+		},
+		hasSubPages: function() {
+			if (this.get('subPages')) {
+				return true;
+			} else {
+				return false;
+			}
 		}
 	});
 

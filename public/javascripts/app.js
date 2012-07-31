@@ -7,7 +7,7 @@ define([
 	'Backbone',
 	'router',
 	'collections/pages',
-	'collections/projects',
+	'collections/subPages',
 	'text!templates/home.html',
 	'text!templates/about.html',
 	'text!templates/projects.html',
@@ -16,7 +16,7 @@ define([
 	'text!templates/projects/mobilebox.html',
 	'text!templates/projects/intrade.html',
 	'text!templates/projects/westhost-php-contest.html'
-], function( $, _, Backbone, Router, PagesCollection, ProjectCollection, 
+], function( $, _, Backbone, Router, PagesCollection, SubPageCollection, 
 			homePageTemplate, aboutPageTemplate, projectPageTemplate,
 			tinyMceThumbnail, westchesterSquare, mobileBox, intrade, westhostPHPContest  ){
 	var initialize = function(){
@@ -31,7 +31,7 @@ define([
 			pages.add({name:'about', template: aboutPageTemplate});
 
 			//Projects on project page
-			var projectCollection = new ProjectCollection();
+			var projectCollection = new SubPageCollection();
 				
 				projectCollection.add({
 					className:'page-tinymce-thumbnail-gallery',
@@ -55,10 +55,10 @@ define([
 				});
 
 				if (typeof subPage !== 'undefined') {
-					projectCollection.getProjectByURLHash(subPage).set('active', true);
+					projectCollection.getSubPageByURLHash(subPage).set('active', true);
 				}
 			
-			pages.add({name:'projects',template: projectPageTemplate, projects: projectCollection});//change projects to subPages
+			pages.add({name:'projects',template: projectPageTemplate, subPages: projectCollection});//change projects to subPages
 			
 
 			var options = {};

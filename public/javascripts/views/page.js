@@ -10,7 +10,7 @@ define(['jQuery',
 			
 			
 			this.router = options.router;
-			this.projects = this.model.get('projects');
+			this.subPages = this.model.get('subPages');
 			_.bindAll(this, 'render', 'scrollContent', 'changeSubPage' );
 		},
 		events: {
@@ -19,30 +19,22 @@ define(['jQuery',
 		getTemplate: function( ){
 			var self      = this,
 				$template = $(this.model.get('template')),
-				project,
+				subPage,
 				activeIndex;
 
-			//need to refactor this out of here into app.js / templates
-			if (this.model.get('name') === 'projects') { //fix later
-				//find the project if there is a sub page,if not default to 0
-				if (!this.model.get('subPage')) {
-					project = this.projects.at(0);
-					activeIndex = 0;
-				} else {
-					var project = this.projects.getProjectByURLHash(this.model.get('subPage'))
-					//set this project as active
-					this.projects.setActive(project);
-					if (project) {
-						activeIndex = this.projects.getIndex(project);
-					}  else {
-						//@TODO, add default 404 page
-					}
-				}
-				var totalPages = this.projects.length;
+			
+			if (this.model.hasSubPages()) { 
+				//find the subPage if there is a sub page,if not default to 0
+				//the page has subpages, but one is not sellected
+				var activeSubPage = this.subPages.getActiveSubPage(),
+					activeIndex   = this.subPages.getIndex(activeSubPage);
+
+				
+				var totalPages = this.subPages.length;
 				
 				$('.counter', $template).html( 'Project ' + (activeIndex+1) + ' of ' + totalPages );
-				$('.project-content', $template).addClass(project.get('className'));
-				$('.project-content', $template).html(project.get('html'));
+				$('.project-content', $template).addClass(activeSubPage.get('className'));
+				$('.project-content', $template).html(activeSubPage.get('html'));
 			}	
 			
 
@@ -64,14 +56,14 @@ define(['jQuery',
 		},
 		changeSubPage: function( params ){
 			//consider refactoring
-			var projectClasses = this.projects.getProjectClasses(),
+			var subPageClasses = this.subPages.getSubPageClasses(),
 				router      = this.router;
 
 
-			var activeProject   = this.projects.getActiveProject(), 
-				activeclassName = activeProject.get('className'),
-				activePageIndex = this.projects.getIndex( activeProject ),
-				totalProjects   = projectClasses.length;
+			var activeSubPage   = this.subPages.getActiveSubPage(), 
+				activeclassName = activeSubPage.get('className'),
+				activePageIndex = this.subPages.getIndex( activeSubPage ),
+				totalSubPages   = subPageClasses.length;
 
 			var direction;
 
@@ -83,25 +75,25 @@ define(['jQuery',
 
 			//make sure the next page is both greater than zero and less than
 			//the total pages			
-			if (( activePageIndex + direction ) <= totalProjects && activePageIndex + direction >= 0) {
+			if (( activePageIndex + direction ) <= totalSubPages && activePageIndex + direction >= 0) {
 				
-				var nextProject = this.model.get('projects').at( activePageIndex + direction );
-				//setActive will deactivate current active and active project
+				var nextSubPage = this.model.get('subPages').at( activePageIndex + direction );
+				//setActive will deactivate current active and active subPage
 				//passed into it
-				this.projects.setActive(nextProject);
+				this.subPages.setActive(nextSubPage);
 
 
 				$('.'+activeclassName).fadeOut(300, function(){
-					$('.'+activeclassName).html(nextProject.get('html'));
-					$('.'+activeclassName).addClass(nextProject.get('className'));
+					$('.'+activeclassName).html(nextSubPage.get('html'));
+					$('.'+activeclassName).addClass(nextSubPage.get('className'));
 					$('.'+activeclassName).fadeIn(300);
 					$('.'+activeclassName).removeClass(activeclassName);
 					
 					//turn page-<name> into <name>
-					var url = nextProject.getURLHash();
+					var url = nextSubPage.getURLHash();
 					
 					//update the counter
-					$('.counter').html( 'Project ' + (activePageIndex + direction +1) + ' of ' + totalProjects );
+					$('.counter').html( 'Project ' + (activePageIndex + direction +1) + ' of ' + totalSubPages );
 
 					router.navigate('/projects/' + url, {replace:true} );
 
