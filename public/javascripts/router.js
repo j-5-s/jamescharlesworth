@@ -8,8 +8,9 @@ define([
 	'views/menu',
 	'models/page',
 	'globals',
+	'my.raphael',
 	'jQueryUI'
-], function( $, _, Backbone, PageView, MenuView, PageModel, globals ){
+], function( $, _, Backbone, PageView, MenuView, PageModel, globals, rData){
 
 	var AppRouter = Backbone.Router.extend({
 		initialize: function(options) {
@@ -45,7 +46,10 @@ define([
 			var page     = new PageView({model: pageModel, router: router}),
 				pageHtml = page.render().el;
 
+
 			$('.pages').append( pageHtml );
+
+						
 			this.stylize();
 			//if multiple pages exist, the transition needs to happen
 			//goal is to determine the direction to slide, left to
@@ -89,10 +93,15 @@ define([
 					//of thenew page
 					$firstPage.parent().parent().remove();
 					$lastPage.css({position:'relative',top: '0px'});
-					
+					router.loadPaper();
+				
 				}, 350 );//350 is how long it takes to slide in/out
 			}
-			
+
+			$(function(){
+				router.loadPaper();
+
+			})			
 			
 		},
 		stylize: function(lp){
@@ -124,12 +133,46 @@ define([
 		//refactor pages later
 		default: function() {
 			this.showPage('home');
+
+
+		},
+		loadPaper: function(){
+			if ($('.raphael-canvas').length) {
+
+				var paper = Raphael($('.raphael-canvas').get(0));
+
+				// Creates circle at x = 50, y = 40, with radius 10
+				var circle = paper.circle(50, 50, 10);
+				// Sets the fill attribute of the circle to red (#f00)
+				circle.attr({fill: '#a23a35',stroke:'none'})
+				circle.click(function(){
+					$('.red-dot-text').css({visibility:'visible'})
+				});
+				var g;
+				circle.hover(function(){
+					var self = this;
+					this.attr({cursor:'pointer'})
+					this.animate({r:13}, 1000, 'elastic', function(){
+						g = self.glow({color:'#fff',opactiy:0.7});
+
+					});
+					
+				},
+				function(){
+					this.animate({r:10}, 1000, 'elastic', function(){
+						g.remove()
+					});
+				})
+				
+			}
 		}
+
 	});
 
 	
 	var initialize = function(options){
 		var appRouter = new AppRouter(options);
+
 		Backbone.history.start({pushState:true});
 	};
 

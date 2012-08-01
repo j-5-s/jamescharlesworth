@@ -69,6 +69,7 @@ define([
 		Router.initialize(options);
 	};
 
+	
 	return {
 		initialize: initialize
 	};

@@ -2540,6 +2540,11 @@ h2.title {
   font-weight: bold;
 }
 
+/* line 13, ../sass/partials/_home.sass */
+.red-dot-text {
+  visibility: hidden;
+}
+
 /* line 3, ../sass/partials/_about.sass */
 .about {
   background: url(../images/bg-red.png);
@@ -2553,7 +2558,7 @@ h2.title {
 /* line 9, ../sass/partials/_about.sass */
 .about-column {
   border-right: 1px solid #b84e50;
-  color: #411618;
+  color: white;
 }
 
 /* line 13, ../sass/partials/_about.sass */
@@ -2595,7 +2600,7 @@ h2.title {
 
 /* line 12, ../sass/partials/_projects.sass */
 .projects p {
-  color: #dedede;
+  color: white;
 }
 
 /* line 15, ../sass/partials/_projects.sass */

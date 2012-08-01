@@ -36,7 +36,11 @@ define(['jQuery',
 				$('.counter', $template).html( 'Project ' + (activeIndex+1) + ' of ' + totalPages );
 				$('.project-content', $template).addClass(activeSubPage.get('className'));
 				$('.project-content', $template).html(activeSubPage.get('html'));
-			}	
+			}
+
+			if ($('.raphael-canvas',$template).length) {
+				$('.raphael-canvas',$template).css({height: globals.screenContentHeight +'px'})
+			}
 			
 
 			var menu = new Menu({page: this.model.get('name')});
@@ -105,7 +109,12 @@ define(['jQuery',
 		render: function() {
 			var router = this.router;
 			var template = this.getTemplate();
+	
+
+
 			this.$el.html( template );
+
+
 			$('.menu a',this.$el).click(function(){
 				var url = $(this).attr('href');
 				router.navigate(url, true);
