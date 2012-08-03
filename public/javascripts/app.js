@@ -9,6 +9,7 @@ define([
 	'collections/pages',
 	'collections/subPages',
 	'text!templates/home.html',
+	'text!templates/home/red-dot/me.html',
 	'text!templates/about.html',
 	'text!templates/projects.html',
 	'text!templates/projects/tinymce-thumbnail-gallery.html',
@@ -17,7 +18,7 @@ define([
 	'text!templates/projects/intrade.html',
 	'text!templates/projects/westhost-php-contest.html'
 ], function( $, _, Backbone, Router, PagesCollection, SubPageCollection, 
-			homePageTemplate, aboutPageTemplate, projectPageTemplate,
+			homePageTemplate, meHtml, aboutPageTemplate, projectPageTemplate,
 			tinyMceThumbnail, westchesterSquare, mobileBox, intrade, westhostPHPContest  ){
 	var initialize = function(){
 			
@@ -25,7 +26,8 @@ define([
 			var pages = new PagesCollection();
 
 			//home page
-			pages.add({name:'home',template: homePageTemplate});
+			var template = _.template(homePageTemplate, {redDot: meHtml});
+			pages.add({name:'home',template: template});
 
 			//about page
 			pages.add({name:'about', template: aboutPageTemplate});

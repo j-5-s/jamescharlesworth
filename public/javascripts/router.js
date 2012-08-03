@@ -9,13 +9,19 @@ define([
 	'models/page',
 	'globals',
 	'my.raphael',
+	'text!templates/home/red-dot/me.html',
+	'text!templates/home/red-dot/inception.html',
+	'text!templates/home/red-dot/simplicity.html',
+	'text!templates/home/red-dot/the-dot-is-me.html',
 	'jQueryUI'
-], function( $, _, Backbone, PageView, MenuView, PageModel, globals, rData){
+], function( $, _, Backbone, PageView, MenuView, PageModel, globals, rData, meHtml, inceptionHtml, simplicityHtml, dotIsMe){
 
 	var AppRouter = Backbone.Router.extend({
 		initialize: function(options) {
 			this.options = options;
 			this.pages = options.pages;
+			this.redDots = [meHtml, inceptionHtml, simplicityHtml, dotIsMe];
+			this.redDotIndex = 1;
 			
 		},
 		routes: {
@@ -104,6 +110,7 @@ define([
 			})			
 			
 		},
+
 		stylize: function(lp){
 			var wrapperHeight = $('.page:last').height();
 			//if the page is larger than the content
@@ -137,6 +144,7 @@ define([
 
 		},
 		loadPaper: function(){
+			var self = this;
 			if ($('.raphael-canvas').length) {
 
 				var paper = Raphael($('.raphael-canvas').get(0));
@@ -146,21 +154,31 @@ define([
 				// Sets the fill attribute of the circle to red (#f00)
 				circle.attr({fill: '#a23a35',stroke:'none'})
 				circle.click(function(){
-					$('.red-dot-text').css({visibility:'visible'})
+					var html = self.redDots[self.redDotIndex];
+					
+					$('.red-dot-text').html(html);
+					if ( (self.redDotIndex +1) === self.redDots.length) {
+						self.redDotIndex = 0;
+					} else {
+						self.redDotIndex++;	
+					}
+					
 				});
 				var g;
 				circle.hover(function(){
 					var self = this;
 					this.attr({cursor:'pointer'})
+					
 					this.animate({r:13}, 1000, 'elastic', function(){
-						g = self.glow({color:'#fff',opactiy:0.7});
+						
 
 					});
 					
 				},
 				function(){
 					this.animate({r:10}, 1000, 'elastic', function(){
-						g.remove()
+
+						
 					});
 				})
 				
