@@ -8,7 +8,7 @@
 		require = root.require;
 
 	var scriptsLoaded = 0,
-		scriptsToLoad = 45;
+		scriptsToLoad = 43;
 
 	//fake 'has' if it's not available
 	var has = root.has = root.has || function() {
@@ -67,7 +67,6 @@
 		var loaderBox = document.getElementById('loaderBox');
 
 		scriptsLoaded++;
-
 		if (loaderBox) {
 			
 			increment = increment + 11;
