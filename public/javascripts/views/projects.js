@@ -1,15 +1,18 @@
-
+/*globals Raphael */
 define(['jQuery',
 		'Underscore',
 		'Backbone',
 		'views/menu',
+		'text!templates/projects/intrade.html',
+		'text!templates/projects/mobileBox.html',
+		'text!templates/projects/tinymce-thumbnail-gallery.html',
+		'text!templates/projects/westchester-square.html',
+		'text!templates/projects/westhost-php-contest.html',
 		'globals'
-], function( $, _, Backbone, Menu, globals) {
+], function( $, _, Backbone, Menu, meTemplate, inceptionTemplate, simplicityTemplate, thdDotIsMeTemplate, globals) {
 
 	var Page = Backbone.View.extend({
 		initialize: function( options ) {
-			
-			
 			this.router = options.router;
 			this.subPages = this.model.get('subPages');
 			_.bindAll(this, 'render', 'scrollContent', 'changeSubPage' );
@@ -18,13 +21,8 @@ define(['jQuery',
 			'click .scroll': 'scrollContent'
 		},
 		getTemplate: function( ){
-			var self      = this,
-				$template = $(this.model.get('template')),
-				subPage,
-				activeIndex;
-	
-				
-			if (this.model.hasSubPages()) { 
+			var $template = $(this.model.get('template'));
+
 				//find the subPage if there is a sub page,if not default to 0
 				//the page has subpages, but one is not sellected
 				var activeSubPage = this.subPages.getActiveSubPage(),
@@ -36,13 +34,8 @@ define(['jQuery',
 				$('.counter', $template).html( 'Project ' + (activeIndex+1) + ' of ' + totalPages );
 				$('.project-content', $template).addClass(activeSubPage.get('className'));
 				$('.project-content', $template).html(activeSubPage.get('html'));
-			}
-
-			if ($('.raphael-canvas',$template).length) {
-				$('.raphael-canvas',$template).css({height: globals.screenContentHeight +'px'})
-			}
 			
-
+			
 			var menu = new Menu({page: this.model.get('name')});
 			$('.container', $template).prepend(menu.render().el);
 			
@@ -58,7 +51,7 @@ define(['jQuery',
 			} else {
 				this.changeSubPage({ direction: 'up', e: e });
 			}
-		},
+		},		
 		changeSubPage: function( params ){
 			//consider refactoring
 			var subPageClasses = this.subPages.getSubPageClasses(),
@@ -107,13 +100,15 @@ define(['jQuery',
 			}
 		},
 		render: function() {
-			var router = this.router;
-			var template = this.getTemplate();
+			var router   = this.router,
+				template = this.getTemplate(),
+				self     = this;
 	
-
 
 			this.$el.html( template );
 
+			
+				
 
 			$('.menu a',this.$el).click(function(){
 				var url = $(this).attr('href');
