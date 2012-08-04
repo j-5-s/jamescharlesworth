@@ -108,13 +108,19 @@ define([
 			
 				//setting the position to absolute makes the transition smoother
 				$lastPage.css({position:'absolute',top: '90px'});
+
+				
+							
 				
 				$lastPage.show('slide', {direction: direction.in });
 				$firstPage.hide('slide',{direction: direction.out });
+
+				//need the parent now because after the slide its differnt
+				var $parent = $firstPage.parent().parent();	
 				setTimeout(function(){
 					//finally, remove the page that slide out and reset the position
-					//of thenew page
-					$firstPage.parent().parent().remove();
+					//of the new page
+					$parent.remove();
 					$lastPage.css({position:'relative',top: '0px'});
 					
 				
