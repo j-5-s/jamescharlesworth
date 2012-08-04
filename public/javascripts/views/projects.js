@@ -73,7 +73,7 @@ define(['jQuery',
 
 			//make sure the next page is both greater than zero and less than
 			//the total pages			
-			if (( activePageIndex + direction ) <= totalSubPages && activePageIndex + direction >= 0) {
+			if (( activePageIndex + direction ) < totalSubPages && activePageIndex + direction >= 0) {
 				
 				var nextSubPage = this.model.get('subPages').at( activePageIndex + direction );
 				//setActive will deactivate current active and active subPage

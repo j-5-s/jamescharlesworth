@@ -68,7 +68,7 @@
 			var pos = 1 * loaderBox.style.backgroundPosition.split("px")[0];
 
 			
-			increment = increment + 10.6;
+			increment = increment + 11;
 			loaderBox.style.backgroundPosition = increment + 'px' 
 		}
 	}
@@ -85,7 +85,10 @@
 				loader();
 				if (scriptsLoaded === scriptsToLoad) {
 					var jsloader = document.getElementById('jsloader');
-					jsloader.parentNode.removeChild(jsloader);
+					setTimeout(function(){
+						jsloader.parentNode.removeChild(jsloader);
+					},200);
+					
 				}
 
 
