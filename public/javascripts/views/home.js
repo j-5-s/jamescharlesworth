@@ -7,8 +7,9 @@ define(['jQuery',
 		'text!templates/home/red-dot/inception.html',
 		'text!templates/home/red-dot/simplicity.html',
 		'text!templates/home/red-dot/the-dot-is-me.html',
-		'globals'
-], function( $, _, Backbone, Menu, meTemplate, inceptionTemplate, simplicityTemplate, thdDotIsMeTemplate, globals) {
+		'globals',
+		'Raphael'
+], function( $, _, Backbone, Menu, meTemplate, inceptionTemplate, simplicityTemplate, thdDotIsMeTemplate, globals, Raphael) {
 
 	var Page = Backbone.View.extend({
 		initialize: function( options ) {

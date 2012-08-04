@@ -8,7 +8,7 @@
 		require = root.require;
 
 	var scriptsLoaded = 0,
-		scriptsToLoad = 36;
+		scriptsToLoad = 45;
 
 	//fake 'has' if it's not available
 	var has = root.has = root.has || function() {
@@ -23,6 +23,8 @@
 			jQueryNoSpam: './vendor/jquery/jquery.nospam',
 			Underscore: './vendor/underscore/underscore',
 			Backbone: './vendor/backbone/backbone',
+			eve: './vendor/raphaeljs/eve',
+			Raphael: './vendor/raphaeljs/raphael.amd',
 			templates: './templates'
 		},
 		waitSeconds: has('prod') ? 200 : 2,
@@ -38,6 +40,9 @@
 			},
 			'jQueryNoSpam': {
 				deps: ['jQuery']
+			},
+			'Raphael': {
+				deps: ['eve']
 			}
 		}
 
