@@ -7,7 +7,7 @@
 		require = root.require;
 
 	var scriptsLoaded = 0,
-		scriptsToLoad = 37;
+		scriptsToLoad = 36;
 
 	//currently 37	
 
@@ -47,8 +47,9 @@
 		scriptsLoaded++;
 		var console = root.console;
 		if (console.log) {
-			console.log('loading: ' + map.name + ' at ' + map.url);
+	//		console.log('loading: ' + map.name + ' at ' + map.url);
 		}
+		loader();
 	};
 
 
@@ -57,30 +58,36 @@
 
 		updateModuleProgress(context, map, depMaps);
 	};	
+	var increment = -480;
+	var loader = function(){
+		var loaderBox = document.getElementById('loaderBox');
+
+		scriptsLoaded++;
+
+		if (loaderBox) { 
+			var pos = 1 * loaderBox.style.backgroundPosition.split("px")[0];
+
+			
+			increment = increment + 10.6;
+			loaderBox.style.backgroundPosition = increment + 'px' 
+		}
+	}
 
 	require(['domReady'], function(domReady) {
-		var increment = -480;
+		
 		domReady(function() {
 		//re-implement updateModuleProgress here for domReady
 			updateModuleProgress = function(context, map, depMaps) {
 				var document = root.document;
 				
-				var loaderBox = document.getElementById('loaderBox');
 
-				scriptsLoaded++;
-
-				if (loaderBox) { 
-					var pos = 1 * loaderBox.style.backgroundPosition.split("px")[0];
-
-					
-					increment = increment + 11.20;
-					loaderBox.style.backgroundPosition = increment + 'px' 
-				}
-
+				
+				loader();
 				if (scriptsLoaded === scriptsToLoad) {
 					var jsloader = document.getElementById('jsloader');
 					jsloader.parentNode.removeChild(jsloader);
 				}
+
 
 
 			};

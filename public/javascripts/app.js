@@ -14,7 +14,7 @@ define([
 	'text!templates/projects.html',
 	'text!templates/projects/tinymce-thumbnail-gallery.html',
 	'text!templates/projects/westchester-square.html',
-	'text!templates/projects/mobilebox.html',
+	'text!templates/projects/mobile-box.html',
 	'text!templates/projects/intrade.html',
 	'text!templates/projects/westhost-php-contest.html'
 ], function( $, _, Backbone, Router, PagesCollection, SubPageCollection, 
