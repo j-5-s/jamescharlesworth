@@ -1,4 +1,4 @@
-/*globals Raphael */
+/*globals Raphael, _gaq */
 define(['jQuery',
 		'Underscore',
 		'Backbone',
@@ -52,14 +52,14 @@ define(['jQuery',
 			} else {
 				this.changeSubPage({ direction: 'up', e: e });
 			}
-		},		
+		},
 		changeSubPage: function( params ){
 			//consider refactoring
 			var subPageClasses = this.subPages.getSubPageClasses(),
 				router      = this.router;
 
 
-			var activeSubPage   = this.subPages.getActiveSubPage(), 
+			var activeSubPage   = this.subPages.getActiveSubPage(),
 				activeclassName = activeSubPage.get('className'),
 				activePageIndex = this.subPages.getIndex( activeSubPage ),
 				totalSubPages   = subPageClasses.length;
@@ -73,14 +73,18 @@ define(['jQuery',
 			}
 
 			//make sure the next page is both greater than zero and less than
-			//the total pages			
+			//the total pages
 			if (( activePageIndex + direction ) < totalSubPages && activePageIndex + direction >= 0) {
-				
+
 				var nextSubPage = this.model.get('subPages').at( activePageIndex + direction );
 				//setActive will deactivate current active and active subPage
 				//passed into it
 				this.subPages.setActive(nextSubPage);
 				router.stylize();
+
+				//GA anaytlics tracking
+				var virtualPageview = 'projects/' + nextSubPage.getURLHash();
+				_gaq.push(['_trackPageview', virtualPageview]);
 
 
 				$('.'+activeclassName).fadeOut(300, function(){
@@ -102,14 +106,10 @@ define(['jQuery',
 		},
 		render: function() {
 			var router   = this.router,
-				template = this.getTemplate(),
-				self     = this;
+				template = this.getTemplate();
 	
 
 			this.$el.html( template );
-
-			
-				
 
 			$('.menu a',this.$el).click(function(){
 				var url = $(this).attr('href');

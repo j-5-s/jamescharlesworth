@@ -1,4 +1,4 @@
-/*globals app, Backbone, $, resize*/
+/*globals app, Backbone, $, resize, _gaq */
 // Filename: router.js
 define([
 	'jQuery',
@@ -30,6 +30,12 @@ define([
 
 		},
 		showPage: function( pageName, subPage) {
+			//GA tracking
+			var virtualPageview = pageName;
+			if (typeof subPage !== 'undefined') {
+				virtualPageview += '/' + subPage;
+			}
+			_gaq.push(['_trackPageview', virtualPageview]);
 		
 			//load the menu
 			var router = this;
@@ -51,12 +57,12 @@ define([
 			var page;
 			//make dynamic
 			if (pageName === 'home') {
-				page = new HomeView({model: pageModel, router: router})
+				page = new HomeView({model: pageModel, router: router});
 			} else if (pageName === 'projects') {
 				page = new ProjectsView({model: pageModel, router: router});
 
 			} else if (pageName === 'about') {
-				page = new AboutView({model: pageModel, router: router})
+				page = new AboutView({model: pageModel, router: router});
 			}
 			//@todo add 404
 
@@ -114,18 +120,14 @@ define([
 				
 				}, 350 );//350 is how long it takes to slide in/out
 			}
-
-						
-			
 		},
-
 		stylize: function(lp){
 			var wrapperHeight = $('.page:last').height();
 			//if the page is larger than the content
 			
 			if ( (globals.pageHeight - globals.footerHeight) > wrapperHeight ) {
 				
-				wrapperHeight = globals.pageHeight - globals.footerHeight;	
+				wrapperHeight = globals.pageHeight - globals.footerHeight;
 			
 				$('.page:last').css({height:wrapperHeight + 'px'});
 				//make the content a bit longer
