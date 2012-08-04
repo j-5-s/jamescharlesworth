@@ -1,4 +1,5 @@
 
+/*globals document */
 (function(){
 
 	'use strict';
@@ -8,8 +9,6 @@
 
 	var scriptsLoaded = 0,
 		scriptsToLoad = 36;
-
-	//currently 37	
 
 	//fake 'has' if it's not available
 	var has = root.has = root.has || function() {
@@ -45,10 +44,6 @@
 	var updateModuleProgress = function(context, map, depMaps) {
 		//when dom is not ready, do something more useful?
 		scriptsLoaded++;
-		var console = root.console;
-		if (console.log) {
-	//		console.log('loading: ' + map.name + ' at ' + map.url);
-		}
 		loader();
 	};
 
@@ -57,21 +52,19 @@
 	require.onResourceLoad = function(context, map, depMaps) {
 
 		updateModuleProgress(context, map, depMaps);
-	};	
+	};
 	var increment = -480;
 	var loader = function(){
 		var loaderBox = document.getElementById('loaderBox');
 
 		scriptsLoaded++;
 
-		if (loaderBox) { 
-			var pos = 1 * loaderBox.style.backgroundPosition.split("px")[0];
-
+		if (loaderBox) {
 			
 			increment = increment + 11;
-			loaderBox.style.backgroundPosition = increment + 'px' 
+			loaderBox.style.backgroundPosition = increment + 'px';
 		}
-	}
+	};
 
 	require(['domReady'], function(domReady) {
 		
@@ -110,4 +103,4 @@
 
 	});
 
-}).call(this);
+}.call(this));

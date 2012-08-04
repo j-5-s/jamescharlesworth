@@ -4,7 +4,12 @@
  */
 
 exports.index = function(req, res){
-	res.render('index', { title: 'Express' });
+	var built = '';
+	if (process.env.PORT) {
+		built = '-built';
+	}
+
+	res.render('index', { title: 'James Charlesworth - Web Developer',built: built });
 };
 
 exports.about = function(req, res){
