@@ -8,8 +8,9 @@ define(['jQuery',
 		'text!templates/projects/tinymce-thumbnail-gallery.html',
 		'text!templates/projects/westchester-square.html',
 		'text!templates/projects/westhost-php-contest.html',
-		'globals'
-], function( $, _, Backbone, Menu, meTemplate, inceptionTemplate, simplicityTemplate, thdDotIsMeTemplate, globals) {
+		'globals',
+		'swiper'
+], function( $, _, Backbone, Menu, meTemplate, inceptionTemplate, simplicityTemplate, thdDotIsMeTemplate, phpContest, globals, swiper) {
 
 	var Page = Backbone.View.extend({
 		initialize: function( options ) {
@@ -111,6 +112,8 @@ define(['jQuery',
 
 			this.$el.html( template );
 
+
+
 			$('.menu a',this.$el).click(function(){
 				var url = $(this).attr('href');
 				router.navigate(url, true);
@@ -118,6 +121,20 @@ define(['jQuery',
 			});
 
 			return this;
+		},
+		swiper: function() {
+			var page = $('.page', this.el),
+				router = this.router;
+			
+			swiper( page, function(direction){
+				//swipe left
+				
+				if (direction > 0) {
+					//nothing, im at the end
+				} else {					
+					router.navigate('about', {trigger:true});
+				}
+			});			
 		}
 	});
 

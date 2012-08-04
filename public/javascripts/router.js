@@ -71,6 +71,7 @@ define([
 
 
 			$('.pages').append( pageHtml );
+			
 
 						
 			this.stylize();
@@ -122,10 +123,16 @@ define([
 					//of the new page
 					$parent.remove();
 					$lastPage.css({position:'relative',top: '0px'});
+					page.swiper();
 					
 				
 				}, 350 );//350 is how long it takes to slide in/out
+			} else {
+				page.swiper(router);
 			}
+
+
+
 		},
 		stylize: function(lp){
 			var wrapperHeight = $('.page:last').height();

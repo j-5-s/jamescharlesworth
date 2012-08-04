@@ -3,8 +3,9 @@ define(['jQuery',
 		'Underscore',
 		'Backbone',
 		'views/menu',
-		'globals'
-], function( $, _, Backbone, Menu, globals) {
+		'globals',
+		'swiper'
+], function( $, _, Backbone, Menu, globals, swiper) {
 
 	var Page = Backbone.View.extend({
 		initialize: function( options ) {
@@ -36,7 +37,7 @@ define(['jQuery',
 		render: function() {
 			var router = this.router;
 			var template = this.getTemplate();
-	
+			
 
 
 			this.$el.html( template );
@@ -49,6 +50,20 @@ define(['jQuery',
 			});
 
 			return this;
+		},
+		swiper: function() {
+			var page = $('.page', this.el),
+				router = this.router;
+
+			swiper( page, function(direction){
+				//swipe left
+				if (direction > 0) {
+					router.navigate('projects', {trigger:true});
+				} else {
+					router.navigate('', {trigger:true});
+				}
+			});
+
 		}
 	});
 

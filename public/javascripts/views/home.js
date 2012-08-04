@@ -8,8 +8,9 @@ define(['jQuery',
 		'text!templates/home/red-dot/simplicity.html',
 		'text!templates/home/red-dot/the-dot-is-me.html',
 		'globals',
-		'Raphael'
-], function( $, _, Backbone, Menu, meTemplate, inceptionTemplate, simplicityTemplate, thdDotIsMeTemplate, globals, Raphael) {
+		'Raphael',
+		'swiper'
+], function( $, _, Backbone, Menu, meTemplate, inceptionTemplate, simplicityTemplate, thdDotIsMeTemplate, globals, Raphael, swiper) {
 
 	var Page = Backbone.View.extend({
 		initialize: function( options ) {
@@ -18,7 +19,7 @@ define(['jQuery',
 			this.redDotIndex = 1;
 		},
 		events: {
-			
+	
 		},
 		getTemplate: function( ){
 			var $template = $(this.model.get('template'));
@@ -32,7 +33,6 @@ define(['jQuery',
 			
 			return $template.html();
 		},
-
 		render: function() {
 			var router   = this.router,
 				template = this.getTemplate(),
@@ -78,6 +78,19 @@ define(['jQuery',
 			});
 
 			return this;
+		},
+		swiper: function(){
+
+			var page = $('.page', this.el),
+				router = this.router;
+
+			swiper( page, function(direction){
+				//swipe left
+				if (direction > 0) {
+					//router.showPage('about');
+					router.navigate('about', {trigger:true})
+				}
+			});
 		}
 	});
 
