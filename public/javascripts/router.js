@@ -40,9 +40,12 @@ define([
 			var pageModel = this.pages.getByName( pageName );
 			//need 404 handling here
 			//also, dont like this. needs to be cleaner...
+
 			if (subPage) {
 				pageModel.set('subPage', subPage );
+				pageModel.get('subPages').getSubPageByURLHash(subPage).set('active', true);
 			}
+
 
 			var page;
 			//make dynamic

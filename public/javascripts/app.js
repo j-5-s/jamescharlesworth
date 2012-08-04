@@ -55,10 +55,7 @@ define([
 					className: 'page-westhost-php-contest',
 					html: westhostPHPContest
 				});
-
-				if (typeof subPage !== 'undefined') {
-					projectCollection.getSubPageByURLHash(subPage).set('active', true);
-				}
+				
 			
 			pages.add({name:'projects',template: projectPageTemplate, subPages: projectCollection});//change projects to subPages
 			
@@ -66,6 +63,7 @@ define([
 			var options = {};
 
 			options.pages = pages;
+			
 
 		// Pass in our Router module and call it's initialize function
 		Router.initialize(options);

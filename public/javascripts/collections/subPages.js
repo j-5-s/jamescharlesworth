@@ -14,6 +14,7 @@ define(['jQuery',
 			var activeSubPage = this.find(function( subPageModel ){
 				return subPageModel.get('active');
 			});
+
 			if (!activeSubPage) {
 				activeSubPage = this.at(0);
 			}

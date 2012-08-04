@@ -29,6 +29,7 @@ define(['jQuery',
 					activeIndex   = this.subPages.getIndex(activeSubPage);
 
 				
+				
 				var totalPages = this.subPages.length;
 				
 				$('.counter', $template).html( 'Project ' + (activeIndex+1) + ' of ' + totalPages );
