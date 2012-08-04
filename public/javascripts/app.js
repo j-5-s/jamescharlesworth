@@ -51,10 +51,11 @@ define([
 					className: 'page-intrade',
 					html: intrade
 				});	
-				projectCollection.add({
-					className: 'page-westhost-php-contest',
-					html: westhostPHPContest
-				});
+				//waiting for westhost to respond
+				// projectCollection.add({
+				// 	className: 'page-westhost-php-contest',
+				// 	html: westhostPHPContest
+				// });
 				
 			
 			pages.add({name:'projects',template: projectPageTemplate, subPages: projectCollection});//change projects to subPages

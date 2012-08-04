@@ -10,7 +10,8 @@ define([
 	'views/menu',
 	'models/page',
 	'globals',
-	'jQueryUI'
+	'jQueryUI',
+	'jQueryNoSpam'
 ], function( $, _, Backbone, AboutView, HomeView, ProjectsView, MenuView, PageModel, globals){
 
 	var AppRouter = Backbone.Router.extend({
@@ -143,6 +144,9 @@ define([
 
 			
 			$('.footer').css({top: wrapperHeight +'px'});
+			$('a.email').nospam({
+				replaceText:true
+			});
 		},
 		//refactor pages later
 		default: function() {
