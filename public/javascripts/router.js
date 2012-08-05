@@ -117,18 +117,29 @@ define([
 				$firstPage.hide('slide',{direction: direction.moveout });
 
 				//need the parent now because after the slide its differnt
-				var $parent = $firstPage.parent().parent();	
+				var $parent = $firstPage.parent().parent();
+				
+				//hack for ie. red dot needs to wait for page to slide
+				setTimeout(function(){
+					if (pageName === 'home') {
+						page.renderRaphael();
+					}
+				},500); //500 must be greater than swipe speed
+										
 				setTimeout(function(){
 					//finally, remove the page that slide out and reset the position
 					//of the new page
 					$parent.remove();
 					$lastPage.css({position:'relative',top: '0px'});
+
 					page.swiper();
-					
 				
 				}, 350 );//350 is how long it takes to slide in/out
 			} else {
 				page.swiper(router);
+				if (pageName === 'home') {
+					page.renderRaphael();
+				}
 			}
 
 
