@@ -77,25 +77,22 @@
 	require(['domReady'], function(domReady) {
 		
 		domReady(function() {
-		//re-implement updateModuleProgress here for domReady
+			//re-implement updateModuleProgress here for domReady
 			updateModuleProgress = function(context, map, depMaps) {
 				var document = root.document;
 				
-
-				
 				loader();
-				if (scriptsLoaded === scriptsToLoad) {
+				if (scriptsLoaded >= scriptsToLoad) {
 					var jsloader = document.getElementById('jsloader');
 					setTimeout(function(){
-						jsloader.parentNode.removeChild(jsloader);
+						if (jsloader.parentNode !== null)
+							jsloader.parentNode.removeChild(jsloader);
 					},200);
-					
 				}
-
-
-
 			};
 		});
+
+		
 	});
 
 
