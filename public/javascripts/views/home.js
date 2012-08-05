@@ -15,7 +15,12 @@ define(['jQuery',
 	var Page = Backbone.View.extend({
 		initialize: function( options ) {
 			this.router = options.router;
-			this.redDots = [meTemplate, inceptionTemplate, simplicityTemplate, thdDotIsMeTemplate];
+			this.redDots = { 
+				'who-am-i': meTemplate, 
+				'inception': inceptionTemplate, 
+				'simplicity': simplicityTemplate, 
+				'dot-is-me':thdDotIsMeTemplate
+			};
 			this.redDotIndex = 1;
 		},
 		events: {
@@ -51,7 +56,11 @@ define(['jQuery',
 			// Sets the fill attribute of the circle to red (#f00)
 			circle.attr({fill: '#a23a35',stroke:'none'});
 			circle.click(function(){
-				var html = self.redDots[self.redDotIndex];
+				var html = _.toArray(self.redDots)[self.redDotIndex],
+					key  = _.keys(self.redDots)[self.redDotIndex];
+
+				_gaq.push(['_trackPageview', 'red-dot' + '/' + key ]);	
+
 				
 				$('.red-dot-text').html(html);
 				if ( (self.redDotIndex +1) === self.redDots.length) {
