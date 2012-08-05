@@ -63,7 +63,7 @@ define(['jQuery',
 
 				
 				$('.red-dot-text').html(html);
-				if ( (self.redDotIndex +1) === self.redDots.length) {
+				if ( (self.redDotIndex +1) === _.toArray(self.redDots).length) {
 					self.redDotIndex = 0;
 				} else {
 					self.redDotIndex++;
