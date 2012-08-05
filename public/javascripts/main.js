@@ -56,11 +56,16 @@
 	};
 
 
+	
+	var jsloaderText = document.getElementById('jsloaderText'),
+		txt = 'Please wait will i load my site';
+		
+	jsloaderText.innerHTML = txt;
 
 	require.onResourceLoad = function(context, map, depMaps) {
-
 		updateModuleProgress(context, map, depMaps);
 	};
+
 	var increment = -480;
 	var loader = function(){
 		var loaderBox = document.getElementById('loaderBox');
@@ -77,16 +82,21 @@
 	require(['domReady'], function(domReady) {
 		
 		domReady(function() {
+			//first time, update the text
+
+			var jsloader = document.getElementById('jsloader');
+
 			//re-implement updateModuleProgress here for domReady
 			updateModuleProgress = function(context, map, depMaps) {
 				var document = root.document;
 				
 				loader();
 				if (scriptsLoaded >= scriptsToLoad) {
-					var jsloader = document.getElementById('jsloader');
+					
 					setTimeout(function(){
-						if (jsloader.parentNode !== null)
+						if (jsloader.parentNode !== null) {
 							jsloader.parentNode.removeChild(jsloader);
+						}
 					},100);
 				}
 			};
