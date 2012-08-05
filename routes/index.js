@@ -9,7 +9,7 @@ exports.index = function(req, res){
 		built = '-built';
 	}
 
-	res.render('index', { title: 'James Charlesworth - Web Developer',built: built });
+	res.render('index', { title: 'James Charlesworth - Web Developer, Atlanta',built: built });
 };
 
 exports.about = function(req, res){
