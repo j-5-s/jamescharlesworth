@@ -1,3 +1,4 @@
+//swiper stop swipping!
 define(['jQuery'],function($){
 
 	var swiper = function( el, cb ) {
