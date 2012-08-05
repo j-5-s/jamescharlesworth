@@ -113,8 +113,8 @@ define([
 				
 							
 				
-				$lastPage.show('slide', {direction: direction.movein });
-				$firstPage.hide('slide',{direction: direction.moveout });
+				$lastPage.show('slide', {direction: direction.movein },350);
+				$firstPage.hide('slide',{direction: direction.moveout },350);
 
 				//need the parent now because after the slide its differnt
 				var $parent = $firstPage.parent().parent();
@@ -145,7 +145,7 @@ define([
 
 
 		},
-		stylize: function(lp){
+		stylize: function(){
 			var wrapperHeight = $('.page:last').height();
 			//if the page is larger than the content
 			
@@ -156,6 +156,8 @@ define([
 				$('.page:last').css({height:wrapperHeight + 'px'});
 				//make the content a bit longer
 			}
+
+			$('.pages').css({height: wrapperHeight + 'px'});
 
 			if ($('.about-column').length) {
 				var maxColumnHeight = 0;
@@ -169,7 +171,7 @@ define([
 			}
 
 			
-			$('.footer').css({top: wrapperHeight +'px'});
+			//$('.footer').css({top: wrapperHeight +'px'});
 			$('a.email').nospam({
 				replaceText:true
 			});
