@@ -38,7 +38,8 @@ define(['jQuery'],function($){
 			var touch = event.originalEvent.targetTouches[0];
 			finalCoord.x = touch.pageX; // Updated X,Y coordinates
 			finalCoord.y = touch.pageY;
-			event.preventDefault();
+			//dont prevent if its vertical
+			//event.preventDefault();
 		}
 
 		// Swipe was canceled
