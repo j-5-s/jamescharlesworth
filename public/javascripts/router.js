@@ -189,7 +189,6 @@ define([
 	
 	var initialize = function(options){
 		var appRouter = new AppRouter(options);
-		console.log(window)
 		$(window).resize(function(){
 			appRouter.stylize();
 		});

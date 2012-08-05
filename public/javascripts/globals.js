@@ -13,7 +13,5 @@ define([
 	globals.headerHeight = 90;
 	globals.screenContentHeight = globals.pageHeight - globals.footerHeight - globals.headerHeight;
 	globals.clickCount = -1;
-
-	console.log('pg height',globals.pageHeight)
 	return globals;
 });
