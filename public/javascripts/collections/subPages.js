@@ -26,7 +26,7 @@ define(['jQuery',
 		},
 		getIndex: function( model ){
 			var classNames = this.getSubPageClasses();
-			return classNames.indexOf(model.get('className'));
+			return _.indexOf(classNames, model.get('className'));
 		},
 		getSubPageByURLHash: function( urlHash ){
 			var subPage = this.find(function(p){

@@ -23,8 +23,8 @@ define([
 		},
 		routes: {
 			// Define some URL routes
-			"": "default",
-			"/": "default",
+			"": "defaultPage",
+			"/": "defaultPage",
 			":p": 'showPage',
 			":p/:sp": 'showPage'
 
@@ -103,8 +103,8 @@ define([
 					})[0];
 
 				var direction = {
-					in: (indexOfNewActiveLink > indexOfOldActiveLink) ? 'right' : 'left',
-					out: (indexOfNewActiveLink > indexOfOldActiveLink) ? 'left' : 'right',
+					'movein': (indexOfNewActiveLink > indexOfOldActiveLink) ? 'right' : 'left',
+					'moveout': (indexOfNewActiveLink > indexOfOldActiveLink) ? 'left' : 'right',
 				};
 			
 				//setting the position to absolute makes the transition smoother
@@ -113,8 +113,8 @@ define([
 				
 							
 				
-				$lastPage.show('slide', {direction: direction.in });
-				$firstPage.hide('slide',{direction: direction.out });
+				$lastPage.show('slide', {direction: direction.movein });
+				$firstPage.hide('slide',{direction: direction.moveout });
 
 				//need the parent now because after the slide its differnt
 				var $parent = $firstPage.parent().parent();	
@@ -164,7 +164,7 @@ define([
 			});
 		},
 		//refactor pages later
-		default: function() {
+		defaultPage: function() {
 			this.showPage('home');
 
 

@@ -20,6 +20,7 @@ define([
 ], function( $, _, Backbone, Router, PagesCollection, SubPageCollection, 
 			homePageTemplate, meHtml, aboutPageTemplate, projectPageTemplate,
 			tinyMceThumbnail, westchesterSquare, mobileBox, intrade, westhostPHPContest  ){
+	
 	var initialize = function(){
 			
 			///load all the pages
