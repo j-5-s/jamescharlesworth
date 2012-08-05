@@ -47,6 +47,7 @@ define(['jQuery',
 		},
 		scrollContent: function(e) {
 			e.preventDefault();
+			globals.clickCount++;
 			var $el = $(e.currentTarget);
 			if ($el.hasClass('scroll-down')) {
 				this.changeSubPage({direction: 'down', e: e });

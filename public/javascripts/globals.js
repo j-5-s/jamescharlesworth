@@ -12,6 +12,7 @@ define([
 	globals.footerHeight = 110;
 	globals.headerHeight = 90;
 	globals.screenContentHeight = globals.pageHeight - globals.footerHeight - globals.headerHeight;
+	globals.clickCount = -1;
 
 
 	return globals;

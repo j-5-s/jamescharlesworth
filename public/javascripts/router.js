@@ -30,6 +30,7 @@ define([
 
 		},
 		showPage: function( pageName, subPage) {
+			globals.clickCount++;
 			//GA tracking
 			var virtualPageview = pageName;
 			if (typeof subPage !== 'undefined') {

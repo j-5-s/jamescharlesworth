@@ -42,13 +42,8 @@ define(['jQuery',
 			var router   = this.router,
 				template = this.getTemplate(),
 				self     = this;
-	
-
 
 			this.$el.html( template );
-
-			
-
 
 			$('.menu a',this.$el).click(function(){
 				var url = $(this).attr('href');
@@ -67,6 +62,7 @@ define(['jQuery',
 				//swipe left
 				if (direction > 0) {
 					//router.showPage('about');
+					globals.clickCount++;
 					router.navigate('about', {trigger:true})
 				}
 			});
@@ -85,9 +81,10 @@ define(['jQuery',
 				var html = _.toArray(self.redDots)[self.redDotIndex],
 					key  = _.keys(self.redDots)[self.redDotIndex];
 
+				globals.clickCount++;	
 				_gaq.push(['_trackPageview', 'red-dot' + '/' + key ]);	
 
-				
+				html = _.template(html, {clickCount: globals.clickCount});
 				$('.red-dot-text').html(html);
 				if ( (self.redDotIndex +1) === _.toArray(self.redDots).length) {
 					self.redDotIndex = 0;

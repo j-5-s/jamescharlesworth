@@ -52,7 +52,6 @@
 	//will be implemented later when domReady.
 	var updateModuleProgress = function(context, map, depMaps) {
 		//when dom is not ready, do something more useful?
-		scriptsLoaded++;
 		loader();
 	};
 
@@ -67,9 +66,10 @@
 		var loaderBox = document.getElementById('loaderBox');
 
 		scriptsLoaded++;
+
 		if (loaderBox) {
 			
-			increment = increment + 11;
+			increment = increment + 11.16;
 			loaderBox.style.backgroundPosition = increment + 'px';
 		}
 	};
@@ -87,7 +87,7 @@
 					setTimeout(function(){
 						if (jsloader.parentNode !== null)
 							jsloader.parentNode.removeChild(jsloader);
-					},200);
+					},100);
 				}
 			};
 		});
