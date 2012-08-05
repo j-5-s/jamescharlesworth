@@ -19,6 +19,7 @@ define([
 			this.options = options;
 			this.pages = options.pages;
 
+
 			
 		},
 		routes: {
@@ -147,16 +148,15 @@ define([
 
 		},
 		stylize: function(){
-			var wrapperHeight = $('.page:last').height();
-			//if the page is larger than the content
+			var wrapperHeight = $('.page:last').height(),
+				pageHeight    = $(window).height();
 			
-			if ( (globals.pageHeight - globals.footerHeight) > wrapperHeight ) {
-				
-				wrapperHeight = globals.pageHeight - globals.footerHeight;
-			
-				$('.page:last').css({height:wrapperHeight + 'px'});
-				//make the content a bit longer
+			//if the page is larger than the content, reset the wrapper height
+			if ( (pageHeight - globals.footerHeight) > wrapperHeight ) {
+				wrapperHeight = pageHeight - globals.footerHeight;
 			}
+
+			$('.page').css({height:wrapperHeight + 'px'});
 
 			$('.pages').css({height: wrapperHeight + 'px'});
 
@@ -189,7 +189,10 @@ define([
 	
 	var initialize = function(options){
 		var appRouter = new AppRouter(options);
-
+		console.log(window)
+		$(window).resize(function(){
+			appRouter.stylize();
+		});
 		Backbone.history.start({pushState:true});
 	};
 
