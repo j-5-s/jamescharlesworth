@@ -57,12 +57,9 @@
 
 
 	
-	var jsloaderText = document.getElementById('jsloaderText'),
-		txt = 'Please wait will i load my site';
-		
-	jsloaderText.innerHTML = txt;
 
-	require.onResourceLoad = function(context, map, depMaps) {
+
+	require.onResourceLoad = function(context, map, depMaps) {		
 		updateModuleProgress(context, map, depMaps);
 	};
 
@@ -83,6 +80,11 @@
 		
 		domReady(function() {
 			//first time, update the text
+			var jsloaderText = document.getElementById('jsloaderText'),
+				txt = 'Please wait will i load my site';
+
+			if (jsloaderText !== null)			
+				jsloaderText.innerHTML = txt;
 
 			var jsloader = document.getElementById('jsloader');
 
