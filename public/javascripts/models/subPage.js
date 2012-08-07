@@ -10,7 +10,7 @@ define(['jQuery',
 		},
 		getURLHash: function() {
 			return  /\w+\-(.*)/.exec(this.get('className'))[1];
-		},
+		}
 	});
 
 	return SubPage;

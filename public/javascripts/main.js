@@ -32,7 +32,7 @@
 			'Backbone': {
 				//These script dependencies should be loaded before loading
 				//backbone.js
-				deps: ['Underscore', 'jQuery'],
+				deps: ['Underscore', 'jQuery']
 				//Once loaded, use the global 'Backbone' as the
 			},
 			'jQueryUI': {

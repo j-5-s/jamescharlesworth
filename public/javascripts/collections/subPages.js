@@ -44,7 +44,7 @@ define(['jQuery',
 				activeSubPage.set('active', false);
 			}
 			model.set('active',true);
-		},
+		}
 
 	});
 

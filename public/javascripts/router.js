@@ -106,7 +106,7 @@ define([
 
 				var direction = {
 					'movein': (indexOfNewActiveLink > indexOfOldActiveLink) ? 'right' : 'left',
-					'moveout': (indexOfNewActiveLink > indexOfOldActiveLink) ? 'left' : 'right',
+					'moveout': (indexOfNewActiveLink > indexOfOldActiveLink) ? 'left' : 'right'
 				};
 			
 				//setting the position to absolute makes the transition smoother

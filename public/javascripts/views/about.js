@@ -45,6 +45,11 @@ define(['jQuery',
 
 			$('.menu a',this.$el).click(function(){
 				var url = $(this).attr('href');
+				//in ie compatibility view it appends the url
+				if (url.indexOf('http://jamescharlesworth.com')) {
+					var splited = url.split('http://jamescharlesworth.com');
+					url = splited[0];
+				}				
 				router.navigate(url, true);
 				return false;
 			});
