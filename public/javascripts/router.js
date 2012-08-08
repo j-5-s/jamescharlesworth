@@ -134,11 +134,11 @@ define([
 					$parent.remove();
 					$lastPage.css({position:'relative',top: '0px'});
 
-					page.swiper();
+					//page.swiper();
 				
 				}, 350 );//350 is how long it takes to slide in/out
 			} else {
-				page.swiper(router);
+				//page.swiper(router);
 				if (pageName === 'home') {
 					page.renderRaphael();
 				}

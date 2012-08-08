@@ -39,7 +39,7 @@ define(['jQuery'],function($){
 			finalCoord.x = touch.pageX; // Updated X,Y coordinates
 			finalCoord.y = touch.pageY;
 			//dont prevent if its vertical
-			//event.preventDefault();
+			event.preventDefault();
 		}
 
 		// Swipe was canceled
