@@ -4,18 +4,18 @@
 		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 		<title><%= title %></title>
 		<meta name="description" content="I make web applications with JavaScript.">
-		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=false">
 		<link href="stylesheets/jquery-ui/jquery-ui-1.8.22.custom.css" rel="stylesheet" type="text/css">
 		<link href="stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
 		<link href="stylesheets/print.css" media="print" rel="stylesheet" type="text/css">
-		<link href="stylesheets/ipod.css" media="screen" rel="stylesheet" media="only screen and (max-width: 480px)" type="text/css">
+		<link href="stylesheets/ipod.css" rel="stylesheet" media="only screen and (max-width: 480px)" type="text/css">
 		<link href='http://fonts.googleapis.com/css?family=Poiret+One' rel='stylesheet' type='text/css'>
 
 		<!--[if lt IE 8]>
 			<link href="/stylesheets/ie.css" media="screen, projection" rel="stylesheet" type="text/css" />
 		<![endif]-->
 		<script type="text/javascript" src="http://192.168.1.65:8080/target/target-script-min.js#anonymous"></script>
-		<script type="text/javascript" data-main="javascripts/main-built"  src="javascripts/vendor/require.js"></script>
+		<script type="text/javascript" data-main="javascripts/main"  src="javascripts/vendor/require.js"></script>
 		<script type="text/javascript">
 			var _gaq = _gaq || [];
 			_gaq.push(['_setAccount', 'UA-7590534-1']);
@@ -31,7 +31,7 @@
 	</head>
 	<body>
 		<div class="jsloader" id="jsloader">
-			<div class="loaderBoxWrapper">
+			<div class="loaderBoxWrapper mobile-hidden">
 				<div class="loaderBox" id="loaderBox"></div>
 				<div class="loadingMessage" id="jsloaderText"></div>
 			</div>
@@ -40,7 +40,7 @@
 
 		<div class="wrapper header">
 			<div class="container">
-				<div class="span-24 header">
+				<div class="header">
 					<h1 class="title span-16">James Charlesworth</h1>
 					<h2 class="title span-8 last mobile-hidden">Web Application Developer</h2>
 				</div>
@@ -56,7 +56,7 @@
 
 		<div class="footer">
 			<div class="container">
-				<div class="span-10 append-6">
+				<div class="span-10 append-6 mobile-hidden">
 					<p>Contact Me</p>
 					<p><span>Twitter</span><a href="https://twitter.com/_jcharlesworth">@_jamescharlesworth</a></p>
 					<p><span>Github</span><a href="https://github.com/jamescharlesworth">jamescharlesworth</a></p>

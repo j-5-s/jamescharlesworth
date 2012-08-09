@@ -2412,26 +2412,62 @@ div.last {
 
 /* line 1, ../sass/partials/ipod/_scale.sass */
 .mobile-hidden {
-  display: none;
+  display: none !important;
 }
 
 /* line 4, ../sass/partials/ipod/_scale.sass */
+.container {
+  min-width: 100% !important;
+  width: 100% !important;
+}
+
+/* line 8, ../sass/partials/ipod/_scale.sass */
 div.header h1 {
   margin: 5px;
 }
 
-/* line 7, ../sass/partials/ipod/_scale.sass */
+/* line 11, ../sass/partials/ipod/_scale.sass */
 div.wrapper {
   height: 50px;
 }
 
-/* line 10, ../sass/partials/ipod/_scale.sass */
+/* line 14, ../sass/partials/ipod/_scale.sass */
 .span-16,
-.span-8 {
-  width: 100%;
+.span-8,
+.span-10 {
+  width: 100% !important;
+  margin: 0px !important;
 }
 
-/* line 12, ../sass/ipod.sass */
+/* line 1, ../sass/partials/ipod/_footer.sass */
+.footer {
+  padding: 20px !important;
+}
+
+/* line 1, ../sass/partials/ipod/_home.sass */
+.home-content {
+  padding: 0 20px !important;
+}
+
+/* line 1, ../sass/partials/ipod/_menu.sass */
+.menu {
+  padding: 0 20px !important;
+}
+
+/* line 1, ../sass/partials/ipod/_header.sass */
+.header {
+  padding: 0 10px;
+}
+
+/* line 4, ../sass/partials/ipod/_header.sass */
+h1.title {
+  font-size: 30px;
+  margin: 0 !important;
+  margin-top: 8px;
+  padding: 0 !important;
+}
+
+/* line 16, ../sass/ipod.sass */
 div.wrapper {
   height: 50px;
 }
