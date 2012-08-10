@@ -2432,8 +2432,13 @@ div.wrapper {
 }
 
 /* line 14, ../sass/partials/ipod/_scale.sass */
+.span-18,
 .span-16,
+.span-12,
 .span-8,
+.span-6,
+.span-4,
+.span-2,
 .span-10 {
   width: 100% !important;
   margin: 0px !important;
@@ -2467,7 +2472,50 @@ h1.title {
   padding: 0 !important;
 }
 
-/* line 16, ../sass/ipod.sass */
+/* line 1, ../sass/partials/ipod/_about.sass */
+.first .about-column p {
+  padding: 0 15px 0;
+}
+
+/* line 4, ../sass/partials/ipod/_about.sass */
+.first h2 {
+  padding: 0 15px 0;
+}
+
+/* line 7, ../sass/partials/ipod/_about.sass */
+.about-column {
+  border-right: none;
+}
+
+/* line 1, ../sass/partials/ipod/_page.sass */
+.page-header {
+  padding: 0 20px;
+}
+
+/* line 1, ../sass/partials/ipod/_projects.sass */
+.project-content {
+  padding: 0 20px;
+}
+
+/* line 4, ../sass/partials/ipod/_projects.sass */
+.scroll-wrapper {
+  position: absolute;
+  top: 0;
+  width: 100px !important;
+  right: 0;
+}
+
+/* line 10, ../sass/partials/ipod/_projects.sass */
+.scroll-wrapper p {
+  margin-right: 20px;
+}
+
+/* line 13, ../sass/partials/ipod/_projects.sass */
+a.scroll {
+  padding: 10px !important;
+}
+
+/* line 19, ../sass/ipod.sass */
 div.wrapper {
   height: 50px;
 }

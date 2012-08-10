@@ -173,9 +173,14 @@ define([
 
 			
 			//$('.footer').css({top: wrapperHeight +'px'});
+			$('a.emailNoReplace').nospam({
+				
+			});
+
 			$('a.email').nospam({
 				replaceText:true
 			});
+
 		},
 		//refactor pages later
 		defaultPage: function() {

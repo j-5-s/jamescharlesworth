@@ -2594,40 +2594,46 @@ h2.title {
   font-weight: bold;
 }
 
-/* line 3, ../sass/partials/_about.sass */
+/* line 1, ../sass/partials/_about.sass */
 .about {
   background: url(../images/bg-red.png);
 }
 
-/* line 6, ../sass/partials/_about.sass */
+/* line 4, ../sass/partials/_about.sass */
 .about h2 {
   padding: 0 15px 0;
 }
 
-/* line 9, ../sass/partials/_about.sass */
+/* line 7, ../sass/partials/_about.sass */
 .about-column {
   border-right: 1px solid #b84e50;
   color: white;
 }
 
-/* line 13, ../sass/partials/_about.sass */
+/* line 11, ../sass/partials/_about.sass */
 .about .last .about-column {
   border-right: none;
 }
 
-/* line 16, ../sass/partials/_about.sass */
+/* line 14, ../sass/partials/_about.sass */
 .about-column p {
   padding: 0 15px 0;
 }
 
-/* line 19, ../sass/partials/_about.sass */
+/* line 17, ../sass/partials/_about.sass */
 .first .about-column p {
   padding: 0 15px 0 0;
 }
 
-/* line 22, ../sass/partials/_about.sass */
+/* line 20, ../sass/partials/_about.sass */
+.about h2 {
+  margin-top: 20px;
+}
+
+/* line 23, ../sass/partials/_about.sass */
 .first h2 {
   padding: 0 15px 0 0;
+  margin-top: 0;
 }
 
 /* line 1, ../sass/partials/_projects.sass */
