@@ -79,12 +79,6 @@
 	require(['domReady'], function(domReady) {
 		
 		domReady(function() {
-			//first time, update the text
-			var jsloaderText = document.getElementById('jsloaderText'),
-				txt = 'Please wait will i load my site';
-
-			if (jsloaderText !== null)			
-				jsloaderText.innerHTML = txt;
 
 			var jsloader = document.getElementById('jsloader');
 
