@@ -38,6 +38,7 @@ define([
 				virtualPageview += '/' + subPage;
 			}
 			_gaq.push(['_trackPageview', virtualPageview]);
+			window.scrollTo(0, 1);
 		
 			//load the menu
 			var router = this;
