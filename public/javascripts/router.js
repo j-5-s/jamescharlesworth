@@ -33,7 +33,7 @@ define([
 			if (globals.loaded) {
 				return;
 			}
-			console.log(';setting')
+			
 			var router = this;
 			this.pages.setDegrees(pageName);
 			router.pages.each(function(page){
@@ -49,7 +49,7 @@ define([
 				virtualPageview += '/' + subPage;
 			}
 			_gaq.push(['_trackPageview', virtualPageview]);
-			window.scrollTo(0, 1);
+			//window.scrollTo(0, 1);
 		
 			//load the menu
 			var router = this;
@@ -58,6 +58,9 @@ define([
 			var menu = new MenuView({page: pageName});
 
 			$('.menu-wrapper').html(menu.render().el);
+
+			$('.page').removeClass('active');
+			$('.'+pageName).addClass('active');
 
 
 			if (pageName === 'home') {
@@ -71,6 +74,7 @@ define([
 			}
 
 		
+
 			//need 404 handling here
 			//also, dont like this. needs to be cleaner...
 
@@ -78,7 +82,10 @@ define([
 			
 			globals.loaded = true;
 			//@todo add 404
-			this.stylize(pageName);
+			
+			this.stylize(pageName);	
+			
+			
 			
 			
 
@@ -86,8 +93,9 @@ define([
 
 		},
 		stylize: function(pageName){
-			var wrapperHeight = $('.page:first').height(),
+			var wrapperHeight = $('.'+pageName + ' .container').height() +50,
 				pageHeight    = $(window).height();
+	
 			
 			//if the page is larger than the content, reset the wrapper height
 			if ( (pageHeight - globals.footerHeight) > wrapperHeight ) {

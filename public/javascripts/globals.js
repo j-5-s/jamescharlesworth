@@ -43,8 +43,12 @@ define([
 	};
 
 	globals.transition = function( $el, deg, pageName) {
-		console.log(globals.pageWidth)
+		
+
+
 		if (globals.supports('transition') && globals.supports('transform') ) {
+
+
 			$el.css({
 				//transition
 				'-webkit-transition': '-webkit-transform 1s ',
@@ -57,6 +61,8 @@ define([
 				'-o-transform': 'translateZ(-'+(globals.pageWidth/3.45)+'px) rotateY('+deg+'deg)',
 				'transform': 'translateZ(-'+(globals.pageWidth/3.45)+'px) rotateY('+deg+'deg)'
 			});
+			$('.pages-wrapper .page').not('.active').css({height:'200px',overflow:'hidden'});
+
 		} else {
 			//fallback for old browsers
 			$('.page').hide();
@@ -66,7 +72,7 @@ define([
 
 	globals.transform = function($el, deg, op) {
 		if (globals.supports('transition') && globals.supports('transform') ) {
-			
+
 			$el.css({
 				'-webkit-transform': 'rotateY('+deg+'deg) translateZ('+(globals.pageWidth/3.45)+'px)',
 				'-moz-transform': 'rotateY('+deg+'deg) translateZ('+(globals.pageWidth/3.45)+'px)',

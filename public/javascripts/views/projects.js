@@ -84,7 +84,7 @@ define(['jQuery',
 				//setActive will deactivate current active and active subPage
 				//passed into it
 				this.subPages.setActive(nextSubPage);
-				router.stylize();
+		
 
 				//GA anaytlics tracking
 				var virtualPageview = 'projects/' + nextSubPage.getURLHash();
@@ -104,6 +104,10 @@ define(['jQuery',
 					$('.counter').html( 'Project ' + (activePageIndex + direction +1) + ' of ' + totalSubPages );
 
 					router.navigate('/projects/' + url, {replace:true} );
+					setTimeout(function(){
+						router.stylize('projects');
+					},300)
+					
 
 				});
 			}

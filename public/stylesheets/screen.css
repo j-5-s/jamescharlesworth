@@ -2575,6 +2575,10 @@ h2.title {
 .page {
   display: block;
   position: absolute;
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  -o-backface-visibility: hidden;
+  backface-visibility: hidden;
 }
 
 /* line 2, ../sass/partials/_footer.sass */
