@@ -8,7 +8,7 @@
 		require = root.require;
 
 	var scriptsLoaded = 0,
-		scriptsToLoad = 43;
+		scriptsToLoad = 42;
 
 	//fake 'has' if it's not available
 	var has = root.has = root.has || function() {
@@ -19,7 +19,6 @@
 		paths: {
 			domReady: 'domReady',
 			jQuery: './vendor/jquery/jquery',
-			jQueryUI: './vendor/jquery/jquery-ui-1.8.21.custom.min',
 			jQueryNoSpam: './vendor/jquery/jquery.nospam',
 			Underscore: './vendor/underscore/underscore',
 			Backbone: './vendor/backbone/backbone',
@@ -34,9 +33,6 @@
 				//backbone.js
 				deps: ['Underscore', 'jQuery']
 				//Once loaded, use the global 'Backbone' as the
-			},
-			'jQueryUI': {
-				deps: ['jQuery']
 			},
 			'jQueryNoSpam': {
 				deps: ['jQuery']
@@ -68,7 +64,6 @@
 		var loaderBox = document.getElementById('loaderBox');
 
 		scriptsLoaded++;
-		
 		if (loaderBox) {
 			
 			increment = increment + 11.16;

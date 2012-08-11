@@ -7,7 +7,6 @@ define([
 	'views/menu',
 	'models/page',
 	'globals',
-	'jQueryUI',
 	'jQueryNoSpam'
 ], function( $, _, Backbone, MenuView, PageModel, globals){
 
