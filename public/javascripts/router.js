@@ -36,6 +36,7 @@ define([
 			
 			var router = this;
 			this.pages.setDegrees(pageName);
+			$('.pages-wrapper').html('');
 			router.pages.each(function(page){
 				$('.pages-wrapper').append(page.renderPageView(router));
 			});
