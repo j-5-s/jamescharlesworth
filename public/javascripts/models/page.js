@@ -20,8 +20,15 @@ define(['jQuery',
 			}
 		},
 
-		renderPageView: function( router, pageName ) {
+		renderPageView: function( router, pageName, subPage ) {
 			var view, el;
+
+			if (typeof subPage !== 'undefined') {
+				var subPages = router.pages.getByName('projects').get('subPages');
+				var subPageModel = subPages.getSubPageByURLHash(subPage);
+				subPages.setActive(subPageModel);
+			}
+
 			if (this.get('name') === 'home') {
 				view = new HomeView({model: this, router: router});
 				globals.transform(view.$el, 0)

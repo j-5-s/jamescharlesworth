@@ -29,8 +29,9 @@ define([
 			":p/:sp": 'showPage'
 
 		},
-		init: function(pageName){
+		init: function(pageName, subPage){
 			if (globals.loaded) {
+				$('title').html('James Charlesworth - Web Developer, Atlanta');
 				return;
 			}
 			
@@ -38,7 +39,7 @@ define([
 			this.pages.setDegrees(pageName);
 			$('.pages-wrapper').html('');
 			router.pages.each(function(page){
-				$('.pages-wrapper').append(page.renderPageView(router));
+				$('.pages-wrapper').append(page.renderPageView(router, pageName, subPage));
 			});
 			globals.loaded = true;
 		},
@@ -54,7 +55,7 @@ define([
 		
 			//load the menu
 			var router = this;
-			router.init(pageName);
+			router.init(pageName, subPage);
 			//@todo refactor menu
 			var menu = new MenuView({page: pageName});
 
@@ -72,6 +73,7 @@ define([
 				
 			} else if ( pageName === 'projects') {
 				globals.transition($('.pages-wrapper'),  -240 , 'projects');
+
 			}
 
 		
