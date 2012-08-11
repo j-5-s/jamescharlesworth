@@ -27,13 +27,13 @@ define(['jQuery',
 				globals.transform(view.$el, 0)
 				setTimeout(function(){
 					view.renderRaphael();
-				},200);
-		
+				},200);		
 			}
 
 			if (this.get('name') === 'about') {
 				view = new AboutView({model: this, router: router});
-				globals.transform(view.$el, 120)
+				globals.transform(view.$el, 120);
+
 				
 			}
 
@@ -44,10 +44,7 @@ define(['jQuery',
 				
 			
 			}			
-
-		
-
-
+			//view.swiper(pageName);
 			return view.render().el;
 		}
 

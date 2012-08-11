@@ -11,7 +11,7 @@ define(['jQuery'],function($){
 		    finalCoord = { 'x': 0, 'y': 0 },
 		    options = {
 				'threshold': {
-					'x': 10,
+					'x': 100,
 					'y': 100
 				},
 				'swipeLeft': function() {
@@ -40,6 +40,7 @@ define(['jQuery'],function($){
 			finalCoord.y = touch.pageY;
 			//dont prevent if its vertical
 			event.preventDefault();
+		
 		}
 
 		// Swipe was canceled

@@ -142,13 +142,15 @@ define([
 	var initialize = function(options){
 		var appRouter = new AppRouter(options);
 		$(window).resize(function(){
-			globals.loaded = false;
-			globals.pageWidth = $(window).width();
-			globals.pageHeight = $(window).height();
-			$('.pages-wrapper').html('');
-			appRouter.init('home')
-			globals.transition($('.pages-wrapper'), 0, 'home');
-			appRouter.stylize('home');
+			if (globals.pageWidth !== $(window).width()) {
+				globals.loaded = false;
+				globals.pageWidth = $(window).width();
+				globals.pageHeight = $(window).height();
+				$('.pages-wrapper').html('');
+				appRouter.init('home')
+				globals.transition($('.pages-wrapper'), 0, 'home');
+				appRouter.stylize('home');
+			}
 		});
 		Backbone.history.start({pushState:true});
 	};
