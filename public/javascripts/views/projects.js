@@ -112,7 +112,7 @@ define(['jQuery',
 			var router   = this.router,
 				template = this.getTemplate();
 	
-
+		
 			this.$el.html( template );
 
 

@@ -42,7 +42,11 @@ define(['jQuery',
 			
 
 
+  
+
 			this.$el.html( template );
+
+	
 
 
 			$('.menu a',this.$el).click(function(){

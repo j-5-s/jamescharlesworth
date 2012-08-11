@@ -45,8 +45,19 @@ define([
 			$('.menu-wrapper').html(menu.render().el);
 
 			this.pages.each(function(page){
-				$('.pages').append(page.renderPageView(router));
+				$('.pages-wrapper').append(page.renderPageView(router));
 			});
+
+
+
+			$('.pages-wrapper').css({ '-webkit-transform': 'translateZ(-'+(globals.pageWidth/3.45)+'px) ' });
+
+			setTimeout(function(){
+
+
+				$('.pages-wrapper').css({ '-webkit-transition': '-webkit-transform 1s ','-webkit-transform': 'translateZ(-'+(globals.pageWidth/3.45)+'px) rotateY(-120deg)'});
+				
+			},800);
 
 		
 			//need 404 handling here
@@ -110,9 +121,9 @@ define([
 	
 	var initialize = function(options){
 		var appRouter = new AppRouter(options);
-		$(window).resize(function(){
-			appRouter.stylize();
-		});
+		// $(window).resize(function(){
+		// 	appRouter.stylize();
+		// });
 		Backbone.history.start({pushState:true});
 	};
 
