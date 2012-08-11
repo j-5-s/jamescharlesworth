@@ -68,7 +68,7 @@
 		var loaderBox = document.getElementById('loaderBox');
 
 		scriptsLoaded++;
-
+		console.log(scriptsToLoad);
 		if (loaderBox) {
 			
 			increment = increment + 11.16;

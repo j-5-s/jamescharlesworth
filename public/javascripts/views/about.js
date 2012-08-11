@@ -15,6 +15,8 @@ define(['jQuery',
 			
 			
 		},
+		id: 'about',
+		className: 'about page',
 		events: {
 			
 		},

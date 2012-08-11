@@ -23,6 +23,8 @@ define(['jQuery',
 			};
 			this.redDotIndex = 1;
 		},
+		id: 'home',
+		className: 'home page',
 		events: {
 	
 		},

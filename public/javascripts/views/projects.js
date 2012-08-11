@@ -18,6 +18,8 @@ define(['jQuery',
 			this.subPages = this.model.get('subPages');
 			_.bindAll(this, 'render', 'scrollContent', 'changeSubPage' );
 		},
+		id: 'projects',
+		className: 'projects page',
 		events: {
 			'click .scroll': 'scrollContent'
 		},
