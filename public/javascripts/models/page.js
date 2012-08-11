@@ -25,7 +25,9 @@ define(['jQuery',
 			if (this.get('name') === 'home') {
 				view = new HomeView({model: this, router: router});
 				globals.transform(view.$el, 0)
-				
+				setTimeout(function(){
+					view.renderRaphael();
+				},200);
 		
 			}
 
