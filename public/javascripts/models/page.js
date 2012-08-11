@@ -19,24 +19,27 @@ define(['jQuery',
 				return false;
 			}
 		},
-		renderPageView: function( router ) {
+
+		renderPageView: function( router, pageName ) {
 			var view, el;
 			if (this.get('name') === 'home') {
 				view = new HomeView({model: this, router: router});
-				console.log($(view.$el))
-				view.$el.css({'-webkit-transform': 'rotateY(0deg) translateZ('+(globals.pageWidth/3.45)+'px)'});
+				globals.transform(view.$el, 0)
+				
 		
 			}
 
 			if (this.get('name') === 'about') {
 				view = new AboutView({model: this, router: router});
-				view.$el.css({'-webkit-transform': 'rotateY(120deg) translateZ('+(globals.pageWidth/3.45)+'px)'});
+				globals.transform(view.$el, 120)
+				
 			}
 
 			if (this.get('name') === 'projects') {
 				view = new ProjectsView({model: this, router: router});
-				el = view.render().el
-				view.$el.css({'-webkit-transform': 'rotateY(240deg) translateZ('+(globals.pageWidth/3.45)+'px)'});
+				el = view.render().el;
+				globals.transform(view.$el, 240)
+				
 			
 			}			
 

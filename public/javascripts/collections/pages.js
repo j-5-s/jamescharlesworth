@@ -12,7 +12,14 @@ define(['jQuery',
 			return this.find(function(page){
 				return page.get('name') === pageName ;
 			});
-		}
+		},
+		setDegrees: function( pageName ) {
+			this.each(function(page, index){
+				if (pageName === page.get('name')) {
+					page.set('deg', 0);
+				}
+			});
+		} 
 	});
 	
 	return PagesCollection;	
