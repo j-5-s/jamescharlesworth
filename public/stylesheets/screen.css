@@ -2432,6 +2432,11 @@ body {
 }
 
 /* line 15, ../sass/partials/_bg.sass */
+div.mobile-only {
+  display: none;
+}
+
+/* line 18, ../sass/partials/_bg.sass */
 .jsloader {
   position: absolute;
   overflow: hidden;
@@ -2442,7 +2447,7 @@ body {
   color: #8cbee7;
 }
 
-/* line 24, ../sass/partials/_bg.sass */
+/* line 27, ../sass/partials/_bg.sass */
 .loaderBoxWrapper {
   margin: 0 auto;
   width: 400px;
@@ -2461,7 +2466,7 @@ body {
   box-shadow: #333333 2px 2px 10px;
 }
 
-/* line 35, ../sass/partials/_bg.sass */
+/* line 38, ../sass/partials/_bg.sass */
 .loaderBox {
   border: 1px solid white;
   height: 40px;
@@ -2477,7 +2482,7 @@ body {
   background-position: -480px 50%;
 }
 
-/* line 46, ../sass/partials/_bg.sass */
+/* line 49, ../sass/partials/_bg.sass */
 .loadingMessage {
   color: white;
   font-size: 14px;
