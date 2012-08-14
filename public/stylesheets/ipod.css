@@ -2473,16 +2473,21 @@ h1.title {
 }
 
 /* line 1, ../sass/partials/ipod/_about.sass */
+.column-wrapper {
+  margin-left: 0;
+}
+
+/* line 3, ../sass/partials/ipod/_about.sass */
 .first .about-column p {
   padding: 0 15px 0;
 }
 
-/* line 4, ../sass/partials/ipod/_about.sass */
+/* line 6, ../sass/partials/ipod/_about.sass */
 .first h2 {
   padding: 0 15px 0;
 }
 
-/* line 7, ../sass/partials/ipod/_about.sass */
+/* line 10, ../sass/partials/ipod/_about.sass */
 .about-column {
   border-right: none;
 }
