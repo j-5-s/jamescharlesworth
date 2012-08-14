@@ -85,8 +85,14 @@
 				if (scriptsLoaded >= scriptsToLoad) {
 					
 					setTimeout(function(){
-						if (jsloader.parentNode !== null) {
+						if (typeof jsloader !== null) {
+						try {
 							jsloader.parentNode.removeChild(jsloader);
+						} catch(e) {
+							//hack for ie
+							window.location = window.location;
+						}	
+						
 						}
 					},100);
 				}
