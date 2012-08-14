@@ -15,37 +15,34 @@ define([
 	globals.clickCount = -1;
 	globals.loaded = false;
 
-	globals.supports = function() {
+	globals.supports = function(prop) { 
 		//credit to http://net.tutsplus.com/tutorials/html-css-techniques/quick-tip-detect-css-support-in-browsers-with-javascript/
 		var div = document.createElement('div'),
 			vendors = 'Khtml Ms O Moz Webkit'.split(' '),
 			len = vendors.length;
 
-		return function(prop) {
-			if ( prop in div.style ) {
+		if ( prop in div.style ) {
+			return true;
+		}
+
+		prop = prop.replace(/^[a-z]/, function(val) {
+			return val.toUpperCase();
+		});
+		
+		while(len--) {
+			if ( vendors[len] + prop in div.style ) {
+				// browser supports box-shadow. Do what you need.
+				// Or use a bang (!) to test if the browser doesn't.
 				return true;
 			}
-
-			prop = prop.replace(/^[a-z]/, function(val) {
-				return val.toUpperCase();
-			});
-
-			while(len--) {
-				if ( vendors[len] + prop in div.style ) {
-					// browser supports box-shadow. Do what you need.
-					// Or use a bang (!) to test if the browser doesn't.
-					return true;
-				}
-			}
-			return false;
-		};
+		}
+		return false;
+		
 
 	};
 
 	globals.transition = function( $el, deg, pageName) {
 		
-
-
 		if (globals.supports('transition') && globals.supports('transform') ) {
 
 
@@ -67,6 +64,8 @@ define([
 			//fallback for old browsers
 			$('.page').hide();
 			$('.'+pageName).show();
+			
+			$('.'+pageName).css({'height':globals.screenContentHeight + 'px'});
 		}
 	};
 

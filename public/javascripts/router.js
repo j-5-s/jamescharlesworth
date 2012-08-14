@@ -110,14 +110,22 @@ define([
 
 
 			if ($('.about-column').length) {
-				var maxColumnHeight = 0;
-				$('.about-column').each(function(i,col){
-					
-					if ($(col).height() > maxColumnHeight) {
-						maxColumnHeight = $(col).height();
-					}
-				});
-				$('.about-column').css({height:maxColumnHeight+ 'px'});
+				//var maxColumnHeight = 0;
+				if ($('.about-column:first').height() === 0) {
+					$('.about-column').css({height: '344px'});
+				} else {
+					var maxColumnHeight = 0;
+					$('.about-column').each(function(i,col){
+						
+						if ($(col).height() > maxColumnHeight) {
+							maxColumnHeight = $(col).height();
+							
+						}
+					});	
+					$('.about-column').css({height: maxColumnHeight +'px'});				
+				}
+
+				
 			}
 
 			

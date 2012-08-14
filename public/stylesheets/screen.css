@@ -2617,7 +2617,7 @@ h2.title {
 
 /* line 1, ../sass/partials/_home.sass */
 .home {
-  background: url(../images/bg-home.png) no-repeat top center;
+  background: url(../images/bg-grey.png) repeat top center;
 }
 
 /* line 5, ../sass/partials/_home.sass */
@@ -2656,19 +2656,19 @@ h2.title {
 }
 
 /* line 17, ../sass/partials/_about.sass */
-.first .about-column p {
-  padding: 0 15px 0 0;
-}
-
-/* line 20, ../sass/partials/_about.sass */
 .about h2 {
   margin-top: 20px;
 }
 
-/* line 23, ../sass/partials/_about.sass */
+/* line 20, ../sass/partials/_about.sass */
 .first h2 {
-  padding: 15px 0;
-  margin-top: 0;
+  padding: 0 15px 0;
+  margin-top: 20px;
+}
+
+/* line 24, ../sass/partials/_about.sass */
+.column-wrapper {
+  margin-left: -15px;
 }
 
 /* line 1, ../sass/partials/_projects.sass */

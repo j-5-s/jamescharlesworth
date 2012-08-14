@@ -53,7 +53,7 @@
 
 
 	
-	window.addEventListener("load", function() { window.scrollTo(0, 1); });
+	//window.addEventListener("load", function() { window.scrollTo(0, 1); });
 
 	require.onResourceLoad = function(context, map, depMaps) {		
 		updateModuleProgress(context, map, depMaps);
