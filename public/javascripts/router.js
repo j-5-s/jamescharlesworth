@@ -29,10 +29,6 @@ define([
 
 		},
 		init: function(pageName, subPage){
-			if (globals.loaded) {
-				$('title').html('James Charlesworth - Web Developer, Atlanta');
-				return;
-			}
 
 			
 			var router = this;
@@ -42,7 +38,6 @@ define([
 				if (! $('.'+page.get('name')).length )
 					$('.pages-wrapper').append(page.renderPageView(router, pageName, subPage));
 			});
-			globals.loaded = true;
 		},
 		showPage: function( pageName, subPage) {
 			globals.clickCount++;
@@ -56,7 +51,7 @@ define([
 			
 			//load the menu
 			var router = this;
-			//router.init(pageName, subPage);
+			router.init(pageName, subPage);
 			//@todo refactor menu
 			var menu = new MenuView({page: pageName});
 
@@ -80,12 +75,7 @@ define([
 		
 
 			//need 404 handling here
-			//also, dont like this. needs to be cleaner...
 
-			//tmp for 3d
-			
-			globals.loaded = true;
-			//@todo add 404
 			
 			this.stylize(pageName);	
 			
@@ -153,9 +143,9 @@ define([
 	
 	var initialize = function(options){
 		var appRouter = new AppRouter(options);
-		appRouter.init()
+		//appRouter.init()
 		// $(function(){
-		// 	globals.loaded = true;
+		 
 		// 	$(window).resize(function(){
 		// 		if (globals.pageWidth !== $(window).width()) {
 		// 			globals.loaded = false;
