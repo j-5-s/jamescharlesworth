@@ -64,7 +64,6 @@ define([
 			//fallback for old browsers
 			$('.page').hide();
 			$('.'+pageName).show();
-			console.log($('.about'))
 			$('.'+pageName).css({'height':globals.screenContentHeight + 'px'});
 		}
 	};

@@ -62,6 +62,7 @@ define(['jQuery',
 			var subPageClasses = this.subPages.getSubPageClasses(),
 				router      = this.router;
 
+			var self =this;
 
 			var activeSubPage   = this.subPages.getActiveSubPage(),
 				activeclassName = activeSubPage.get('className'),
@@ -94,7 +95,8 @@ define(['jQuery',
 				$('.'+activeclassName).fadeOut(300, function(){
 					$('.'+activeclassName).html(nextSubPage.get('html'));
 					$('.'+activeclassName).addClass(nextSubPage.get('className'));
-					$('.'+activeclassName).fadeIn(300);
+					$('.project-content', self.$el).show();
+					console.log('ac',nextSubPage)
 					$('.'+activeclassName).removeClass(activeclassName);
 					
 					//turn page-<name> into <name>

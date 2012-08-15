@@ -52,6 +52,7 @@ exports.project = function(req, res){
 	var path = '',
 		title = '',
 		meta_desc = '';
+		
 	switch(req.params.subpage) {
 		case 'tinymce-thumbnail-gallery':
 			path = __dirname + '/../public/javascripts/templates/projects/tinymce-thumbnail-gallery.html';
