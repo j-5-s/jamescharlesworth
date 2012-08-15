@@ -2546,17 +2546,22 @@ h2.title {
 }
 
 /* line 19, ../sass/partials/_page.sass */
-.page .align-right {
-  text-align: right;
+.page .align-right p {
+  float: right;
 }
 
 /* line 22, ../sass/partials/_page.sass */
+.page .align-right img {
+  float: right;
+}
+
+/* line 25, ../sass/partials/_page.sass */
 .page .counter {
   margin-top: 20px;
   color: #f9f9f9;
 }
 
-/* line 27, ../sass/partials/_page.sass */
+/* line 30, ../sass/partials/_page.sass */
 .pages {
   position: relative;
   -webkit-perspective: 1000px;
@@ -2565,7 +2570,7 @@ h2.title {
   perspective: 1000px;
 }
 
-/* line 36, ../sass/partials/_page.sass */
+/* line 39, ../sass/partials/_page.sass */
 .pages-wrapper {
   width: 100%;
   height: 100%;
@@ -2576,7 +2581,7 @@ h2.title {
   transform-style: preserve-3d;
 }
 
-/* line 47, ../sass/partials/_page.sass */
+/* line 50, ../sass/partials/_page.sass */
 .page {
   display: block;
   position: absolute;
@@ -2664,11 +2669,12 @@ h2.title {
 .first h2 {
   padding: 0 15px 0;
   margin-top: 20px;
+  padding-left: 0;
 }
 
-/* line 24, ../sass/partials/_about.sass */
-.column-wrapper {
-  margin-left: -15px;
+/* line 25, ../sass/partials/_about.sass */
+.first p {
+  padding-left: 0;
 }
 
 /* line 1, ../sass/partials/_projects.sass */

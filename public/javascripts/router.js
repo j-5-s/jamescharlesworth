@@ -33,12 +33,14 @@ define([
 				$('title').html('James Charlesworth - Web Developer, Atlanta');
 				return;
 			}
+
 			
 			var router = this;
-			this.pages.setDegrees(pageName);
+			
 			$('.pages-wrapper').html('');
 			router.pages.each(function(page){
-				$('.pages-wrapper').append(page.renderPageView(router, pageName, subPage));
+				if (! $('.'+page.get('name')).length )
+					$('.pages-wrapper').append(page.renderPageView(router, pageName, subPage));
 			});
 			globals.loaded = true;
 		},
@@ -51,10 +53,10 @@ define([
 			}
 			_gaq.push(['_trackPageview', virtualPageview]);
 			//window.scrollTo(0, 1);
-		
+			
 			//load the menu
 			var router = this;
-			router.init(pageName, subPage);
+			//router.init(pageName, subPage);
 			//@todo refactor menu
 			var menu = new MenuView({page: pageName});
 
@@ -151,17 +153,23 @@ define([
 	
 	var initialize = function(options){
 		var appRouter = new AppRouter(options);
-		$(window).resize(function(){
-			if (globals.pageWidth !== $(window).width()) {
-				globals.loaded = false;
-				globals.pageWidth = $(window).width();
-				globals.pageHeight = $(window).height();
-				$('.pages-wrapper').html('');
-				appRouter.init('home')
-				globals.transition($('.pages-wrapper'), 0, 'home');
-				appRouter.stylize('home');
-			}
-		});
+		appRouter.init()
+		// $(function(){
+		// 	globals.loaded = true;
+		// 	$(window).resize(function(){
+		// 		if (globals.pageWidth !== $(window).width()) {
+		// 			globals.loaded = false;
+		// 			globals.pageWidth = $(window).width();
+		// 			globals.pageHeight = $(window).height();
+		// 			$('.pages-wrapper').html('');
+					
+		// 			appRouter.init('home');
+		// 			globals.transition($('.pages-wrapper'), 0, 'home');
+		// 			appRouter.stylize('home');
+		// 		}
+		// 	});			
+		// })
+
 		Backbone.history.start({pushState:true});
 	};
 

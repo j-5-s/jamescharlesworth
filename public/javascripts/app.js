@@ -27,8 +27,8 @@ define([
 			var pages = new PagesCollection();
 
 			//home page
-			var template = _.template(homePageTemplate, {redDot: meHtml});
-			pages.add({name:'home',template: template});
+			var t = _.template(homePageTemplate, {redDot: meHtml});
+			pages.add({name:'home',template: t});
 
 			//about page
 			pages.add({name:'about', template: aboutPageTemplate});

@@ -29,24 +29,25 @@ define(['jQuery',
 	
 		},
 		getTemplate: function( ){
-			var $template = $(this.model.get('template'));
+			var _template = this.model.get('template');
+			
+			//$('.raphael-canvas',_template).css({height: globals.screenContentHeight +'px'});
+			
 
-			$('.raphael-canvas',$template).css({height: globals.screenContentHeight +'px'});
 			
-			var menu = new Menu({page: this.model.get('name')});
-			$('.container', $template).prepend(menu.render().el);
+			$(_template).wrap('<div class="someclass" />');
 			
-			$template.wrap('<div class="someclass" />');
-			
-			return $template.html();
+			return _template;
 		},
 		render: function() {
 			var router   = this.router,
 				template = this.getTemplate(),
 				self     = this;
 
-			this.$el.html( template );
+			this.$el.html( template);
 
+			var menu = new Menu({page: this.model.get('name')});
+			$('.container',this.$el).prepend(menu.render().el);
 			
 
 			$('.menu a',this.$el).click(function(){
@@ -80,7 +81,7 @@ define(['jQuery',
 		},
 		renderRaphael: function() {
 			var self = this;
-			
+			$('.raphael-canvas').html('')
 			var paper = new Raphael($('.raphael-canvas').get(0));
 
 			// Creates circle at x = 50, y = 40, with radius 10
