@@ -38,8 +38,11 @@ define([
 				if (! $('.'+page.get('name')).length )
 					$('.pages-wrapper').append(page.renderPageView(router, pageName, subPage));
 			});
+			
+			
 		},
 		showPage: function( pageName, subPage) {
+
 			globals.clickCount++;
 			//GA tracking
 			var virtualPageview = pageName;
@@ -125,6 +128,10 @@ define([
 			$('a.emailNoReplace').nospam({
 				
 			});
+
+			setTimeout(function(){
+				$('#jsloader').remove();
+			},400);
 
 			$('a.email').nospam({
 				replaceText:true
