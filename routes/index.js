@@ -90,3 +90,14 @@ exports.project = function(req, res){
 		});	
 	});
 };
+
+exports.fourofour = function(req, res) {
+	res.status(404);
+	res.render('404', {
+			title: 'Page not found',
+			built: built,
+			meta_desc: 'Page not found',
+			content: '',
+			not_found: true
+		});	
+}

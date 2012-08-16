@@ -17,6 +17,7 @@ define([
 	'text!templates/projects/mobile-box.html',
 	'text!templates/projects/intrade.html',
 	'text!templates/projects/westhost-php-contest.html'
+
 ], function( $, _, Backbone, Router, PagesCollection, SubPageCollection, 
 			homePageTemplate, meHtml, aboutPageTemplate, projectPageTemplate,
 			tinyMceThumbnail, westchesterSquare, mobileBox, intrade, westhostPHPContest  ){

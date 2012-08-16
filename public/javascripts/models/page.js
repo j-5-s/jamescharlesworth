@@ -42,7 +42,6 @@ define(['jQuery',
 				view = new AboutView({model: this, router: router});
 				globals.transform(view.$el, 120);
 
-				
 			}
 
 			if (this.get('name') === 'projects') {
@@ -51,7 +50,7 @@ define(['jQuery',
 				globals.transform(view.$el, 240)
 				
 			
-			}			
+			}
 			//view.swiper(pageName);
 			return view.render().el;
 		}
