@@ -96,7 +96,6 @@ define(['jQuery',
 					$('.'+activeclassName).html(nextSubPage.get('html'));
 					$('.'+activeclassName).addClass(nextSubPage.get('className'));
 					$('.project-content', self.$el).show();
-					console.log('ac',nextSubPage)
 					$('.'+activeclassName).removeClass(activeclassName);
 					
 					//turn page-<name> into <name>
