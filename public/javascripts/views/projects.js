@@ -8,9 +8,8 @@ define(['jQuery',
 		'text!templates/projects/tinymce-thumbnail-gallery.html',
 		'text!templates/projects/westchester-square.html',
 		'text!templates/projects/westhost-php-contest.html',
-		'globals',
-		'swiper'
-], function( $, _, Backbone, Menu, meTemplate, inceptionTemplate, simplicityTemplate, thdDotIsMeTemplate, phpContest, globals, swiper) {
+		'globals'
+], function( $, _, Backbone, Menu, meTemplate, inceptionTemplate, simplicityTemplate, thdDotIsMeTemplate, phpContest, globals) {
 
 	var Page = Backbone.View.extend({
 		initialize: function( options ) {

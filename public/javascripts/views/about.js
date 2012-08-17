@@ -3,9 +3,8 @@ define(['jQuery',
 		'Underscore',
 		'Backbone',
 		'views/menu',
-		'globals',
-		'swiper'
-], function( $, _, Backbone, Menu, globals, swiper) {
+		'globals'
+], function( $, _, Backbone, Menu, globals ) {
 
 	var Page = Backbone.View.extend({
 		initialize: function( options ) {
