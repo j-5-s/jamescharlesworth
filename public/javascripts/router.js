@@ -17,6 +17,7 @@ define([
 			var router = this;
 
 
+			this.loaded = false;
 
 			
 		},
@@ -79,20 +80,17 @@ define([
 
 			//need 404 handling here
 
-			
-			this.stylize(pageName);	
-			
-			
-			
-			
-
-
+			router.stylize(pageName);
 
 		},
 		stylize: function(pageName){
 			var wrapperHeight = $('.'+pageName + ' .container').height() +50,
 				pageHeight    = $(window).height();
 	
+			if (pageHeight === 0){
+
+				return this.stylize(pageName);
+			}
 			
 			//if the page is larger than the content, reset the wrapper height
 			if ( (pageHeight - globals.footerHeight) > wrapperHeight ) {
@@ -141,6 +139,7 @@ define([
 		//refactor pages later
 		defaultPage: function() {
 			this.showPage('home');
+
 
 
 		}
