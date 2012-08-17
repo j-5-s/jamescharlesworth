@@ -31,11 +31,11 @@ define(['jQuery',
 
 			if (this.get('name') === 'home') {
 				view = new HomeView({model: this, router: router});
-				globals.transform(view.$el, 0)
+				globals.transform(view.$el, 0);
 
 				setTimeout(function(){
 					view.renderRaphael();
-				},200);		
+				},200);
 			}
 
 			if (this.get('name') === 'about') {
@@ -47,11 +47,10 @@ define(['jQuery',
 			if (this.get('name') === 'projects') {
 				view = new ProjectsView({model: this, router: router});
 				el = view.render().el;
-				globals.transform(view.$el, 240)
+				globals.transform(view.$el, 240);
 				
 			
 			}
-			//view.swiper(pageName);
 			return view.render().el;
 		}
 

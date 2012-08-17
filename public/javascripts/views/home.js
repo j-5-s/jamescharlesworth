@@ -1,4 +1,4 @@
-/*globals Raphael */
+/*globals Raphael, _gaq */
 define(['jQuery',
 		'Underscore',
 		'Backbone',
@@ -8,17 +8,16 @@ define(['jQuery',
 		'text!templates/home/red-dot/simplicity.html',
 		'text!templates/home/red-dot/the-dot-is-me.html',
 		'globals',
-		'Raphael',
-		'swiper'
-], function( $, _, Backbone, Menu, meTemplate, inceptionTemplate, simplicityTemplate, thdDotIsMeTemplate, globals, Raphael, swiper) {
+		'Raphael'
+], function( $, _, Backbone, Menu, meTemplate, inceptionTemplate, simplicityTemplate, thdDotIsMeTemplate, globals, Raphael ) {
 
 	var Page = Backbone.View.extend({
 		initialize: function( options ) {
 			this.router = options.router;
-			this.redDots = { 
-				'who-am-i': meTemplate, 
-				'inception': inceptionTemplate, 
-				'simplicity': simplicityTemplate, 
+			this.redDots = {
+				'who-am-i': meTemplate,
+				'inception': inceptionTemplate,
+				'simplicity': simplicityTemplate,
 				'dot-is-me':thdDotIsMeTemplate
 			};
 			this.redDotIndex = 1;
@@ -28,60 +27,18 @@ define(['jQuery',
 		events: {
 	
 		},
-		getTemplate: function( ){
-			var _template = this.model.get('template');
-			
-			//$('.raphael-canvas',_template).css({height: globals.screenContentHeight +'px'});
-			
-
-			
-			$(_template).wrap('<div class="someclass" />');
-			
-			return _template;
-		},
 		render: function() {
-			var router   = this.router,
-				template = this.getTemplate(),
-				self     = this;
+			var router   = this.router;
 
-			this.$el.html( template);
-
-			var menu = new Menu({page: this.model.get('name')});
-			$('.container',this.$el).prepend(menu.render().el);
-			
-
-			$('.menu a',this.$el).click(function(){
-				
-				var url = $(this).attr('href');
-				//in ie compatibility view it appends the url
-				//need to refactor this in about and projects
-				if (url.indexOf('http://jamescharlesworth.com/') !== -1) {
-					var splited = url.split('http://jamescharlesworth.com/');
-					url = splited[1];
-				}
-				router.navigate(url, true);
-				return false;
-			});
+			this.$el.html( this.model.get('template') );
+			var menu = new Menu({page: this.model.get('name'), router: router });
+			$('.container', this.$el).prepend(menu.render().el);
 
 			return this;
 		},
-		swiper: function(){
-
-			var page = $('.page', this.el),
-				router = this.router;
-
-			swiper( page, function(direction){
-				//swipe left
-				if (direction > 0) {
-					//router.showPage('about');
-					globals.clickCount++;
-					router.navigate('about', {trigger:true})
-				}
-			});
-		},
 		renderRaphael: function() {
 			var self = this;
-			$('.raphael-canvas').html('')
+			$('.raphael-canvas').html('');
 			var paper = new Raphael($('.raphael-canvas').get(0));
 
 			// Creates circle at x = 50, y = 40, with radius 10
@@ -93,8 +50,8 @@ define(['jQuery',
 				var html = _.toArray(self.redDots)[self.redDotIndex],
 					key  = _.keys(self.redDots)[self.redDotIndex];
 
-				globals.clickCount++;	
-				_gaq.push(['_trackPageview', 'red-dot' + '/' + key ]);	
+				globals.clickCount++;
+				_gaq.push(['_trackPageview', 'red-dot' + '/' + key ]);
 
 				html = _.template(html, {clickCount: globals.clickCount});
 				$('.red-dot-text').html(html);
@@ -114,7 +71,7 @@ define(['jQuery',
 				this.animate({r:10}, 1000, 'elastic');
 			});
 
-		}		
+		}
 	});
 
 	return Page;

@@ -23,30 +23,6 @@ define(['jQuery',
 		events: {
 			'click .scroll': 'scrollContent'
 		},
-		getTemplate: function( ){
-			var $template = $(this.model.get('template'));
-
-				//find the subPage if there is a sub page,if not default to 0
-				//the page has subpages, but one is not sellected
-				var activeSubPage = this.subPages.getActiveSubPage(),
-					activeIndex   = this.subPages.getIndex(activeSubPage);
-
-				
-				
-				var totalPages = this.subPages.length;
-				
-				$('.counter', $template).html( 'Project ' + (activeIndex+1) + ' of ' + totalPages );
-				$('.project-content', $template).addClass(activeSubPage.get('className'));
-				$('.project-content', $template).html(activeSubPage.get('html'));
-			
-			
-			var menu = new Menu({page: this.model.get('name')});
-			$('.container', $template).prepend(menu.render().el);
-			
-			$template.wrap('<div class="someclass" />');
-			
-			return $template.html();
-		},
 		scrollContent: function(e) {
 			e.preventDefault();
 			globals.clickCount++;
@@ -107,47 +83,32 @@ define(['jQuery',
 					router.navigate('/projects/' + url, {replace:true} );
 					setTimeout(function(){
 						router.stylize('projects');
-					},300)
+					},300);
 					
 
 				});
 			}
 		},
 		render: function() {
-			var router   = this.router,
-				template = this.getTemplate();
+			var router   = this.router;
 	
-		
-			this.$el.html( template );
+			this.$el.html( this.model.get('template') );
 
-
-
-			$('.menu a',this.$el).click(function(){
-				var url = $(this).attr('href');
-				//in ie compatibility view it appends the url
-				if ( url.indexOf('http://jamescharlesworth.com/') !== -1 ) {
-					var splited = url.split('http://jamescharlesworth.com/');
-					url = splited[1];
-				}				
-				router.navigate(url, true);
-				return false;
-			});
+			//find the subPage if there is a sub page,if not default to 0
+			//the page has subpages, but one is not sellected
+			var activeSubPage = this.subPages.getActiveSubPage(),
+				activeIndex   = this.subPages.getIndex(activeSubPage),
+				totalPages    = this.subPages.length;
+			
+			$('.counter', this.$el).html( 'Project ' + (activeIndex+1) + ' of ' + totalPages );
+			$('.project-content', this.$el).addClass(activeSubPage.get('className'));
+			$('.project-content', this.$el).html(activeSubPage.get('html'));
+			
+			
+			var menu = new Menu({page: this.model.get('name'),router:router});
+			$('.container', this.$el).prepend(menu.render().el);
 
 			return this;
-		},
-		swiper: function() {
-			var page = $('.page', this.el),
-				router = this.router;
-			
-			swiper( page, function(direction){
-				//swipe left
-				
-				if (direction > 0) {
-					//nothing, im at the end
-				} else {					
-					router.navigate('about', {trigger:true});
-				}
-			});			
 		}
 	});
 

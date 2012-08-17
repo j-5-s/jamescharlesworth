@@ -17,7 +17,6 @@
 
 	require.config({
 		paths: {
-			domReady: 'domReady',
 			jQuery: './vendor/jquery/jquery',
 			jQueryNoSpam: './vendor/jquery/jquery.nospam',
 			Underscore: './vendor/underscore/underscore',
