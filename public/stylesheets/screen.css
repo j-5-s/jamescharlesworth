@@ -2561,18 +2561,16 @@ h2.title {
 .footer {
   background: url(../images/bg-footer.png) repeat-x;
   height: 100px;
-  position: relative;
-  z-index: 2000;
-  padding-top: 10px;
+  padding: 20px 0 0;
 }
 
-/* line 9, ../sass/partials/_footer.sass */
+/* line 7, ../sass/partials/_footer.sass */
 .footer p {
   color: #dedede;
   margin-bottom: 4px;
 }
 
-/* line 14, ../sass/partials/_footer.sass */
+/* line 12, ../sass/partials/_footer.sass */
 .footer p a {
   color: #333333;
   background-color: #dedede;
@@ -2580,7 +2578,7 @@ h2.title {
   text-decoration: none;
 }
 
-/* line 20, ../sass/partials/_footer.sass */
+/* line 18, ../sass/partials/_footer.sass */
 .footer p span {
   width: 75px;
   display: inline-block;
