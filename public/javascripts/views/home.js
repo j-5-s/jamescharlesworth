@@ -38,6 +38,7 @@ define(['jQuery',
 			return this;
 		},
 		renderRaphael: function() {
+			mantle.createPaper();
 			mantle.paint(this);
 		}
 	});
