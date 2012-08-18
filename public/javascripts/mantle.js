@@ -122,19 +122,26 @@ define([
 							var redCircle = createCircle(point.x,point.y,point.r, attr);
 							redCircle.animate({r:point.r + 20}, 1000, 'elastic');
 							redCircle.data('tweet',tweets[dots]);
-							
+							redCircle.click(function(){
+
+								var bbox = this.getBBox();
+								var a = this.node.parentNode;
+								console.log($(a))
+								$(a).tipsy({gravity: 's',fade: true, r:bbox.width/2, live:true });
+							});
 
 							dots++;
 							if (dots >= tweets.length) {
 								dots = 0;
 								clearInterval(splatterKid);
 								
-								$('.raphael-canvas a').each(function(i,a){
+								// $('.raphael-canvas a').each(function(i,a){
 								
-									var r = parseInt($(this).find('circle').attr('r'),10);
+								// 	var r = parseInt($(this).find('circle').attr('r'),10);
+								// 	console.log(r)
 									
-									$(this).tipsy({gravity: 's',fade: true, r:r });
-								});
+								// 	$(this).tipsy({gravity: 's',fade: true, r:r });
+								// });
 								
 								
 
