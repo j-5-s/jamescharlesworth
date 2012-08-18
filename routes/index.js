@@ -16,7 +16,7 @@ exports.index = function(req, res){
 		fs.readFile( __dirname + '/../public/javascripts/templates/home/red-dot/me.html', 'utf8', function(err, me){
 			var html = contentWrapper.replace('<%= redDot %>', me);
 			res.render('index', { 
-				title: 'James Charlesworth - Web Developer, Atlanta',
+				title: 'James Charlesworth - Web Developer, Atlanta, SEO',
 				built: built, 
 				content: html,
 				meta_desc: 'I make web applications with JavaScript.'
