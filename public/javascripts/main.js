@@ -19,6 +19,7 @@
 		paths: {
 			jQuery: './vendor/jquery/jquery',
 			jQueryNoSpam: './vendor/jquery/jquery.nospam',
+			jqueryTipsy: './vendor/jquery/jquery.tipsy',
 			Underscore: './vendor/underscore/underscore',
 			Backbone: './vendor/backbone/backbone',
 			eve: './vendor/raphaeljs/eve',

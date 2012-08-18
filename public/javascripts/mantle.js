@@ -1,4 +1,5 @@
 /*globals $,Backbone, window, document, cwidth*/
+/*jshint smarttabs:true */
 //This file loads the main app with the bootstrap daata
 //and router
 define([
@@ -7,24 +8,26 @@ define([
 	'Backbone',
 	'Raphael',
 	'globals',
+	'jqueryTipsy'
 ], function( $, _, Backbone,Raphael,globals){
 	
-	var paper;
+	var paper,
+		tweets = [];
 
 	var createCircle = function(x,y,r, attr) {
 		return paper.circle(x, y, r).attr(attr);
 	};
 
 	var getRandomNumber = function(min,max) {
-    	return Math.floor(Math.random() * (max - min) + min);
+		return Math.floor(Math.random() * (max - min) + min);
 	};
 
 	/**
-	 * Need to get a x and y location with a size that 
+	 * Need to get a x and y location with a size that
 	 * will not extend outside of the x and y min or max
 	 */
 	var getRandomPointAndSize = function(xMin,xMax,yMin,yMax) {
-		var point = {};
+
 		var radius = getRandomNumber(0,50);
 
 		var x = getRandomNumber(xMin,xMax),
@@ -41,6 +44,7 @@ define([
 		}
 
 		if (distanceFromBottom > yMax){
+			
 			y = y - distanceFromBottom;
 		}
 
@@ -55,12 +59,30 @@ define([
 		return {
 			x: x,
 			y: y,
-			r: radius	
+			r: radius
 		};
-
-
-    	
 	};
+
+	var getTweets = function (cb) {
+		if (tweets.length) {
+			return cb(tweets);
+		}
+
+		var url = 'https://api.twitter.com/1/statuses/user_timeline.json?callback=?';
+		$.getJSON(url, {include_entities: "true", include_rts: "true", screen_name: "_jcharlesworth" }, function(res){
+
+			tweets = _.map(res,function(el){
+			
+				if (typeof el.text !== 'undefined') {
+					return el.text;
+				}
+
+			});
+
+			cb(tweets);
+		});
+	};
+
 	
 
 	var bubbleColors = [
@@ -85,65 +107,44 @@ define([
 
 		paint: function(self) {
 				
-				splatterKid = setInterval(function(){
+				getTweets(function(tweets){
 
-					var opacity = getRandomNumber(5,10)/10;
 
-					var attr = {fill: '#' + bubbleColors[getRandomNumber(0,15)] ,stroke:'none',opacity:opacity};	
-					var point = getRandomPointAndSize(0,600,0,340);
-					var redCircle = createCircle(point.x,point.y,point.r, attr);
-					redCircle.animate({r:point.r + 20}, 1000, 'elastic');
-
-					redCircle.hover(function(){
-						this.animate({r:point.r - 30},300,'elastic',function(){
-							this.remove();	
-						});
-						
-					});
-
-					dots++;
-					if (dots > 100) {
-						dots = 0;
-						clearInterval(splatterKid);
-
-					}
-				},20);
-
-				
-
-				
-			
-				// Creates circle at x = 50, y = 40, with radius 10
-				
-				// Sets the fill attribute of the circle to red (#f00)
-				
-				
-				// circle.click(function(){
-				// 	var html = _.toArray(self.redDots)[self.redDotIndex],
-				// 		key  = _.keys(self.redDots)[self.redDotIndex];
-
-				// 	globals.clickCount++;
-				// 	_gaq.push(['_trackPageview', 'red-dot' + '/' + key ]);
-
-				// 	html = _.template(html, {clickCount: globals.clickCount});
-				// 	$('.red-dot-text').html(html);
-				// 	if ( (self.redDotIndex +1) === _.toArray(self.redDots).length) {
-				// 		self.redDotIndex = 0;
-				// 	} else {
-				// 		self.redDotIndex++;
-				// 	}
-					
-				// });
-				// circle.hover(function(){
-				// 	this.attr({cursor:'pointer'});
-				// 	this.animate({r:13}, 1000, 'elastic');
-					
-				// },
-				// function(){
-				// 	this.animate({r:10}, 1000, 'elastic');
-				// });
-			}	
-	}
+					splatterKid = setInterval(function(){
 	
+						
+							
+							
+							var opacity = getRandomNumber(5,10)/10;
 
-});	
+							var attr = {fill: '#' + bubbleColors[getRandomNumber(0,15)] ,stroke:'none',opacity:opacity, title:tweets[dots]};
+							var point = getRandomPointAndSize(0,600,0,340);
+							var redCircle = createCircle(point.x,point.y,point.r, attr);
+							redCircle.animate({r:point.r + 20}, 1000, 'elastic');
+							redCircle.data('tweet',tweets[dots]);
+							
+
+							dots++;
+							if (dots >= tweets.length) {
+								dots = 0;
+								clearInterval(splatterKid);
+								
+								$('.raphael-canvas a').each(function(i,a){
+								
+									var r = parseInt($(this).find('circle').attr('r'),10);
+									
+									$(this).tipsy({gravity: 's',fade: true, r:r });
+								});
+								
+								
+
+							}
+						
+
+					},20);
+
+				});
+			}
+	};
+
+});
