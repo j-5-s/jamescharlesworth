@@ -2590,7 +2590,8 @@ h2.title {
 }
 
 /* line 5, ../sass/partials/_home.sass */
-.home h1 {
+.home h1,
+.home h2 {
   font-size: 18px;
   font-family: "Poiret One", cursive;
   color: #333333;
@@ -2598,10 +2599,20 @@ h2.title {
   font-weight: bold;
 }
 
-/* line 12, ../sass/partials/_home.sass */
+/* line 13, ../sass/partials/_home.sass */
 #rCanvas {
   position: absolute;
   width: 1000px;
+}
+
+/* line 18, ../sass/partials/_home.sass */
+.below-fold {
+  margin-top: 20px;
+}
+
+/* line 21, ../sass/partials/_home.sass */
+.below-fold h2 {
+  margin-top: 15px;
 }
 
 /* line 1, ../sass/partials/_about.sass */
