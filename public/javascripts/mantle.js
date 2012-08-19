@@ -18,63 +18,73 @@ define([
 	};
 
 	var createToolTip = function(circle) {
-		var bbox =  circle.getBBox();
+		var bbox =  circle.getBBox(),
 
-		//x +100 is the middle, however
-		var centerTip = bbox.x + 100; 
-		//i only need to move it in relation to the size
-		var radiusTip = bbox.x + (bbox.width/2);
+			//x +100 is the middle, however
+			centerTip = bbox.x + 100,
+			//i only need to move it in relation to the size
+			radiusTip = bbox.x + (bbox.width/2),
 
-		var distanceToMove = centerTip - radiusTip;
+			distanceToMove = centerTip - radiusTip,
+			//all the words in the tweet
+			tweetWords = circle.data('tweet').split(' '),
+			//default the counter to 0, later increment as i go through each word
+			//it is the num_chars on the line
+			num_chars = 0,
+			//what it says
+			maxCharsPerLine = 25,
+			//grab the twee and split it into multiple lines based on the above vars
+			//example
+			//this is my tween that is more than one line and it breaks at twenty five
+				//-> this is my tween that is more than one\n line and it breaks at twenty five
+			tweet = _.map(tweetWords,function(word){
+				num_chars += word.length;
+				
+				//break at 35 characters
+				if (num_chars >= maxCharsPerLine) {
+					word = word +'\n' ;
+					num_chars = 0;
+				}
+				return word;
 
-		var tweetWords = circle.data('tweet').split(' ');
-		var num_chars =0;
-		
-		var maxCharsPerLine = 25;
-		var tweet = _.map(tweetWords,function(word){
-			num_chars += word.length;
-			
-			//break at 35 characters
-			if (num_chars >= maxCharsPerLine) {
-				word = word +'\n' ;
-				num_chars = 0;
-			}
-			return word;
+			}).join(' ');
 
-		}).join(' ');
-
+		//get the default points for the box wrapper/bg and text
 		var tipPoints = {
 			x: bbox.x - distanceToMove,
 			y: bbox.y-70
-		};
-
-		var textPoints = {
+		},
+		//the text
+		textPoints = {
 			x: (bbox.x - distanceToMove)+125,
 			y: (bbox.y-35)
 		};
 
-
+		//dont want the bubble above the canvas
+		//so move it below the dot if its < 100 px
+		//to the top
 		if (bbox.y < 100) {
 			tipPoints.y += bbox.height+70;
 			textPoints.y += bbox.height+70;
-		} 
+		}
 		
+		//dont want it to the left either
+		//move it right if it is
 		if (bbox.x < 40) {
-	
-
-			tipPoints.x += bbox.width;
-			textPoints.x += bbox.width;
+			tipPoints.x += bbox.width * 1.5;
+			textPoints.x += bbox.width * 1.5;
 		}
 
-		var tip = paper.rect(tipPoints.x,tipPoints.y,250,70,4).attr({fill:'#333333','fill-opacity':0.8,'stroke':'none'});
-		var text = paper.text(textPoints.x,textPoints.y,tweet);
+		var tip = paper.rect(tipPoints.x,tipPoints.y,250,70,4).attr({fill:'#333333','fill-opacity':0.8,'stroke':'none'}),
+			text = paper.text(textPoints.x,textPoints.y,tweet);
+
 		text.attr({fill:'#FFFFFF'});
 		return {
 			tip: tip,
 			text: text
-		}
+		};
 
-	};	
+	};
 
 	var getRandomNumber = function(min,max) {
 		return Math.floor(Math.random() * (max - min) + min);
@@ -154,10 +164,6 @@ define([
 
 	];
 
-
-
-
-	var dots = 0;
 	return {
 		createPaper: function() {
 			$('#rCanvas').html('');
@@ -167,7 +173,9 @@ define([
 				
 				getTweets(function(tweets){
 					for (var i =0; i < tweets.length; i++) {
-						
+						//making a function within a loop is okay
+						//here because i need to maintain i as well
+						//as keep tip and text scopped locally
 						(function(i){
 							var tweet = tweets[i];
 		
