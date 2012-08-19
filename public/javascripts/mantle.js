@@ -120,6 +120,7 @@ define([
 			y = getRandomNumber(yMin,yMax);
 
 		
+		
 		return {
 			x: x,
 			y: y,
@@ -160,6 +161,36 @@ define([
 
 	];
 
+	var start = function () {
+		this.ox = this.attr("cx");
+		this.oy = this.attr("cy");
+		this.bbox = this.getBBox();
+		this.lastDx = 0;
+		this.lastDy = 0;
+		this.animate({opacity: .25}, 500, ">");
+	},
+	move = function (dx, dy) {
+		//distance to move
+		var x = dx - this.lastDx;
+		var y = dy - this.lastDy;
+		
+		
+		
+			
+		this.translate(x,y);
+		this.lastDx = dx;
+		this.lastDy = dy;
+
+	},
+	up = function () {
+		
+		this.animate({opacity: 1}, 500, ">");
+		
+		this.tipObj.tip.remove();
+
+		this.tipObj.text.remove();
+	};	
+
 	return {
 		createPaper: function() {
 			$('#rCanvas').html('');
@@ -175,38 +206,40 @@ define([
 						//here because i need to maintain i as well
 						//as keep tip and text scopped locally
 						(function(i){
-							var tweet = tweets[i];
-		
-							var opacity = getRandomNumber(5,10)/10;
+							var tweet = tweets[i],
+								opacity = getRandomNumber(5,10)/10,
+								attr = {fill: '#' + bubbleColors[getRandomNumber(0,15)] ,stroke:'none',opacity:1},
+								point = getRandomPointAndSize(0,600,0,340),
+								tweetyBird = createBird(point, attr),
+								bbox = tweetyBird.getBBox();
 
-							var attr = {fill: '#' + bubbleColors[getRandomNumber(0,15)] ,stroke:'none',opacity:opacity};
-							var point = getRandomPointAndSize(0,600,0,340);
-							
-							var redCircle = createBird(point, attr);
-							var bbox = redCircle.getBBox();
-					
+							//point.y = 0;
 							if (bbox.y2 + bbox.height*2 +20 > 340) {
-								
-								point.y = 340 - bbox.height* (getRandomNumber(10,20)/10);
-
+								point.y = 340 - bbox.height * (getRandomNumber(10,20)/10) *1.25;
 							}
 
+							tweetyBird.translate(point.x,point.y);
+
+							tweetyBird.animate({r:point.r + 20}, 1000, 'elastic');
+							tweetyBird.data('tweet',tweet);
 
 
 
-							redCircle.translate(point.x,point.y);
-		
+        				
+        					tweetyBird.drag(move, start, up);	
+        				
+        					
+        					
+ 							
 
-
-
-							redCircle.animate({r:point.r + 20}, 1000, 'elastic');
-							redCircle.data('tweet',tweet);
+			              
 							
 							var tip, text;
-							redCircle.hover(function(){
+							tweetyBird.hover(function(){
 								var tipObj = createToolTip(this);
 								tip = tipObj.tip;
 								text = tipObj.text;
+								this.tipObj = tipObj;
 
 							}, function(){
 								tip.remove();
