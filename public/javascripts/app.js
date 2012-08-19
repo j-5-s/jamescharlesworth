@@ -31,6 +31,8 @@ define([
 			var t = _.template(homePageTemplate, {redDot: meHtml});
 			pages.add({name:'home',template: t});
 
+
+
 			//about page
 			pages.add({name:'about', template: aboutPageTemplate});
 
@@ -41,6 +43,7 @@ define([
 					className:'page-tinymce-thumbnail-gallery',
 					html: tinyMceThumbnail
 				});
+
 				projectCollection.add({
 					className: 'page-westchester-square',
 					html: westchesterSquare
@@ -53,12 +56,13 @@ define([
 					className: 'page-intrade',
 					html: intrade
 				});	
-				//waiting for westhost to respond
-				// projectCollection.add({
-				// 	className: 'page-westhost-php-contest',
-				// 	html: westhostPHPContest
-				// });
+				projectCollection.add({
+					className: 'page-westhost-php-contest',
+					html: westhostPHPContest
+				});
 				
+
+
 			
 			pages.add({name:'projects',template: projectPageTemplate, subPages: projectCollection});//change projects to subPages
 			

@@ -34,6 +34,20 @@ define(['jQuery',
 			this.$el.html( this.model.get('template') );
 			var menu = new Menu({page: this.model.get('name'), router: router });
 			$('.container', this.$el).prepend(menu.render().el);
+			$('.below-fold a', this.$el).click(function(e){
+				e.preventDefault();
+
+				var url = $(e.currentTarget).attr('href');
+				
+				//in ie compatibility view it appends the url
+				//need to refactor this in about and projects
+				if (url.indexOf('http://jamescharlesworth.com/') !== -1) {
+					var splited = url.split('http://jamescharlesworth.com/');
+					url = splited[1];
+				}
+				router.navigate(url, true);				
+
+			});
 
 			return this;
 		},

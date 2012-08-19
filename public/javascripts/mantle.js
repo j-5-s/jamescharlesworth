@@ -160,19 +160,12 @@ define([
 	var dots = 0;
 	return {
 		createPaper: function() {
-				
-				
-				
-				paper = new Raphael($('#rCanvas').get(0));
-
+			$('#rCanvas').html('');
+			paper = new Raphael($('#rCanvas').get(0));
 		},
-
-
 		paint: function(self) {
 				
 				getTweets(function(tweets){
-
-
 					for (var i =0; i < tweets.length; i++) {
 						
 						(function(i){
@@ -196,14 +189,8 @@ define([
 								tip.remove();
 								text.remove();
 							});
-						}(i))
-					
-
-						
-						
-
+						}(i));
 					}
-
 				});
 			}
 	};

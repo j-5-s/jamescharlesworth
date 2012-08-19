@@ -2610,9 +2610,14 @@ h2.title {
   margin-top: 20px;
 }
 
-/* line 21, ../sass/partials/_home.sass */
+/* line 22, ../sass/partials/_home.sass */
 .below-fold h2 {
   margin-top: 15px;
+}
+
+/* line 26, ../sass/partials/_home.sass */
+.home a {
+  background: #666666;
 }
 
 /* line 1, ../sass/partials/_about.sass */
