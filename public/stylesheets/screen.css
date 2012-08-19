@@ -2456,6 +2456,12 @@ div.mobile-only {
   margin-top: 20%;
 }
 
+/* line 35, ../sass/partials/_bg.sass */
+.hr {
+  background: url(/images/hr.png) repeat-x top center;
+  height: 10px;
+}
+
 /* line 1, ../sass/partials/_header.sass */
 div.wrapper {
   height: 90px;
@@ -2617,7 +2623,7 @@ h2.title {
 
 /* line 26, ../sass/partials/_home.sass */
 .home a {
-  background: #666666;
+  background: #999999;
 }
 
 /* line 1, ../sass/partials/_about.sass */
