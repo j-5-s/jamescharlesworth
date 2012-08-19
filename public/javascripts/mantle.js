@@ -45,19 +45,26 @@ define([
 
 		var tipPoints = {
 			x: bbox.x - distanceToMove,
-			y: bbox.y-50
+			y: bbox.y-70
 		};
 
 		var textPoints = {
 			x: (bbox.x - distanceToMove)+125,
-			y: (bbox.y-15)
+			y: (bbox.y-30)
 		};
 
 
 		if (bbox.y < 100) {
-			tipPoints.y += bbox.height+50;
-			textPoints.y += bbox.height+50;
+			tipPoints.y += bbox.height+70;
+			textPoints.y += bbox.height+70;
 		} 
+		
+		if (bbox.x < 40) {
+	
+
+			tipPoints.x += bbox.width;
+			textPoints.x += bbox.width;
+		}
 
 		var tip = paper.rect(tipPoints.x,tipPoints.y,250,70,4).attr({fill:'#333333','fill-opacity':0.8,'stroke':'none'});
 		var text = paper.text(textPoints.x,textPoints.y,tweet);
@@ -173,7 +180,7 @@ define([
 		
 							var opacity = getRandomNumber(5,10)/10;
 
-							var attr = {fill: '#' + bubbleColors[getRandomNumber(0,15)] ,stroke:'none',opacity:opacity, title:tweet};
+							var attr = {fill: '#' + bubbleColors[getRandomNumber(0,15)] ,stroke:'none',opacity:opacity};
 							var point = getRandomPointAndSize(0,600,0,340);
 							var redCircle = createCircle(point.x,point.y,point.r, attr);
 							redCircle.animate({r:point.r + 20}, 1000, 'elastic');
