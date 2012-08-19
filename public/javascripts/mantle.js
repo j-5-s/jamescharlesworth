@@ -7,8 +7,7 @@ define([
 	'Underscore',
 	'Backbone',
 	'Raphael',
-	'globals',
-	'jqueryTipsy'
+	'globals'
 ], function( $, _, Backbone,Raphael,globals){
 	
 	var paper,
@@ -17,6 +16,58 @@ define([
 	var createCircle = function(x,y,r, attr) {
 		return paper.circle(x, y, r).attr(attr);
 	};
+
+	var createToolTip = function(circle) {
+		var bbox =  circle.getBBox();
+
+		//x +100 is the middle, however
+		var centerTip = bbox.x + 100; 
+		//i only need to move it in relation to the size
+		var radiusTip = bbox.x + (bbox.width/2);
+
+		var distanceToMove = centerTip - radiusTip;
+
+		var tweetWords = circle.data('tweet').split(' ');
+		var num_chars =0;
+		
+		var maxCharsPerLine = 25;
+		var tweet = _.map(tweetWords,function(word){
+			num_chars += word.length;
+			
+			//break at 35 characters
+			if (num_chars >= maxCharsPerLine) {
+				word = word +'\n' ;
+				num_chars = 0;
+			}
+			return word;
+
+		}).join(' ');
+
+		var tipPoints = {
+			x: bbox.x - distanceToMove,
+			y: bbox.y-50
+		};
+
+		var textPoints = {
+			x: (bbox.x - distanceToMove)+125,
+			y: (bbox.y-15)
+		};
+
+
+		if (bbox.y < 100) {
+			tipPoints.y += bbox.height+50;
+			textPoints.y += bbox.height+50;
+		} 
+
+		var tip = paper.rect(tipPoints.x,tipPoints.y,250,70,4).attr({fill:'#333333','fill-opacity':0.8,'stroke':'none'});
+		var text = paper.text(textPoints.x,textPoints.y,tweet);
+		text.attr({fill:'#FFFFFF'});
+		return {
+			tip: tip,
+			text: text
+		}
+
+	};	
 
 	var getRandomNumber = function(min,max) {
 		return Math.floor(Math.random() * (max - min) + min);
@@ -96,12 +147,17 @@ define([
 
 	];
 
-	var splatterKid,
-		dots = 0;
+
+
+
+	var dots = 0;
 	return {
 		createPaper: function() {
-				$('.raphael-canvas').html('');
-				paper = new Raphael($('.raphael-canvas').get(0));
+				
+				
+				
+				paper = new Raphael($('#rCanvas').get(0));
+
 		},
 
 
@@ -110,45 +166,36 @@ define([
 				getTweets(function(tweets){
 
 
-					splatterKid = setInterval(function(){
-	
+					for (var i =0; i < tweets.length; i++) {
 						
-							
-							
+						(function(i){
+							var tweet = tweets[i];
+		
 							var opacity = getRandomNumber(5,10)/10;
 
-							var attr = {fill: '#' + bubbleColors[getRandomNumber(0,15)] ,stroke:'none',opacity:opacity, title:tweets[dots]};
+							var attr = {fill: '#' + bubbleColors[getRandomNumber(0,15)] ,stroke:'none',opacity:opacity, title:tweet};
 							var point = getRandomPointAndSize(0,600,0,340);
 							var redCircle = createCircle(point.x,point.y,point.r, attr);
 							redCircle.animate({r:point.r + 20}, 1000, 'elastic');
-							redCircle.data('tweet',tweets[dots]);
-							redCircle.click(function(){
+							redCircle.data('tweet',tweet);
+							
+							var tip, text;
+							redCircle.hover(function(){
+								var tipObj = createToolTip(this);
+								tip = tipObj.tip;
+								text = tipObj.text;
 
-								var bbox = this.getBBox();
-								var a = this.node.parentNode;
-								console.log($(a))
-								$(a).tipsy({gravity: 's',fade: true, r:bbox.width/2, live:true });
+							}, function(){
+								tip.remove();
+								text.remove();
 							});
+						}(i))
+					
 
-							dots++;
-							if (dots >= tweets.length) {
-								dots = 0;
-								clearInterval(splatterKid);
-								
-								// $('.raphael-canvas a').each(function(i,a){
-								
-								// 	var r = parseInt($(this).find('circle').attr('r'),10);
-								// 	console.log(r)
-									
-								// 	$(this).tipsy({gravity: 's',fade: true, r:r });
-								// });
-								
-								
-
-							}
+						
 						
 
-					},20);
+					}
 
 				});
 			}

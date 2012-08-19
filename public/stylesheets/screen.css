@@ -2598,6 +2598,12 @@ h2.title {
   font-weight: bold;
 }
 
+/* line 12, ../sass/partials/_home.sass */
+#rCanvas {
+  position: absolute;
+  width: 1000px;
+}
+
 /* line 1, ../sass/partials/_about.sass */
 .about {
   background: url(../images/bg-red.png);
