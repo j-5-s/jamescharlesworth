@@ -28,24 +28,26 @@ exports.index = function(req, res){
 };
 
 exports.about = function(req, res){
+	res.redirect('/#about');
 
-	fs.readFile(__dirname + '/../public/javascripts/templates/about.html', 'utf8', function(err, contentWrapper){
+	// fs.readFile(__dirname + '/../public/javascripts/templates/about.html', 'utf8', function(err, contentWrapper){
 		
 			
-			res.render('index', {
-				title: 'James Charlesworth - JavaScript, PHP, SEO, Design - Atlanta',
-				built: built, 
-				content: contentWrapper,
-				meta_desc: 'About me - I make Web Applications'
-			});
+	// 		res.render('index', {
+	// 			title: 'James Charlesworth - JavaScript, PHP, SEO, Design - Atlanta',
+	// 			built: built, 
+	// 			content: contentWrapper,
+	// 			meta_desc: 'About me - I make Web Applications'
+	// 		});
 		
-	});
+	// });
 };
 
 exports.projects = function(req, res){
-	fs.readFile(__dirname + '/../public/javascripts/templates/projects/all.html', 'utf8', function(err, contentWrapper){
-		res.render('index', { title: 'James Charlesworth - Web Developer, Atlanta',meta_desc:'',built: built,content: contentWrapper });	
-	});
+	res.redirect('/#projects');
+	// fs.readFile(__dirname + '/../public/javascripts/templates/projects/all.html', 'utf8', function(err, contentWrapper){
+	// 	res.render('index', { title: 'James Charlesworth - Web Developer, Atlanta',meta_desc:'',built: built,content: contentWrapper });	
+	// });
 };
 
 exports.project = function(req, res){
@@ -53,6 +55,11 @@ exports.project = function(req, res){
 		title = '',
 		meta_desc = '';
 		
+
+	if (!req.params.subpage) {
+		return res.redirect('/');
+	}	
+
 	switch(req.params.subpage) {
 		case 'tinymce-thumbnail-gallery':
 			path = __dirname + '/../public/javascripts/templates/projects/tinymce-thumbnail-gallery.html';

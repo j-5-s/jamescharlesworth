@@ -50,7 +50,7 @@ define([
 
 		var textPoints = {
 			x: (bbox.x - distanceToMove)+125,
-			y: (bbox.y-30)
+			y: (bbox.y-35)
 		};
 
 
