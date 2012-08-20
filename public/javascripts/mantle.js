@@ -232,10 +232,12 @@ define([
 								tip = tipObj.tip;
 								text = tipObj.text;
 								this.tipObj = tipObj;
+								document.body.style.cursor = "pointer";
 
 							}, function(){
 								tip.remove();
 								text.remove();
+								document.body.style.cursor = "default";
 							});
 						}(i));
 					}
