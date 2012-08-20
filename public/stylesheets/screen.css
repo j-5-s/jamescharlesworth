@@ -2608,20 +2608,19 @@ h2.title {
 /* line 13, ../sass/partials/_home.sass */
 #rCanvas {
   position: absolute;
-  width: 1000px;
 }
 
-/* line 18, ../sass/partials/_home.sass */
+/* line 17, ../sass/partials/_home.sass */
 .below-fold {
   margin-top: 20px;
 }
 
-/* line 22, ../sass/partials/_home.sass */
+/* line 21, ../sass/partials/_home.sass */
 .below-fold h2 {
   margin-top: 15px;
 }
 
-/* line 26, ../sass/partials/_home.sass */
+/* line 25, ../sass/partials/_home.sass */
 .home a {
   background: #999999;
 }

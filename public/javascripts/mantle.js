@@ -20,9 +20,9 @@ define([
 		path25.attr(attr);
 		
 
-		bbox = path25.getBBox();
+		var bbox = path25.getBBox();
 
-		//point.y = 0;
+		//dont want them too close to the bottom
 		if (bbox.y2 + bbox.height*2 +20 > 340) {
 			point.y = 340 - bbox.height * (getRandomNumber(10,20)/10) *1.25;
 		}
@@ -30,7 +30,7 @@ define([
 
 		//why wont little birds fly far?
 		//move it before the scale it
-		path25.translate(point.x,point.y);	
+		path25.translate(point.x,point.y);
 		//path25.scale(1,-1,0,0);
 		//size is scaled down by the random radius betweem 0 & 50
 		var r = point.r/50;
@@ -201,25 +201,29 @@ define([
 
 		this.tipObj.text.remove();
 	};
-
+	var pageWidth = globals.pageWidth,
+		containerWidth = pageWidth * 0.8,
+		canvasSize = containerWidth * 0.70;
 	return {
 		createPaper: function() {
+
+
 			$('#rCanvas').html('');
-			paper = new Raphael($('#rCanvas').get(0));
+			paper = new Raphael('rCanvas',canvasSize, 340);
+
 		},
 		paint: function(self) {
-				
 
-	
 				getTweets(function(tweets){
 					for (var i =0; i < tweets.length; i++) {
 						//making a function within a loop is okay
 						//here because i need to maintain i as well
 						//as keep tip and text scopped locally
 						(function(i){
+
 							var tweet = tweets[i],
 								attr = {fill: '#' + bubbleColors[getRandomNumber(0,15)] ,stroke:'none',opacity:1},
-								point = getRandomPointAndSize(0,600,0,340),
+								point = getRandomPointAndSize(0,canvasSize-200,0,340),
 								tweetyBird = createBird(point, attr);
 
 
