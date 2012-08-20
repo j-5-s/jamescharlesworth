@@ -13,9 +13,6 @@ define([
 	var paper,
 		tweets = [];
 
-	var createCircle = function(x,y,r, attr) {
-		return paper.circle(x, y, r).attr(attr);
-	};
 
 	var createBird = function(point, attr) {
 		var path25 = paper.path("m 216.97701,68.72548 c -7.60401,1.298797 -18.63251,-0.0513 -24.47607,-2.482694 12.14263,-1.005388 20.36424,-6.524765 23.53224,-14.017987 -4.37652,2.694031 -17.96978,5.628124 -25.4671,2.831502 -0.37343,-1.762507 -0.77969,-3.44089 -1.19211,-4.959232 -5.70814,-21.012617 -25.29064,-37.946229 -45.79441,-35.89852 1.65376,-0.670943 3.33009,-1.294694 5.02489,-1.863046 2.24468,-0.808414 15.49734,-2.9710253 13.4127,-7.6430035 C 160.25259,0.572459 144.06379,7.7907371 141.0189,8.7407266 145.0425,7.232644 151.69858,4.6309451 152.40646,3.1740001e-6 146.24486,0.84535013 140.19407,3.7630282 135.52209,8.0041257 137.21278,6.1882712 138.49106,3.974365 138.7619,1.5860546 122.31867,12.103648 112.71414,33.290669 104.94597,53.858043 98.84593,47.934458 93.42504,43.270688 88.57661,40.675144 74.96693,33.378897 58.68785,25.75436 33.14278,16.258569 c -0.78585,8.459625 4.17749,19.717923 18.47042,27.192678 -3.09414,-0.41857 -8.75714,0.519109 -13.27934,1.594259 1.84048,9.703023 7.86665,17.686628 24.19088,21.544036 -7.45834,0.490384 -11.31985,2.199544 -14.80999,5.851771 3.39575,6.746361 11.69534,14.676618 26.59971,13.045427 -16.58686,7.158776 -6.76483,20.40938 6.732,18.43144 -23.01109,23.80513 -59.3015,22.03852 -80.14177,2.14619 54.40177,74.20998 172.67238,43.88213 190.28924,-27.59483 13.21778,0.106694 20.96953,-4.575543 25.78308,-9.74406 z");
@@ -28,7 +25,7 @@ define([
 		if (r < 0.2) {
 			r = r + 0.2;
 		}
-
+		path25.r = r;
 		path25.scale(r,r);
 	
 		return path25;
@@ -167,7 +164,9 @@ define([
 		this.bbox = this.getBBox();
 		this.lastDx = 0;
 		this.lastDy = 0;
-		this.animate({opacity: .25}, 500, ">");
+		this.animate({opacity: 0.25}, 500, ">");
+		
+		this.scale(1/this.r,1/this.r);
 	},
 	move = function (dx, dy) {
 		//distance to move
@@ -185,11 +184,11 @@ define([
 	up = function () {
 		
 		this.animate({opacity: 1}, 500, ">");
-		
+		this.scale(this.r,this.r);
 		this.tipObj.tip.remove();
 
 		this.tipObj.text.remove();
-	};	
+	};
 
 	return {
 		createPaper: function() {
@@ -207,7 +206,6 @@ define([
 						//as keep tip and text scopped locally
 						(function(i){
 							var tweet = tweets[i],
-								opacity = getRandomNumber(5,10)/10,
 								attr = {fill: '#' + bubbleColors[getRandomNumber(0,15)] ,stroke:'none',opacity:1},
 								point = getRandomPointAndSize(0,600,0,340),
 								tweetyBird = createBird(point, attr),
@@ -225,15 +223,9 @@ define([
 
 
 
-        				
-        					tweetyBird.drag(move, start, up);	
-        				
-        					
-        					
- 							
-
-			              
-							
+						
+							tweetyBird.drag(move, start, up);
+						
 							var tip, text;
 							tweetyBird.hover(function(){
 								var tipObj = createToolTip(this);
