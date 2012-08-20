@@ -19,6 +19,18 @@ define([
 		path25.attr({id: 'path25',"clip-path": 'none',fill: '#33ccff','stroke-width': '0','stroke-opacity': '1'}).data('id', 'path25');
 		path25.attr(attr);
 		
+
+		bbox = path25.getBBox();
+
+		//point.y = 0;
+		if (bbox.y2 + bbox.height*2 +20 > 340) {
+			point.y = 340 - bbox.height * (getRandomNumber(10,20)/10) *1.25;
+		}
+
+
+		//why wont little birds fly far?
+		//move it before the scale it
+		path25.translate(point.x,point.y);	
 		//path25.scale(1,-1,0,0);
 		//size is scaled down by the random radius betweem 0 & 50
 		var r = point.r/50;
@@ -85,8 +97,8 @@ define([
 		//dont want it to the left either
 		//move it right if it is
 		if (bbox.x < 40) {
-			tipPoints.x += bbox.width * 1.5;
-			textPoints.x += bbox.width * 1.5;
+			tipPoints.x += bbox.width * 0.5;
+			textPoints.x += bbox.width * 0.5;
 		}
 
 		var tip = paper.rect(tipPoints.x,tipPoints.y,250,70,4).attr({fill:'#333333','fill-opacity':0.8,'stroke':'none'}),
@@ -208,17 +220,11 @@ define([
 							var tweet = tweets[i],
 								attr = {fill: '#' + bubbleColors[getRandomNumber(0,15)] ,stroke:'none',opacity:1},
 								point = getRandomPointAndSize(0,600,0,340),
-								tweetyBird = createBird(point, attr),
-								bbox = tweetyBird.getBBox();
+								tweetyBird = createBird(point, attr);
 
-							//point.y = 0;
-							if (bbox.y2 + bbox.height*2 +20 > 340) {
-								point.y = 340 - bbox.height * (getRandomNumber(10,20)/10) *1.25;
-							}
-
-							tweetyBird.translate(point.x,point.y);
 
 							tweetyBird.animate({r:point.r + 20}, 1000, 'elastic');
+							
 							tweetyBird.data('tweet',tweet);
 
 
