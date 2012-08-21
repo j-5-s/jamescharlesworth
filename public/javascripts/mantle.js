@@ -100,9 +100,11 @@ define([
 			tipPoints.x += bbox.width * 0.5;
 			textPoints.x += bbox.width * 0.5;
 		}
+		tweet = tweet.replace(/&gt;/g,'>').replace(/&lt;/g,'<');
+
 
 		var tip = paper.rect(tipPoints.x,tipPoints.y,250,70,4).attr({fill:'#333333','fill-opacity':0.8,'stroke':'none'}),
-			text = paper.text(textPoints.x,textPoints.y,tweet);
+			text = paper.text(textPoints.x,textPoints.y,unescape(tweet));
 
 		text.attr({fill:'#FFFFFF'});
 		return {
@@ -143,7 +145,7 @@ define([
 		}
 
 		var url = 'https://api.twitter.com/1/statuses/user_timeline.json?callback=?';
-		$.getJSON(url, {include_entities: "true", include_rts: "true", screen_name: "_jcharlesworth" }, function(res){
+		$.getJSON(url, {include_entities: "true", include_rts: "true", screen_name: "_jcharlesworth", count: 10 }, function(res){
 
 			tweets = _.map(res,function(el){
 			
