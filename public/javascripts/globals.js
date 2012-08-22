@@ -14,6 +14,7 @@ define([
 	globals.screenContentHeight = globals.pageHeight - globals.footerHeight - globals.headerHeight;
 	globals.clickCount = -1;
 	globals.loaded = false;
+	globals.tweets = [];
 
 	globals.supports = function(prop) { 
 		//credit to http://net.tutsplus.com/tutorials/html-css-techniques/quick-tip-detect-css-support-in-browsers-with-javascript/
