@@ -204,7 +204,7 @@ define([
 	};
 	var pageWidth = globals.pageWidth,
 		containerWidth = pageWidth * 0.8,
-		canvasSize = containerWidth * 0.70;
+		canvasSize = containerWidth * 1;
 	return {
 		createPaper: function() {
 
@@ -224,7 +224,7 @@ define([
 
 							var tweet = tweets[i],
 								attr = {fill: '#' + bubbleColors[getRandomNumber(0,15)] ,stroke:'none',opacity:1},
-								point = getRandomPointAndSize(0,canvasSize-200,0,340),
+								point = getRandomPointAndSize(0,canvasSize*0.5,0,340),
 								tweetyBird = createBird(point, attr);
 
 
