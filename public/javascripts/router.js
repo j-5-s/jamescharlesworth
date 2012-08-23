@@ -43,6 +43,10 @@ define([
 			
 		},
 		showPage: function( pageName, subPage) {
+			if ($('#jsloader').length) {
+				$('#jsloader').remove();
+			}
+
 
 			globals.clickCount++;
 			//GA tracking
@@ -79,8 +83,10 @@ define([
 		
 
 			//need 404 handling here
-
-			router.stylize(pageName);
+			$(function(){
+				router.stylize(pageName);	
+			})
+			
 
 		},
 		stylize: function(pageName){
@@ -127,9 +133,6 @@ define([
 				
 			});
 
-			setTimeout(function(){
-				$('#jsloader').remove();
-			},400);
 
 			$('a.email').nospam({
 				replaceText:true
