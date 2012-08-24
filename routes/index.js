@@ -60,6 +60,7 @@ exports.project = function(req, res){
 		return res.redirect('/');
 	}	
 
+	console.log(req.params.subpage)
 	switch(req.params.subpage) {
 		case 'tinymce-thumbnail-gallery':
 			path = __dirname + '/../public/javascripts/templates/projects/tinymce-thumbnail-gallery.html';
@@ -81,6 +82,11 @@ exports.project = function(req, res){
 			title = 'Intrade - Node.js Module';
 			meta_desc = 'I love building node apps!';
 			break;
+		case 'westhost-php-contest':
+			path = __dirname + '/../public/javascripts/templates/projects/westhost-php-contest.html';
+			title = 'WestHost PHP Content - SEO Campaign';
+			meta_desc = 'A fantastic, link generating SEO campaign developed on Symfony';
+			break;
 		default: //@todo, update with 404
 			path = __dirname + '/../public/javascripts/templates/projects/tinymce-thumbnail-gallery.html';
 			title = 'TinyMCE Thumbnail Gallery - JavaScript WordPress Plugin';
@@ -89,6 +95,7 @@ exports.project = function(req, res){
 	}
 
 	fs.readFile( path, 'utf8', function(err, contentWrapper){
+		
 		res.render('index', {
 			title: title,
 			built: built,
