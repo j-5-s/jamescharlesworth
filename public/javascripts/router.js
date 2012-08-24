@@ -90,9 +90,8 @@ define([
 		
 
 			//need 404 handling here
-			$(function(){
-				router.stylize(pageName);	
-			});
+
+			router.stylize(pageName);
 			
 
 		},

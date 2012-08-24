@@ -73,7 +73,9 @@ define([
 			
 
 		// Pass in our Router module and call it's initialize function
-		Router.initialize(options);
+		Router.initialize(options);	
+		
+		
 	};
 
 	
