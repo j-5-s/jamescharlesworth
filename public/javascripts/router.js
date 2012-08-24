@@ -54,6 +54,13 @@ define([
 			if (typeof subPage !== 'undefined') {
 				virtualPageview += '/' + subPage;
 			}
+
+			//fix to default GA to not create a duplicate page
+			//for /home
+			if (virtualPageview === 'home') {
+				virtualPageview = '';	
+			}
+
 			_gaq.push(['_trackPageview', virtualPageview]);
 			//window.scrollTo(0, 1);
 			
