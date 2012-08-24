@@ -2469,7 +2469,7 @@ div.wrapper {
 
 /* line 4, ../sass/partials/_header.sass */
 h1.title, h2.title {
-  font-family: "Poiret One", cursive;
+  font-family: "Poiret One", helvetica, arial;
   color: #f9f9f9;
   text-shadow: 1px 1px 1px #333333;
 }
@@ -2499,7 +2499,7 @@ h2.title {
 
 /* line 5, ../sass/partials/_page.sass */
 .page h1, .page h2, .page h3 {
-  font-family: "Poiret One", cursive;
+  font-family: "Poiret One", helvetica, arial;
   color: #f9f9f9;
   text-shadow: 1px 1px 1px #333333;
 }
@@ -2599,7 +2599,7 @@ h2.title {
 .home h1,
 .home h2 {
   font-size: 18px;
-  font-family: "Poiret One", cursive;
+  font-family: "Poiret One", helvetica, arial;
   color: #333333;
   text-shadow: 1px 1px 1px #f9f9f9;
   font-weight: bold;
@@ -2807,7 +2807,7 @@ div.pages div.menu ul li a.active {
 /* line 1, ../sass/partials/_404.sass */
 .fourofour h1 {
   font-size: 18px;
-  font-family: "Poiret One", cursive;
+  font-family: "Poiret One", helvetica, arial;
   color: #333333;
   text-shadow: 1px 1px 1px #f9f9f9;
   font-weight: bold;
