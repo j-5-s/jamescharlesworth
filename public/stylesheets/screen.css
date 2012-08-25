@@ -2432,11 +2432,16 @@ body {
 }
 
 /* line 15, ../sass/partials/_bg.sass */
+html.lt-ie8 div.below-fold div.span-8 {
+  margin-right: 0.7%;
+}
+
+/* line 18, ../sass/partials/_bg.sass */
 div.mobile-only {
   display: none;
 }
 
-/* line 18, ../sass/partials/_bg.sass */
+/* line 21, ../sass/partials/_bg.sass */
 .jsloader {
   position: absolute;
   overflow: hidden;
@@ -2447,7 +2452,7 @@ div.mobile-only {
   color: #8cbee7;
 }
 
-/* line 28, ../sass/partials/_bg.sass */
+/* line 31, ../sass/partials/_bg.sass */
 .jsloader div {
   margin: 0 auto;
   width: 200px;
@@ -2456,7 +2461,7 @@ div.mobile-only {
   margin-top: 20%;
 }
 
-/* line 35, ../sass/partials/_bg.sass */
+/* line 38, ../sass/partials/_bg.sass */
 .hr {
   background: url(/images/hr.png) repeat-x top center;
   height: 10px;
