@@ -28,26 +28,26 @@ exports.index = function(req, res){
 };
 
 exports.about = function(req, res){
-	res.redirect('/#about');
+	//res.redirect('/#about');
 
-	// fs.readFile(__dirname + '/../public/javascripts/templates/about.html', 'utf8', function(err, contentWrapper){
+	fs.readFile(__dirname + '/../public/javascripts/templates/about.html', 'utf8', function(err, contentWrapper){
 		
 			
-	// 		res.render('index', {
-	// 			title: 'James Charlesworth - JavaScript, PHP, SEO, Design - Atlanta',
-	// 			built: built, 
-	// 			content: contentWrapper,
-	// 			meta_desc: 'About me - I make Web Applications'
-	// 		});
+			res.render('index', {
+				title: 'James Charlesworth - JavaScript, PHP, SEO, Design - Atlanta',
+				built: built, 
+				content: contentWrapper,
+				meta_desc: 'About me - I make Web Applications'
+			});
 		
-	// });
+	});
 };
 
 exports.projects = function(req, res){
-	res.redirect('/#projects');
-	// fs.readFile(__dirname + '/../public/javascripts/templates/projects/all.html', 'utf8', function(err, contentWrapper){
-	// 	res.render('index', { title: 'James Charlesworth - Web Developer, Atlanta',meta_desc:'',built: built,content: contentWrapper });	
-	// });
+	//res.redirect('/#projects');
+	fs.readFile(__dirname + '/../public/javascripts/templates/projects/all.html', 'utf8', function(err, contentWrapper){
+		res.render('index', { title: 'James Charlesworth - Web Developer, Atlanta',meta_desc:'',built: built,content: contentWrapper });	
+	});
 };
 
 exports.project = function(req, res){
