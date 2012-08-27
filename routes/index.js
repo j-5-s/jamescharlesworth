@@ -15,9 +15,9 @@ exports.index = function(req, res){
 	fs.readFile(__dirname + '/../public/javascripts/templates/home.html', 'utf8', function(err, contentWrapper){
 		fs.readFile( __dirname + '/../public/javascripts/templates/home/red-dot/me.html', 'utf8', function(err, me){
 			var html = contentWrapper.replace('<%= redDot %>', me);
-			res.render('index', { 
+			res.render('index', {
 				title: 'James Charlesworth - Web Developer, Atlanta, SEO',
-				built: built, 
+				built: built,
 				content: html,
 				meta_desc: 'I make web applications with JavaScript.'
 			});
@@ -34,7 +34,7 @@ exports.about = function(req, res){
 
 			res.render('index', {
 				title: 'James Charlesworth - JavaScript, PHP, SEO, Design - Atlanta',
-				built: built, 
+				built: built,
 				content: contentWrapper,
 				meta_desc: 'About me - I make Web Applications'
 			});
@@ -45,12 +45,12 @@ exports.about = function(req, res){
 exports.projects = function(req, res){
 	res.redirect('/#projects');
 	// fs.readFile(__dirname + '/../public/javascripts/templates/projects/all.html', 'utf8', function(err, contentWrapper){
-		// res.render('index', { 
-		// 	title: 'James Charlesworth - Web Developer, Atlanta',
-		// 	meta_desc:'',
-		// 	built: built,
-		// 	content: contentWrapper 
-		// });
+		//res.render('index', {
+		// title: 'James Charlesworth - Web Developer, Atlanta',
+		// meta_desc:'',
+		// built: built,
+		// content: contentWrapper
+		//});
 	// });
 };
 
@@ -62,9 +62,9 @@ exports.project = function(req, res){
 
 	if (!req.params.subpage) {
 		return res.redirect('/');
-	}	
+	}
 
-	console.log(req.params.subpage)
+	
 	switch(req.params.subpage) {
 		case 'tinymce-thumbnail-gallery':
 			path = __dirname + '/../public/javascripts/templates/projects/tinymce-thumbnail-gallery.html';
@@ -74,7 +74,7 @@ exports.project = function(req, res){
 		case 'westchester-square':
 			path = __dirname + '/../public/javascripts/templates/projects/westchester-square.html';
 			title = 'Westchester Square - Condo Website Portal';
-			meta_desc = 'A web application developed for a condo in Ansley Park.  Runs on PHP with Symfony.'
+			meta_desc = 'A web application developed for a condo in Ansley Park.  Runs on PHP with Symfony.';
 			break;
 		case 'mobilebox':
 			path = __dirname + '/../public/javascripts/templates/projects/mobile-box.html';
@@ -94,8 +94,8 @@ exports.project = function(req, res){
 		default: //@todo, update with 404
 			path = __dirname + '/../public/javascripts/templates/projects/tinymce-thumbnail-gallery.html';
 			title = 'TinyMCE Thumbnail Gallery - JavaScript WordPress Plugin';
-			meta_desc = 'A simple image gallery plugin for WordPress.';			
-			break;		
+			meta_desc = 'A simple image gallery plugin for WordPress.';
+			break;
 	}
 
 	fs.readFile( path, 'utf8', function(err, contentWrapper){
@@ -105,7 +105,7 @@ exports.project = function(req, res){
 			built: built,
 			content: contentWrapper,
 			meta_desc: meta_desc
-		});	
+		});
 	});
 };
 
@@ -117,5 +117,5 @@ exports.fourofour = function(req, res) {
 			meta_desc: 'Page not found',
 			content: '',
 			not_found: true
-		});	
-}
+		});
+};
