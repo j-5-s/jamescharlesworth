@@ -151,33 +151,35 @@ define([
 				if (typeof el.text !== 'undefined') {
 					return el.text;
 				}
-
-			});			
+			});
 			return cb(globals.tweets);
 		}
 
-		var url = 'https://api.twitter.com/1/statuses/user_timeline.json?callback=?';
-		$.getJSON(url, {include_entities: "true", include_rts: "true", screen_name: "_jcharlesworth", count: 10 }, function(res,textStatus,jqXHR){
-			
-			if (typeof console !== 'undefined') {
-				console.log('jqHXR',jqXHR);
-			}	
 
-			//tweet has rate limiting of 150 per hour
-			//its kind of jacked up and does not really count each request
-			//as 1 and can go through rather quickly
-			if (jqXHR.status !== 200) {
-				res = localDevTeets;
+		var res = function(data, textStatus) {
+			if( textStatus !== 'success') {
+				data = localDevTeets;
 			}
-			globals.tweets = _.map(res,function(el){
-			
+
+
+			globals.tweets = _.map(data,function(el){
 				if (typeof el.text !== 'undefined') {
 					return el.text;
 				}
-
-			});
-
+			});			
 			cb(globals.tweets);
+		};
+
+
+		var url = 'https://api.twitter.com/1/statuses/user_timeline.json?callback=?';
+		
+		$.ajax({
+			type: 'GET',
+			url: url,
+			data: {include_entities: "true", include_rts: "true", screen_name: "_jcharlesworth", count: 10 },
+			dataType: 'JSON',
+			success: res,
+			error: res
 		});
 	};
 
