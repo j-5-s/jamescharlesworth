@@ -8,21 +8,30 @@ if (process.env.PORT) {
 	built = '-built';
 }
 
+var all = fs.readFileSync(__dirname + '/../public/javascripts/templates/projects/all.html', 'utf8'),
+	about = fs.readFileSync(__dirname + '/../public/javascripts/templates/about.html', 'utf8'),
+	home = fs.readFileSync(__dirname + '/../public/javascripts/templates/home.html', 'utf8'),
+	me   = fs.readFileSync( __dirname + '/../public/javascripts/templates/home/red-dot/me.html', 'utf8');
+
+var gallery = {
+	'tinymce-thumbnail-gallery': fs.readFileSync(__dirname + '/../public/javascripts/templates/projects/tinymce-thumbnail-gallery.html','utf8'),
+	'westchester-square': fs.readFileSync(__dirname + '/../public/javascripts/templates/projects/westchester-square.html','utf8'),
+	'mobilebox': fs.readFileSync(__dirname + '/../public/javascripts/templates/projects/mobile-box.html','utf8'),
+	'intrade': fs.readFileSync(__dirname + '/../public/javascripts/templates/projects/intrade.html','utf8'),
+	'westhost-php-contest': fs.readFileSync(__dirname + '/../public/javascripts/templates/projects/westhost-php-contest.html','utf8'),
+};
 
 exports.index = function(req, res){
 
 
-	fs.readFile(__dirname + '/../public/javascripts/templates/home.html', 'utf8', function(err, contentWrapper){
-		fs.readFile( __dirname + '/../public/javascripts/templates/home/red-dot/me.html', 'utf8', function(err, me){
-			var html = contentWrapper.replace('<%= redDot %>', me);
-			res.render('index', {
-				title: 'James Charlesworth - Web Developer, Atlanta, SEO',
-				built: built,
-				content: html,
-				meta_desc: 'I make web applications with JavaScript.'
-			});
-		});
+	var html = home.replace('<%= redDot %>', me);
+	res.render('index', {
+		title: 'James Charlesworth - Web Developer, Atlanta, SEO',
+		built: built,
+		content: html,
+		meta_desc: 'I make web applications with JavaScript.'
 	});
+
 
 	
 };
@@ -30,34 +39,34 @@ exports.index = function(req, res){
 exports.about = function(req, res){
 	//res.redirect('/#about');
 
-	fs.readFile(__dirname + '/../public/javascripts/templates/about.html', 'utf8', function(err, contentWrapper){
 
-			res.render('index', {
-				title: 'James Charlesworth - JavaScript, PHP, SEO, Design - Atlanta',
-				built: built,
-				content: contentWrapper,
-				meta_desc: 'About me - I make Web Applications'
-			});
-		
+
+	res.render('index', {
+		title: 'James Charlesworth - JavaScript, PHP, SEO, Design - Atlanta',
+		built: built,
+		content: about,
+		meta_desc: 'About me - I make Web Applications'
 	});
+
 };
 
 exports.projects = function(req, res){
-	res.redirect('/#projects');
-	// fs.readFile(__dirname + '/../public/javascripts/templates/projects/all.html', 'utf8', function(err, contentWrapper){
-	// 	res.render('index', {
-	// 	title: 'James Charlesworth - Web Developer, Atlanta',
-	// 	meta_desc:'',
-	// 	built: built,
-	// 	content: contentWrapper
-	// 	});
-	// });
+	
+	
+	res.render('index', {
+		title: 'James Charlesworth - Web Developer, Atlanta',
+		meta_desc:'',
+		built: built,
+		content: all
+	});
+	
 };
 
 exports.project = function(req, res){
 	var path = '',
 		title = '',
-		meta_desc = '';
+		meta_desc = '',
+		content = '';
 		
 
 	if (!req.params.subpage) {
@@ -67,45 +76,44 @@ exports.project = function(req, res){
 	
 	switch(req.params.subpage) {
 		case 'tinymce-thumbnail-gallery':
-			path = __dirname + '/../public/javascripts/templates/projects/tinymce-thumbnail-gallery.html';
+			content = gallery['tinymce-thumbnail-gallery'];
 			title = 'TinyMCE Thumbnail Gallery - JavaScript WordPress Plugin';
 			meta_desc = 'A simple image gallery plugin for WordPress.';
 			break;
 		case 'westchester-square':
-			path = __dirname + '/../public/javascripts/templates/projects/westchester-square.html';
+			content = gallery['westchester-square'];
 			title = 'Westchester Square - Condo Website Portal';
 			meta_desc = 'A web application developed for a condo in Ansley Park.  Runs on PHP with Symfony.';
 			break;
 		case 'mobilebox':
-			path = __dirname + '/../public/javascripts/templates/projects/mobile-box.html';
+			content = gallery['mobilebox'];
 			title = 'Mobile jQuery Lightbox Plugin';
 			meta_desc = 'Simple way to show images for mobile browsers';
 			break;
 		case 'intrade':
-			path = __dirname + '/../public/javascripts/templates/projects/intrade.html';
+			content = gallery['intrade'];
 			title = 'Intrade - Node.js Module';
 			meta_desc = 'I love building node apps!';
 			break;
 		case 'westhost-php-contest':
-			path = __dirname + '/../public/javascripts/templates/projects/westhost-php-contest.html';
+			content = gallery['westhost-php-contest'];
 			title = 'WestHost PHP Content - SEO Campaign';
 			meta_desc = 'A fantastic, link generating SEO campaign developed on Symfony';
 			break;
 		default: //@todo, update with 404
-			path = __dirname + '/../public/javascripts/templates/projects/tinymce-thumbnail-gallery.html';
+			content = gallery['tinymce-thumbnail-gallery'];
 			title = 'TinyMCE Thumbnail Gallery - JavaScript WordPress Plugin';
 			meta_desc = 'A simple image gallery plugin for WordPress.';
 			break;
 	}
 
-	fs.readFile( path, 'utf8', function(err, contentWrapper){
+	
 		
-		res.render('index', {
-			title: title,
-			built: built,
-			content: contentWrapper,
-			meta_desc: meta_desc
-		});
+	res.render('index', {
+		title: title,
+		built: built,
+		content: content,
+		meta_desc: meta_desc
 	});
 };
 
