@@ -45,12 +45,12 @@ exports.about = function(req, res){
 exports.projects = function(req, res){
 	res.redirect('/#projects');
 	// fs.readFile(__dirname + '/../public/javascripts/templates/projects/all.html', 'utf8', function(err, contentWrapper){
-		//res.render('index', {
-		// title: 'James Charlesworth - Web Developer, Atlanta',
-		// meta_desc:'',
-		// built: built,
-		// content: contentWrapper
-		//});
+	// 	res.render('index', {
+	// 	title: 'James Charlesworth - Web Developer, Atlanta',
+	// 	meta_desc:'',
+	// 	built: built,
+	// 	content: contentWrapper
+	// 	});
 	// });
 };
 

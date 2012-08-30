@@ -43,8 +43,9 @@ app.get('*',function(req, res, next) {
 
 app.get('/', routes.index);
 app.get('/about', routes.about );
-app.get('/projects/:subpage', routes.project );
 app.get('/projects', routes.projects );
+app.get('/projects/:subpage', routes.project );
+
 
 app.get('*',routes.fourofour);
 

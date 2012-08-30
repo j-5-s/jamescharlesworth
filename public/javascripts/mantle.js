@@ -158,6 +158,11 @@ define([
 
 		var url = 'https://api.twitter.com/1/statuses/user_timeline.json?callback=?';
 		$.getJSON(url, {include_entities: "true", include_rts: "true", screen_name: "_jcharlesworth", count: 10 }, function(res,textStatus,jqXHR){
+			
+			if (typeof console !== 'undefined') {
+				console.log('jqHXR',jqXHR);
+			}	
+
 			//tweet has rate limiting of 150 per hour
 			//its kind of jacked up and does not really count each request
 			//as 1 and can go through rather quickly
