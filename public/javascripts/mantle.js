@@ -179,7 +179,9 @@ define([
 			data: {include_entities: "true", include_rts: "true", screen_name: "_jcharlesworth", count: 10 },
 			dataType: 'JSON',
 			success: res,
-			error: res
+			statusCode: {
+				'400': res
+			}				
 		});
 	};
 
