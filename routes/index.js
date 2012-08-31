@@ -22,8 +22,6 @@ var gallery = {
 };
 
 exports.index = function(req, res){
-
-
 	var html = home.replace('<%= redDot %>', me);
 	res.render('index', {
 		title: 'James Charlesworth - Web Developer, Atlanta, SEO',
@@ -31,48 +29,35 @@ exports.index = function(req, res){
 		content: html,
 		meta_desc: 'I make web applications with JavaScript.'
 	});
-
-
-	
 };
 
 exports.about = function(req, res){
-	//res.redirect('/#about');
-
-
-
 	res.render('index', {
 		title: 'James Charlesworth - JavaScript, PHP, SEO, Design - Atlanta',
 		built: built,
 		content: about,
 		meta_desc: 'About me - I make Web Applications'
 	});
-
 };
 
 exports.projects = function(req, res){
-	
-	
 	res.render('index', {
 		title: 'James Charlesworth - Web Developer, Atlanta',
 		meta_desc:'',
 		built: built,
 		content: all
-	});
-	
+	});	
 };
 
 exports.project = function(req, res){
 	var path = '',
 		title = '',
 		meta_desc = '',
-		content = '';
-		
+		content = '';	
 
 	if (!req.params.subpage) {
 		return res.redirect('/');
 	}
-
 	
 	switch(req.params.subpage) {
 		case 'tinymce-thumbnail-gallery':
@@ -106,8 +91,6 @@ exports.project = function(req, res){
 			meta_desc = 'A simple image gallery plugin for WordPress.';
 			break;
 	}
-
-	
 		
 	res.render('index', {
 		title: title,
@@ -120,10 +103,10 @@ exports.project = function(req, res){
 exports.fourofour = function(req, res) {
 	res.status(404);
 	res.render('404', {
-			title: 'Page not found',
-			built: built,
-			meta_desc: 'Page not found',
-			content: '',
-			not_found: true
-		});
+		title: 'Page not found',
+		built: built,
+		meta_desc: 'Page not found',
+		content: '',
+		not_found: true
+	});
 };

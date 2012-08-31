@@ -17,8 +17,7 @@ define([
 	'text!templates/projects/mobile-box.html',
 	'text!templates/projects/intrade.html',
 	'text!templates/projects/westhost-php-contest.html'
-
-], function( $, _, Backbone, Router, PagesCollection, SubPageCollection, 
+], function( $, _, Backbone, Router, PagesCollection, SubPageCollection,
 			homePageTemplate, meHtml, aboutPageTemplate, projectPageTemplate,
 			tinyMceThumbnail, westchesterSquare, mobileBox, intrade, westhostPHPContest  ){
 	
@@ -30,8 +29,6 @@ define([
 			//home page
 			var t = _.template(homePageTemplate, {redDot: meHtml});
 			pages.add({name:'home',template: t});
-
-
 
 			//about page
 			pages.add({name:'about', template: aboutPageTemplate});
@@ -55,29 +52,21 @@ define([
 				projectCollection.add({
 					className: 'page-intrade',
 					html: intrade
-				});	
+				});
 				projectCollection.add({
 					className: 'page-westhost-php-contest',
 					html: westhostPHPContest
 				});
 				
-
-
-			
 			pages.add({name:'projects',template: projectPageTemplate, subPages: projectCollection});//change projects to subPages
 			
-
-			var options = {};
-
-			options.pages = pages;
-			
+			var options = {
+				pages: pages
+			};
 
 		// Pass in our Router module and call it's initialize function
-		Router.initialize(options);	
-		
-		
+		Router.initialize(options);
 	};
-
 	
 	return {
 		initialize: initialize

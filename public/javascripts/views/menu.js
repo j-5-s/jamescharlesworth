@@ -1,7 +1,6 @@
-
-define(['jQuery', 
-		'Underscore', 
-		'Backbone', 
+define(['jQuery',
+		'Underscore',
+		'Backbone',
 		'text!templates/menu.html'
 
 ], function( $, _, Backbone, menuHTML ) {
@@ -10,14 +9,14 @@ define(['jQuery',
 		initialize: function( options ) {
 			this.page = options.page;
 			this.router = options.router;
-			_.bindAll(this, 'bindToLink', 'render')
+			_.bindAll(this, 'bindToLink', 'render');
 		},
 		events: {
 			'click a': 'bindToLink'
 		},
 		render: function() {
-			var template = _.template(menuHTML),
-				router   = this.router;
+			var template = _.template(menuHTML);
+				
 
 			this.$el.html( template({page: this.page}) );
 
@@ -40,4 +39,4 @@ define(['jQuery',
 	});
 
 	return Menu;
-});	
+});

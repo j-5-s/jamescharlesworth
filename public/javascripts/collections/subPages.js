@@ -34,10 +34,10 @@ define(['jQuery',
 				return re.test(p.get('className'));
 			});
 			return subPage;
-		},		
+		},
 		getSubPageClasses: function(){
-			return this.pluck('className');	
-		},		
+			return this.pluck('className');
+		},
 		setActive: function( model ){
 			var activeSubPage= this.getActiveSubPage();
 			if (activeSubPage) {
@@ -49,4 +49,4 @@ define(['jQuery',
 	});
 
 	return subPagesCollection;
-});		
+});

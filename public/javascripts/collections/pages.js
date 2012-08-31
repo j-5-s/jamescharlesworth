@@ -19,8 +19,8 @@ define(['jQuery',
 					page.set('deg', 0);
 				}
 			});
-		} 
+		}
 	});
-	
-	return PagesCollection;	
-});	
+
+	return PagesCollection;
+});

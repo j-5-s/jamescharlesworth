@@ -45,7 +45,7 @@ define(['jQuery',
 					var splited = url.split('http://jamescharlesworth.com/');
 					url = splited[1];
 				}
-				router.navigate(url, true);				
+				router.navigate(url, true);		
 
 			});
 

@@ -1,4 +1,4 @@
-/*globals app, Backbone, $, resize, _gaq */
+/*globals app, Backbone, $, resize, _gaq, window */
 // Filename: router.js
 define([
 	'jQuery',
@@ -14,12 +14,7 @@ define([
 		initialize: function(options) {
 			this.options = options;
 			this.pages = options.pages;
-			var router = this;
-
-
 			this.loaded = false;
-
-			
 		},
 		routes: {
 			// Define some URL routes
@@ -27,26 +22,23 @@ define([
 			"/": "defaultPage",
 			":p": 'showPage',
 			":p/:sp": 'showPage'
-
 		},
 		init: function(pageName, subPage){
-
 			
 			var router = this;
 			
 			$('.pages-wrapper').html('');
+
 			router.pages.each(function(page){
-				if (! $('.'+page.get('name')).length )
+				if (! $('.'+page.get('name')).length ) {
 					$('.pages-wrapper').append(page.renderPageView(router, pageName, subPage));
+				}
 			});
-			
-			
 		},
 		showPage: function( pageName, subPage) {
 			if ($('#jsloader').length) {
 				$('#jsloader').remove();
 			}
-
 
 			globals.clickCount++;
 			//GA tracking
@@ -58,7 +50,7 @@ define([
 			//fix to default GA to not create a duplicate page
 			//for /home
 			if (virtualPageview === 'home') {
-				virtualPageview = '';	
+				virtualPageview = '';
 			}
 
 			_gaq.push(['_trackPageview', virtualPageview]);
@@ -87,13 +79,8 @@ define([
 
 			}
 
-		
-
 			//need 404 handling here
-
 			router.stylize(pageName);
-			
-
 		},
 		stylize: function(pageName){
 			var wrapperHeight = $('.'+pageName + ' .container').height() +50,
@@ -121,24 +108,16 @@ define([
 				} else {
 					var maxColumnHeight = 0;
 					$('.about-column').each(function(i,col){
-						
 						if ($(col).height() > maxColumnHeight) {
 							maxColumnHeight = $(col).height();
 							
 						}
-					});	
-					$('.about-column').css({height: maxColumnHeight +'px'});				
+					});
+					$('.about-column').css({height: maxColumnHeight +'px'});
 				}
-
-				
 			}
 
-			
-			//$('.footer').css({top: wrapperHeight +'px'});
-			$('a.emailNoReplace').nospam({
-				
-			});
-
+			$('a.emailNoReplace').nospam();
 
 			$('a.email').nospam({
 				replaceText:true
@@ -148,32 +127,24 @@ define([
 		//refactor pages later
 		defaultPage: function() {
 			this.showPage('home');
-
-
-
 		}
-
 	});
 
 	
 	var initialize = function(options){
 		var appRouter = new AppRouter(options);
-		//appRouter.init()
-		// $(function(){
-		 
-			$(window).resize(function(){
-				if (globals.pageWidth !== $(window).width()) {
-					globals.loaded = false;
-					globals.pageWidth = $(window).width();
-					globals.pageHeight = $(window).height();
-					$('.pages-wrapper').html('');
-					
-					appRouter.init('home');
-					globals.transition($('.pages-wrapper'), 0, 'home');
-					appRouter.stylize('home');
-				}
-			});			
-		// })
+		$(window).resize(function(){
+			if (globals.pageWidth !== $(window).width()) {
+				globals.loaded = false;
+				globals.pageWidth = $(window).width();
+				globals.pageHeight = $(window).height();
+				$('.pages-wrapper').html('');
+				
+				appRouter.init('home');
+				globals.transition($('.pages-wrapper'), 0, 'home');
+				appRouter.stylize('home');
+			}
+		});
 
 		Backbone.history.start({pushState:true});
 	};
