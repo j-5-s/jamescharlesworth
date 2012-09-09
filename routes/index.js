@@ -8,25 +8,13 @@ if (process.env.PORT) {
 	built = '-built';
 }
 
-// var all = fs.readFileSync(__dirname + '/../public/javascripts/templates/projects/all.html', 'utf8'),
-// 	about = fs.readFileSync(__dirname + '/../public/javascripts/templates/about.html', 'utf8'),
-var home = fs.readFileSync(__dirname + '/../public/javascripts/templates/home.html', 'utf8'),
-	me   = fs.readFileSync( __dirname + '/../public/javascripts/templates/home/red-dot/me.html', 'utf8');
-
-// var gallery = {
-// 	'tinymce-thumbnail-gallery': fs.readFileSync(__dirname + '/../public/javascripts/templates/projects/tinymce-thumbnail-gallery.html','utf8'),
-// 	'westchester-square': fs.readFileSync(__dirname + '/../public/javascripts/templates/projects/westchester-square.html','utf8'),
-// 	'mobilebox': fs.readFileSync(__dirname + '/../public/javascripts/templates/projects/mobile-box.html','utf8'),
-// 	'intrade': fs.readFileSync(__dirname + '/../public/javascripts/templates/projects/intrade.html','utf8'),
-// 	'westhost-php-contest': fs.readFileSync(__dirname + '/../public/javascripts/templates/projects/westhost-php-contest.html','utf8'),
-// };
 
 exports.index = function(req, res){
-	var html = home.replace('<%= redDot %>', me);
+	
 	res.render('index', {
 		title: 'James Charlesworth - Web Developer, Atlanta, SEO',
 		built: built,
-		content: html,
+		content: '',
 		meta_desc: 'I make web applications with JavaScript.'
 	});
 };
