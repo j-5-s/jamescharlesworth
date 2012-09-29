@@ -13,7 +13,8 @@ var getBuilt = function() {
 }
 var built = getBuilt();
 
-var all = fs.readFileSync(__dirname + '/../public/javascripts/templates/projects/all.html', 'utf8'),
+var home       = fs.readFileSync(__dirname + '/../public/javascripts/templates/home.html', 'utf8'),
+	all      = fs.readFileSync(__dirname + '/../public/javascripts/templates/projects/all.html', 'utf8'),
 	about = fs.readFileSync(__dirname + '/../public/javascripts/templates/about.html', 'utf8');
 
 var gallery = {
@@ -31,7 +32,7 @@ exports.index = function(req, res){
 	res.render('index', {
 		title: 'James Charlesworth - Web Developer, Atlanta, SEO',
 		built: getBuilt(),
-		content: '',
+		content: home,
 		meta_desc: 'I make web applications with JavaScript.'
 	});
 };
