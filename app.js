@@ -2,7 +2,6 @@
 /**
  * Module dependencies.
  */
-
 var express = require('express')
   , routes = require('./routes')
   , http = require('http')
@@ -18,28 +17,24 @@ app.configure('production', function(){
   app.use(express.logger());
 });
 
+app.use(require('node-force-domain').redirect('jamescharlesworth.com'));
+
 app.configure(function(){
   app.set('port', process.env.PORT || 3000);
   app.set('views', __dirname + '/views');
   app.set('view engine', 'ejs');
   app.use(express.favicon());
-  
+
   app.use(express.bodyParser());
   app.use(express.methodOverride());
-  
+
   app.use(express.static(path.join(__dirname, 'public')));
   app.use(app.router);
 
 });
 
 
-app.get('*',function(req, res, next) {
-  if (req.headers.host.match(/^www/) !== null ) {
-    res.redirect('http://' + req.headers.host.replace(/^www\./, '') + req.url);
-  } else {
-    next();
-  }
-});
+
 
 
 

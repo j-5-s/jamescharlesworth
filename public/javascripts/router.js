@@ -24,9 +24,9 @@ define([
 			":p/:sp": 'showPage'
 		},
 		init: function(pageName, subPage){
-			
+
 			var router = this;
-			
+
 			$('.pages-wrapper').html('');
 
 			router.pages.each(function(page){
@@ -55,7 +55,7 @@ define([
 
 			_gaq.push(['_trackPageview', virtualPageview]);
 			//window.scrollTo(0, 1);
-			
+
 			//load the menu
 			var router = this;
 			router.init(pageName, subPage);
@@ -70,10 +70,10 @@ define([
 
 			if (pageName === 'home') {
 				globals.transition($('.pages-wrapper'), 0, 'home');
-			
+
 			} else if ( pageName === 'about') {
 				globals.transition($('.pages-wrapper'), -120, 'about');
-				
+
 			} else if ( pageName === 'projects') {
 				globals.transition($('.pages-wrapper'),  -240 , 'projects');
 
@@ -85,12 +85,12 @@ define([
 		stylize: function(pageName){
 			var wrapperHeight = $('.'+pageName + ' .container').height() +50,
 				pageHeight    = $(window).height();
-	
+
 			if (pageHeight === 0){
 
 				return this.stylize(pageName);
 			}
-			
+
 			//if the page is larger than the content, reset the wrapper height
 			if ( (pageHeight - globals.footerHeight) > wrapperHeight ) {
 				wrapperHeight = pageHeight - globals.footerHeight;
@@ -110,7 +110,7 @@ define([
 					$('.about-column').each(function(i,col){
 						if ($(col).height() > maxColumnHeight) {
 							maxColumnHeight = $(col).height();
-							
+
 						}
 					});
 					$('.about-column').css({height: maxColumnHeight +'px'});
@@ -130,7 +130,7 @@ define([
 		}
 	});
 
-	
+
 	var initialize = function(options){
 		var appRouter = new AppRouter(options);
 		$(window).resize(function(){
@@ -139,7 +139,7 @@ define([
 				globals.pageWidth = $(window).width();
 				globals.pageHeight = $(window).height();
 				$('.pages-wrapper').html('');
-				
+
 				appRouter.init('home');
 				globals.transition($('.pages-wrapper'), 0, 'home');
 				appRouter.stylize('home');
@@ -153,4 +153,4 @@ define([
 		initialize: initialize
 	};
 });
-	
+
