@@ -3,32 +3,35 @@ require.config({
 	baseUrl: "/javascripts/",
 	urlArgs: 'cb=' + Math.random(),
 	paths: {
-		jquery: 'vendor/jquery/jquery',
-		underscore: 'vendor/underscore/underscore',
-		backbone: 'vendor/backbone/backbone',
+		jQuery: 'vendor/jquery/jquery',
+		Underscore: 'vendor/underscore/underscore',
+		Backbone: 'vendor/backbone/backbone',
 		//'backbone.localStorage': 'lib/backbone.localStorage',
 		jasmine: '../test/jasmine/lib/jasmine-core/jasmine',
 		'jasmine-html': '../test/jasmine/lib/jasmine-core/jasmine-html',
-		spec: '../test/jasmine/spec/'
+		spec: '../test/jasmine/spec/',
+		eve: './vendor/raphaeljs/eve',
+		Raphael: './vendor/raphaeljs/raphael.amd'
+
 	},
   shim: {
-	underscore: {
-	  exports: "_"
+	Underscore: {
+		exports: "_"
 	},
-	backbone: {
-	  deps: ['underscore', 'jquery'],
-	  exports: 'Backbone'
+	Backbone: {
+		deps: ['Underscore', 'jQuery'],
+		exports: 'Backbone'
 	},
-	'backbone.localStorage': {
-	  deps: ['backbone'],
-	  exports: 'Backbone'
-	},
+	// 'backbone.localStorage': {
+	//   deps: ['backbone'],
+	//   exports: 'Backbone'
+	// },
 	jasmine: {
-	  exports: 'jasmine'
+		exports: 'jasmine'
 	},
 	'jasmine-html': {
-	  deps: ['jasmine'],
-	  exports: 'jasmine'
+		deps: ['jasmine'],
+		exports: 'jasmine'
 	}
   }
 });
@@ -36,7 +39,8 @@ require.config({
 
 //window.store = "TestStore"; // override local storage store name - for testing
 
-require(['underscore', 'jquery', 'jasmine-html'], function(_, $, jasmine){
+require(['Underscore', 'jQuery', 'jasmine-html'], function(_, $, jasmine){
+
 
 	var jasmineEnv = jasmine.getEnv();
 	jasmineEnv.updateInterval = 1000;
@@ -51,7 +55,7 @@ require(['underscore', 'jquery', 'jasmine-html'], function(_, $, jasmine){
 
 	var specs = [];
 
-	 specs.push('../test/spec/t');
+	 specs.push('../test/spec/collections/pages');
 	// specs.push('spec/views/ClearCompletedSpec');
 	// specs.push('spec/views/CountViewSpec');
 	// specs.push('spec/views/FooterViewSpec');
