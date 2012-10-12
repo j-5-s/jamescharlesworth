@@ -147,10 +147,13 @@ define([
 		});
 
 		Backbone.history.start({pushState:true});
+
+		return this;
 	};
 
 	return {
-		initialize: initialize
+		initialize: initialize,
+		AppRouter: AppRouter
 	};
 });
 

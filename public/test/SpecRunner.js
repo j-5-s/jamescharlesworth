@@ -11,7 +11,8 @@ require.config({
 		'jasmine-html': '../test/jasmine/lib/jasmine-core/jasmine-html',
 		spec: '../test/jasmine/spec/',
 		eve: './vendor/raphaeljs/eve',
-		Raphael: './vendor/raphaeljs/raphael.amd'
+		Raphael: './vendor/raphaeljs/raphael.amd',
+		jQueryNoSpam: './vendor/jquery/jquery.nospam'
 
 	},
   shim: {
@@ -56,6 +57,8 @@ require(['Underscore', 'jQuery', 'jasmine-html'], function(_, $, jasmine){
 	var specs = [];
 
 	 specs.push('../test/spec/collections/pages');
+	 specs.push('../test/spec/collections/subPages');
+	 specs.push('../test/spec/models/page');
 	// specs.push('spec/views/ClearCompletedSpec');
 	// specs.push('spec/views/CountViewSpec');
 	// specs.push('spec/views/FooterViewSpec');

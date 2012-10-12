@@ -26,7 +26,7 @@ define(['jQuery',
 		id: 'home',
 		className: 'home page',
 		events: {
-	
+
 		},
 		render: function() {
 			var router   = this.router;
@@ -38,14 +38,14 @@ define(['jQuery',
 				e.preventDefault();
 
 				var url = $(e.currentTarget).attr('href');
-				
+
 				//in ie compatibility view it appends the url
 				//need to refactor this in about and projects
 				if (url.indexOf('http://jamescharlesworth.com/') !== -1) {
 					var splited = url.split('http://jamescharlesworth.com/');
 					url = splited[1];
 				}
-				router.navigate(url, true);		
+				router.navigate(url, true);
 
 			});
 
