@@ -30,7 +30,7 @@ var gallery = {
 exports.index = function(req, res){
 
 	res.render('index', {
-		title: 'James Charlesworth - Atlanta SEO Consultant, Conversion Optimization Specialist',
+		title: 'James Charlesworth - JavaScript Developer',
 		built: getBuilt(),
 		content: home,
 		meta_desc: 'I make web applications with JavaScript.'
