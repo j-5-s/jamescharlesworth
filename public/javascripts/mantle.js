@@ -20,10 +20,10 @@ define([
 
 
 		var bbox = path25.getBBox();
-
+		debugger;
 		//dont want them too close to the bottom
-		if (bbox.y2 + bbox.height*2 +20 > 340) {
-			point.y = 340 - bbox.height * (getRandomNumber(10,20)/10) *1.25;
+		if (bbox.y2 + bbox.height*2 +20 > 310) {
+			point.y = 310 - bbox.height * (getRandomNumber(10,20)/10) * 1.25;
 		}
 
 
@@ -32,7 +32,7 @@ define([
 		path25.translate(point.x,point.y);
 		//path25.scale(1,-1,0,0);
 		//size is scaled down by the random radius betweem 0 & 50
-		var r = point.r/50;
+		var r = point.r/80;
 		if (r < 0.2) {
 			r = r + 0.2;
 		}

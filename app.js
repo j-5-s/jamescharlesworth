@@ -17,7 +17,12 @@ app.configure('production', function(){
   app.use(express.logger());
 });
 
-app.use(require('node-force-domain').redirect('jamescharlesworth.com'));
+
+
+
+
+
+
 
 app.configure(function(){
   app.set('port', process.env.PORT || 3000);
@@ -33,6 +38,14 @@ app.configure(function(){
 
 });
 
+app.get('*', function(req,res,next){
+  if(req.headers.host === '108.227.65.206'){
+    res.redirect('http://ecruisenews.net');
+  } else {
+    app.use(require('node-force-domain').redirect('jamescharlesworth.com'));
+    next();
+  }
+});
 
 
 
