@@ -95,6 +95,9 @@ define([
 			if ( (pageHeight - globals.footerHeight) > wrapperHeight ) {
 				wrapperHeight = pageHeight - globals.footerHeight;
 			}
+			if (wrapperHeight < 560) {
+				wrapperHeight = 560;
+			}
 
 			$('.page').css({height:wrapperHeight + 'px'});
 
