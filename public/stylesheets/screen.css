@@ -2618,17 +2618,16 @@ h2.title {
 
 /* line 18, ../sass/partials/_home.sass */
 .below-fold {
-  margin-top: 300px;
-  position: absolute;
+  margin-top: 150px;
   z-index: 1000;
 }
 
-/* line 24, ../sass/partials/_home.sass */
+/* line 23, ../sass/partials/_home.sass */
 .below-fold h2 {
   margin-top: 15px;
 }
 
-/* line 28, ../sass/partials/_home.sass */
+/* line 27, ../sass/partials/_home.sass */
 .home a {
   background: #999999;
 }
